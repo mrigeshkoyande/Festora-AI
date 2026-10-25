@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
-import { Dialog } from "@/components/ui/Dialog";
-import { Drawer } from "@/components/ui/Drawer";
+import { Dialog, Drawer } from "@/components/ui/Dialog";
 import {
   Users,
   UserPlus,
