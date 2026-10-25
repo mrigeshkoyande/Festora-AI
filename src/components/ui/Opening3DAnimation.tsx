@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, Zap, Star, Calendar, Users } from "lucide-react";
 import Image from "next/image";
 
-// Fast 1-second cinematic intro sequence
-const AUTO_DISMISS_MS = 1000;
+// 2-second cinematic intro sequence for complete 3D visibility
+const AUTO_DISMISS_MS = 2000;
 
 // Floating feature nodes data
 const NODES = [
@@ -43,8 +43,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
       return;
     }
 
-    const t1 = setTimeout(() => setPhase("reveal"), 120);
-    const t2 = setTimeout(() => setPhase("hold"), 550);
+    const t1 = setTimeout(() => setPhase("reveal"), 150);
+    const t2 = setTimeout(() => setPhase("hold"), 700);
     const t3 = setTimeout(handleDismiss, AUTO_DISMISS_MS);
     timerRef.current = t3;
 

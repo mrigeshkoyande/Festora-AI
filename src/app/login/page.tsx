@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Check, ShieldCheck, Mail, Lock, User as UserIcon } from "lucide-react";
+import { ArrowRight, ShieldCheck, Mail, Lock, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { GlassSurface } from "@/components/ui/GlassSurface";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -26,49 +25,44 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-ink flex items-center justify-center p-4 sm:p-6">
-      <div className="w-full max-w-md bg-white rounded-card-lg border border-navy/12 shadow-2xl overflow-hidden relative">
-        {/* Top Visual Banner with Floating Testimonial Glass Chip */}
-        <div className="relative w-full h-48 sm:h-52 bg-navy overflow-hidden">
+    <div className="min-h-screen bg-bg text-ink flex flex-col justify-center items-center py-8 px-4 sm:px-6">
+      <div className="w-full max-w-md bg-white rounded-card-lg border border-navy/12 shadow-2xl overflow-hidden relative my-auto">
+        {/* Top Visual Luxury Banner */}
+        <div className="relative w-full h-28 sm:h-32 bg-navy overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop"
             alt="Luxury Event Setup"
             fill
             sizes="(max-width: 640px) 100vw, 450px"
-            className="object-cover brightness-75"
+            className="object-cover brightness-90"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent" />
 
-          {/* Floating Glass Testimonial Badge */}
-          <GlassSurface
-            variant="strong"
-            className="absolute bottom-3 left-4 right-4 p-3 shadow-lg border border-white/60"
-          >
-            <p className="font-grotesk font-bold text-xs text-navy leading-snug">
-              "Every celebration, beautifully organized with AI."
-            </p>
-            <div className="flex items-center gap-1.5 mt-1 text-[11px] font-semibold text-orange">
-              <ShieldCheck className="w-3.5 h-3.5 text-navy" />
+          {/* Elegant Status Bar */}
+          <div className="absolute bottom-3 left-6 right-6 flex items-center justify-between text-bg">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-gold">
+              <ShieldCheck className="w-3.5 h-3.5 text-gold" />
               <span>Festora AI Concierge</span>
             </div>
-          </GlassSurface>
+            <span className="text-[11px] text-bg/80 font-medium">Secured Access</span>
+          </div>
         </div>
 
         {/* Form Body */}
-        <div className="p-6 sm:p-8 flex flex-col gap-6">
+        <div className="p-6 sm:p-7 flex flex-col gap-5">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-white p-0.5 border border-navy/10 flex items-center justify-center">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-8 h-8 rounded-full bg-white p-1 border border-navy/10 flex items-center justify-center shadow-xs">
                 <Image
                   src="/brand/logo.png"
                   alt="Festora Logo"
-                  width={24}
-                  height={24}
+                  width={22}
+                  height={22}
                   className="object-contain"
                 />
               </div>
-              <span className="font-grotesk font-extrabold text-sm text-navy">
+              <span className="font-grotesk font-extrabold text-base text-navy group-hover:text-orange transition-colors">
                 Festora AI
               </span>
             </Link>
@@ -78,7 +72,7 @@ export default function AuthPage() {
               <button
                 type="button"
                 onClick={() => setIsSignUp(false)}
-                className={`px-3 py-1 rounded-pill transition-all cursor-pointer ${
+                className={`px-3.5 py-1 rounded-pill transition-all cursor-pointer ${
                   !isSignUp ? "bg-navy text-bg shadow-sm" : "text-ink/60 hover:text-ink"
                 }`}
               >
@@ -87,7 +81,7 @@ export default function AuthPage() {
               <button
                 type="button"
                 onClick={() => setIsSignUp(true)}
-                className={`px-3 py-1 rounded-pill transition-all cursor-pointer ${
+                className={`px-3.5 py-1 rounded-pill transition-all cursor-pointer ${
                   isSignUp ? "bg-navy text-bg shadow-sm" : "text-ink/60 hover:text-ink"
                 }`}
               >
@@ -182,7 +176,7 @@ export default function AuthPage() {
               </div>
             </div>
 
-            <label className="flex items-start gap-2.5 text-xs text-ink/70 cursor-pointer pt-1">
+            <label className="flex items-start gap-2.5 text-xs text-ink/70 cursor-pointer pt-0.5">
               <input
                 type="checkbox"
                 checked={agreeTerms}
@@ -206,23 +200,32 @@ export default function AuthPage() {
               variant="orange"
               size="md"
               type="submit"
-              className="w-full mt-2"
+              disabled={isSubmitting}
+              className="w-full mt-1"
               iconRight={<ArrowRight className="w-4 h-4" />}
             >
-              {isSignUp ? "Get Started" : "Continue"}
+              {isSubmitting ? "Authenticating..." : isSignUp ? "Get Started" : "Sign In to Festora"}
             </Button>
           </form>
 
-          <p className="text-center text-xs text-ink/70">
-            {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-orange font-bold hover:underline cursor-pointer ml-1"
+          <div className="flex flex-col items-center gap-2 pt-1 border-t border-navy/8">
+            <p className="text-center text-xs text-ink/70">
+              {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+              <button
+                type="button"
+                onClick={() => setIsSignUp(!isSignUp)}
+                className="text-orange font-bold hover:underline cursor-pointer ml-1"
+              >
+                {isSignUp ? "Sign In" : "Sign Up"}
+              </button>
+            </p>
+            <Link
+              href="/"
+              className="text-xs text-ink/50 hover:text-navy transition-colors font-medium"
             >
-              {isSignUp ? "Sign In" : "Sign Up"}
-            </button>
-          </p>
+              ← Back to Festora AI Home
+            </Link>
+          </div>
         </div>
       </div>
     </div>
