@@ -1,0 +1,400 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String?
+  email         String         @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  memberships   Membership[]
+  workspaces    Workspace[]    @relation("WorkspaceOwner")
+  activities    ActivityLog[]
+  comments      Comment[]
+  notifications Notification[]
+  chatThreads   ChatThread[]
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Workspace {
+  id          String       @id @default(uuid())
+  name        String
+  slug        String       @unique
+  ownerId     String
+  owner       User         @relation("WorkspaceOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  memberships Membership[]
+  events      Event[]
+}
+
+model Membership {
+  id          String    @id @default(uuid())
+  userId      String
+  workspaceId String
+  role        String    @default("Collaborator") // Owner, Collaborator, Vendor, Guest-view
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
+}
+
+model Event {
+  id             String           @id @default(uuid())
+  workspaceId    String
+  title          String
+  type           String           @default("Wedding") // Wedding, Corporate, Social
+  targetDate     DateTime
+  city           String           @default("Jaipur, Rajasthan")
+  guestCount     Int              @default(150)
+  currency       String           @default("INR")
+  totalBudget    Float            @default(4500000)
+  spentBudget    Float            @default(0)
+  styleVibe      String           @default("Royal Heritage")
+  planHealth     Int              @default(92)
+  coverImage     String?
+  specialNeeds   String?
+  isArchived     Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  workspace      Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  categories     BudgetCategory[]
+  phases         Phase[]
+  tasks          Task[]
+  eventVendors   EventVendor[]
+  guests         Guest[]
+  guestGroups    GuestGroup[]
+  seatingTables  SeatingTable[]
+  ideas          Idea[]
+  moodBoards     MoodBoard[]
+  documents      Document[]
+  comments       Comment[]
+  chatThreads    ChatThread[]
+  aiGenerations  AIGeneration[]
+  runSheetItems  RunSheetItem[]
+}
+
+model BudgetCategory {
+  id          String       @id @default(uuid())
+  eventId     String
+  name        String
+  allocated   Float
+  spent       Float        @default(0)
+  percentage  Float        @default(0)
+  icon        String?
+  event       Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  items       BudgetItem[]
+}
+
+model BudgetItem {
+  id          String         @id @default(uuid())
+  categoryId  String
+  name        String
+  estimated   Float
+  actual      Float          @default(0)
+  status      String         @default("Pending") // Pending, Paid, Committed, Overdue
+  dueDate     DateTime?
+  receiptUrl  String?
+  notes       String?
+  category    BudgetCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  payments    Payment[]
+}
+
+model Payment {
+  id           String     @id @default(uuid())
+  budgetItemId String
+  amount       Float
+  date         DateTime   @default(now())
+  method       String     @default("Bank Transfer")
+  reference    String?
+  receiptUrl   String?
+  budgetItem   BudgetItem @relation(fields: [budgetItemId], references: [id], onDelete: Cascade)
+}
+
+model Phase {
+  id          String   @id @default(uuid())
+  eventId     String
+  title       String
+  order       Int      @default(1)
+  status      String   @default("In Progress") // Completed, In Progress, Upcoming
+  dateRange   String?
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+}
+
+model Task {
+  id           String   @id @default(uuid())
+  eventId      String
+  phaseId      String?
+  title        String
+  description  String?
+  dueDate      DateTime
+  status       String   @default("todo") // todo, in_progress, done, overdue
+  priority     String   @default("medium") // high, medium, low
+  assigneeName String?
+  assigneeRole String?
+  dependencies String?  // comma-separated task IDs
+  order        Int      @default(0)
+  event        Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  phase        Phase?   @relation(fields: [phaseId], references: [id], onDelete: SetNull)
+}
+
+model VendorCategory {
+  id      String   @id @default(uuid())
+  name    String   @unique
+  icon    String?
+  vendors Vendor[]
+}
+
+model Vendor {
+  id           String          @id @default(uuid())
+  categoryId   String
+  name         String
+  city         String
+  priceTier    String          @default("$$$")
+  startingRate Float           @default(50000)
+  rating       Float           @default(4.9)
+  reviewCount  Int             @default(48)
+  description  String
+  photoUrl     String
+  verified     Boolean         @default(true)
+  matchScore   Int             @default(95)
+  contactEmail String?
+  contactPhone String?
+  category     VendorCategory  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  eventVendors EventVendor[]
+  quotes       Quote[]
+}
+
+model EventVendor {
+  id          String   @id @default(uuid())
+  eventId     String
+  vendorId    String
+  status      String   @default("Shortlisted") // Not started, Shortlisted, Contacted, Quote received, Booked, Paid
+  agreedPrice Float?
+  notes       String?
+  contractUrl String?
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  vendor      Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, vendorId])
+}
+
+model Quote {
+  id          String   @id @default(uuid())
+  vendorId    String
+  eventId     String?
+  title       String
+  amount      Float
+  status      String   @default("Received") // Received, Accepted, Declined
+  details     String?
+  validUntil  DateTime?
+  vendor      Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+}
+
+model GuestGroup {
+  id      String  @id @default(uuid())
+  eventId String
+  name    String
+  color   String  @default("navy")
+  event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  guests  Guest[]
+}
+
+model Guest {
+  id             String          @id @default(uuid())
+  eventId        String
+  groupId        String?
+  name           String
+  email          String?
+  phone          String?
+  rsvpStatus     String          @default("Pending") // Confirmed, Pending, Declined
+  mealPreference String          @default("Vegetarian")
+  plusOneName    String?
+  dietaryNotes   String?
+  tableId        String?
+  event          Event           @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  group          GuestGroup?     @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  table          SeatingTable?   @relation(fields: [tableId], references: [id], onDelete: SetNull)
+  seatAssignment SeatAssignment?
+}
+
+model SeatingTable {
+  id          String   @id @default(uuid())
+  eventId     String
+  number      Int
+  name        String
+  shape       String   @default("round") // round, rectangular
+  capacity    Int      @default(10)
+  xCoord      Float    @default(0)
+  yCoord      Float    @default(0)
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  guests      Guest[]
+  seats       SeatAssignment[]
+}
+
+model SeatAssignment {
+  id        String       @id @default(uuid())
+  guestId   String       @unique
+  tableId   String
+  seatIndex Int          @default(0)
+  guest     Guest        @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  table     SeatingTable @relation(fields: [tableId], references: [id], onDelete: Cascade)
+}
+
+model RunSheetItem {
+  id           String    @id @default(uuid())
+  eventId      String
+  timeSlot     String
+  title        String
+  description  String?
+  leadContact  String?
+  phoneContact String?
+  status       String    @default("Scheduled") // Scheduled, In Progress, Completed
+  order        Int       @default(0)
+  event        Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Idea {
+  id          String     @id @default(uuid())
+  eventId     String
+  title       String
+  category    String     @default("Decor")
+  description String?
+  imageUrl    String?
+  event       Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  moodBoard   MoodBoard? @relation(fields: [moodBoardId], references: [id])
+  moodBoardId String?
+}
+
+model MoodBoard {
+  id          String   @id @default(uuid())
+  eventId     String
+  title       String
+  colorHexes  String   @default("#2C3E50,#E67E22,#F1C40F")
+  event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  ideas       Idea[]
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  eventId   String
+  title     String
+  fileUrl   String
+  category  String   @default("Contracts")
+  fileSize  Int      @default(0)
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  eventId   String
+  userId    String
+  content   String
+  createdAt DateTime @default(now())
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("info")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String
+  action    String
+  target    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatThread {
+  id        String        @id @default(uuid())
+  userId    String
+  eventId   String?
+  title     String        @default("New Session")
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event?        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+}
+
+model ChatMessage {
+  id           String     @id @default(uuid())
+  threadId     String
+  role         String     @default("user") // user, assistant, system
+  content      String
+  toolCalls    String?
+  toolResults  String?
+  createdAt    DateTime   @default(now())
+  thread       ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+}
+
+model AIGeneration {
+  id        String   @id @default(uuid())
+  eventId   String?
+  feature   String   // planner, budget, timeline, writer, matcher
+  prompt    String
+  response  String
+  tokens    Int      @default(0)
+  cost      Float    @default(0)
+  status    String   @default("success")
+  createdAt DateTime @default(now())
+  event     Event?   @relation(fields: [eventId], references: [id], onDelete: SetNull)
+}
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  coverImage  String
+  authorName  String
+  publishedAt DateTime @default(now())
+}
