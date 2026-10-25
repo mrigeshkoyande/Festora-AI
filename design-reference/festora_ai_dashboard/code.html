@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col py-space-md px-space-sm border-r border-white/5"><div class="flex items-center gap-space-sm px-4 mb-space-md"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_DIgqHkorwaizh4q6QjlFS8vwOuTZjt6-oy97nMgY9OataL56eIXQsJuQEya7p1FypCD90gJPfJCA-dLyr61Ob3G1GNcY7x6DhHo0z3HznWNjch0kpyqy4ReMUjrfL6iW6zdehEPZqOedV4L6RxHpetsd5Q0VviwsXHT42fGMh2-xhK7EBbISDE75wDnpoVGrXdAIlNvha3SEG5Q6CraEDy2KFnoeUbo5stP2aDEY8EMsoPIOjQ"/><span class="font-headline-sm text-on-surface">Festora AI</span></div><nav class="flex-1 space-y-1 overflow-y-auto pr-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-2xl"><a aria-current="page" class="flex items-center px-4 py-3 transition-all gap-3 bg-primary-container text-on-primary-container font-semibold rounded-2xl" data-path="dashboard" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ai-assistant" href="#"><span class="material-symbols-outlined">smart_toy</span>AI Assistant</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="budget" href="#"><span class="material-symbols-outlined">payments</span>Budget</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="timeline" href="#"><span class="material-symbols-outlined">schedule</span>Timeline</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="vendors" href="#"><span class="material-symbols-outlined">storefront</span>Vendors</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="guests" href="#"><span class="material-symbols-outlined">group</span>Guests</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ideas" href="#"><span class="material-symbols-outlined">lightbulb</span>Ideas</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="seating" href="#"><span class="material-symbols-outlined">event_seat</span>Seating</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="run-sheet" href="#"><span class="material-symbols-outlined">view_list</span>Run Sheet</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="settings" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></nav></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-on-surface-variant">search</span><span class="text-label-md text-on-surface-variant">Search planning items...</span></div><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 px-gutter pb-space-xl min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- Hero / Welcome Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-secondary-container text-label-sm font-semibold tracking-wider uppercase">Event Dashboard</span>
+<span class="text-on-surface-variant text-body-md">• Gala Premiere 2024</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Good evening, Priya — 47 days to go</h1>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-primary-container text-on-primary-container font-headline-sm hover:opacity-95 transition-all shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+        Ask AI Assistant
+      </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all font-headline-sm">
+<span class="material-symbols-outlined">add</span>
+        Add Task
+      </button>
+</div>
+</div>
+<!-- Quick Action Pill Buttons Row -->
+<div class="flex items-center gap-space-sm overflow-x-auto pb-4 mb-space-lg no-scrollbar">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px] text-primary">payments</span>
+      Log Expense
+    </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px] text-primary">group</span>
+      Import Guests
+    </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px] text-primary">storefront</span>
+      Contact Vendors
+    </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+      View Timeline
+    </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px] text-primary">event_seat</span>
+      Seating Chart
+    </button>
+</div>
+<!-- Bento Grid Main Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<!-- Countdown Card (Col 4) -->
+<div class="md:col-span-4 rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Countdown</span>
+<span class="material-symbols-outlined text-on-secondary-container">timer</span>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="font-display-lg text-display-lg text-on-surface">47</span>
+<span class="font-headline-md text-on-surface-variant">Days Left</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Event date: November 18, 2024 at Grand Ballroom.</p>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-label-md text-on-surface">Target Milestones</span>
+<span class="text-label-md text-primary font-semibold">12 of 15 completed</span>
+</div>
+</div>
+<!-- Plan Health Score Ring (Col 4) -->
+<div class="md:col-span-4 rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Plan Health</span>
+<span class="material-symbols-outlined text-primary">activity_zone</span>
+</div>
+<div class="flex items-center gap-6 my-2">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-headline-sm text-on-surface">92</span>
+<span class="text-[10px] text-on-surface-variant">/ 100</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-on-surface mb-1">Excellent Status</h3>
+<p class="text-body-md text-on-surface-variant text-sm">All critical vendors booked and budget tracking on target.</p>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between text-label-md">
+<span class="text-on-surface-variant">Risk Assessment</span>
+<span class="text-emerald-400 font-medium">Low Risk</span>
+</div>
+</div>
+<!-- Budget Donut Card (Col 4) -->
+<div class="md:col-span-4 rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Budget Overview</span>
+<span class="material-symbols-outlined text-on-secondary-container">payments</span>
+</div>
+<div class="flex items-center justify-between mb-3">
+<div>
+<span class="text-body-md text-on-surface-variant block">Total Spent</span>
+<span class="font-headline-md text-on-surface">$42,500</span>
+</div>
+<div class="text-right">
+<span class="text-body-md text-on-surface-variant block">Allocated</span>
+<span class="font-headline-md text-on-surface-variant">$50,000</span>
+</div>
+</div>
+<!-- Simple Progress Bar representation of budget -->
+<div class="w-full bg-surface-container-highest h-3 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between text-label-md">
+<span class="text-on-surface-variant">Remaining Funds</span>
+<span class="text-on-secondary-container font-semibold">$7,500</span>
+</div>
+</div>
+<!-- AI Insight Cards (Col 6) -->
+<div class="md:col-span-6 rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-headline-sm text-on-surface">Festora AI Recommendations</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-label-sm font-semibold">3 New</span>
+</div>
+<div class="space-y-3">
+<div class="p-3 rounded-2xl bg-surface-container-high/60 flex items-start gap-3">
+<span class="material-symbols-outlined text-on-secondary-container mt-0.5">lightbulb</span>
+<div>
+<h4 class="text-label-md text-on-surface font-semibold">Catering Confirmation Pending</h4>
+<p class="text-body-md text-on-surface-variant text-sm">Chef Mateo hasn't signed the final menu addendum. Send reminder?</p>
+</div>
+</div>
+<div class="p-3 rounded-2xl bg-surface-container-high/60 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">trending_up</span>
+<div>
+<h4 class="text-label-md text-on-surface font-semibold">RSVP Surge Expected</h4>
+<p class="text-body-md text-on-surface-variant text-sm">Based on past invites, expect +45 responses this weekend.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-end">
+<button class="text-label-md text-primary font-semibold flex items-center gap-1 hover:underline">
+          View all insights <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- RSVP Progress Bar (Col 6) -->
+<div class="md:col-span-6 rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">RSVP Tracking</span>
+<span class="material-symbols-outlined text-on-secondary-container">group</span>
+</div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-headline-md text-on-surface">184 Confirmed</span>
+<span class="text-on-surface-variant text-body-md">250 Invited</span>
+</div>
+<!-- Progress bar breakdown -->
+<div class="w-full bg-surface-container-highest h-4 rounded-full overflow-hidden flex mb-4">
+<div class="bg-primary h-full" style="width: 74%" title="Confirmed"></div>
+<div class="bg-secondary h-full opacity-60" style="width: 12%" title="Pending"></div>
+<div class="bg-error-container h-full" style="width: 14%" title="Declined"></div>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="p-2 rounded-xl bg-surface-container-high/40">
+<span class="text-[11px] text-on-surface-variant block uppercase tracking-wider">Confirmed</span>
+<span class="font-headline-sm text-on-surface">184</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-high/40">
+<span class="text-[11px] text-on-surface-variant block uppercase tracking-wider">Pending</span>
+<span class="font-headline-sm text-secondary">30</span>
+</div>
+<div class="p-2 rounded-xl bg-surface-container-high/40">
+<span class="text-[11px] text-on-surface-variant block uppercase tracking-wider">Declined</span>
+<span class="font-headline-sm text-error">36</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between text-label-md">
+<span class="text-on-surface-variant">Seating capacity limit</span>
+<span class="text-on-surface font-semibold">220 Max</span>
+</div>
+</div>
+<!-- Upcoming Tasks List (Col 6) -->
+<div class="md:col-span-6 rounded-xl bg-surface-container p-space-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-headline-sm text-on-surface">Upcoming Tasks</span>
+<button class="text-label-md text-primary font-semibold hover:underline">View all</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50 hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded-full accent-primary cursor-pointer" type="checkbox"/>
+<span class="text-body-md text-on-surface font-medium line-through opacity-60">Finalize floral arrangement palette</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-label-sm">Done</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50 hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded-full accent-primary cursor-pointer" type="checkbox"/>
+<span class="text-body-md text-on-surface font-medium">Review lighting contractor contract</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-label-sm font-semibold">Due Tomorrow</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50 hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded-full accent-primary cursor-pointer" type="checkbox"/>
+<span class="text-body-md text-on-surface font-medium">Send dietary restrictions to catering</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-label-sm">In 3 days</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-label-md text-on-surface-variant">3 tasks due this week</span>
+<button class="text-label-md text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add</span> Add custom task
+        </button>
+</div>
+</div>
+<!-- Vendor Booking Status Cards (Col 6) -->
+<div class="md:col-span-6 rounded-xl bg-surface-container p-space-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="text-headline-sm text-on-surface">Vendor Bookings</span>
+<button class="text-label-md text-primary font-semibold hover:underline">Manage all</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface font-semibold">Chef Mateo Catering</h4>
+<p class="text-body-md text-on-surface-variant text-xs">Menu Tasting &amp; Bar Setup</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-label-sm font-semibold">Booked</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold">
+<span class="material-symbols-outlined">photo_camera</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface font-semibold">Lumina Studios</h4>
+<p class="text-body-md text-on-surface-variant text-xs">Photography &amp; Drone</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-label-sm font-semibold">Booked</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-container-high/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary font-bold">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface font-semibold">SoundWave DJ Crew</h4>
+<p class="text-body-md text-on-surface-variant text-xs">Stage &amp; Lighting</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-label-sm font-semibold">Pending Review</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-4 border-t border-white/5 flex items-center justify-between">
+<span class="text-label-md text-on-surface-variant">8 of 10 categories filled</span>
+<span class="text-label-md text-primary font-semibold">2 pending</span>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col py-space-md px-space-sm border-r border-white/5"><div class="flex items-center gap-space-sm px-4 mb-space-md"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYuca_50ZwWTecNR5p6l3_U32Ny-SAFNcNbzgE8Fgm6IEZJIpgizfQfoE-t2FTCg0LJGaVyKxJAFdBYNMnh5gf89eoOpwRvjPWUMg5vaUvN8HBcDIQuDYxWR7ns1-daYvkn7cpIGdW0idLy6287MQOWpbMZi6mRW9M30GF4unOSfBKLnu_8j-6lgzTLgH__-ELRGTq19MFBZ_xtFDbXT3xLL0xVpLyKInq473CFGm_7K13tL3-zA"/><span class="font-headline-sm text-on-surface">Festora AI</span></div><nav class="flex-1 space-y-1 overflow-y-auto pr-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-2xl"><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="dashboard" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ai-assistant" href="#"><span class="material-symbols-outlined">smart_toy</span>AI Assistant</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="budget" href="#"><span class="material-symbols-outlined">payments</span>Budget</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="timeline" href="#"><span class="material-symbols-outlined">schedule</span>Timeline</a><a aria-current="page" class="flex items-center px-4 py-3 transition-all gap-3 bg-primary-container text-on-primary-container font-semibold rounded-2xl" data-path="vendors" href="#"><span class="material-symbols-outlined">storefront</span>Vendors</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="guests" href="#"><span class="material-symbols-outlined">group</span>Guests</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ideas" href="#"><span class="material-symbols-outlined">lightbulb</span>Ideas</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="seating" href="#"><span class="material-symbols-outlined">event_seat</span>Seating</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="run-sheet" href="#"><span class="material-symbols-outlined">view_list</span>Run Sheet</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="settings" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></nav></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-on-surface-variant">search</span><span class="text-label-md text-on-surface-variant">Search planning items...</span></div><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 px-gutter pb-space-xl min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- Top Section / Header description -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-6">
+<div>
+<span class="text-label-sm uppercase tracking-widest text-primary mb-2 block">Curated Ecosystem</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Vendor Intelligence &amp; Marketplace</h1>
+<p class="text-body-lg text-on-surface-variant mt-2 max-w-2xl">Manage your event production pipeline with algorithmic matching, real-time contract tracking, and elite vendor discovery.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-6 py-3 rounded-full text-label-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bookmark</span> Saved Vendors (4)
+      </button>
+<button class="bg-primary-container hover:opacity-90 text-on-primary-container px-6 py-3 rounded-full text-label-md transition-all flex items-center gap-2 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-[18px]">add</span> Request Custom Quote
+      </button>
+</div>
+</div>
+<!-- Tab Navigation -->
+<div class="flex items-center gap-4 border-b border-white/5 mb-space-lg pb-4">
+<button class="px-6 py-3 rounded-full text-label-md transition-all bg-primary-container text-on-primary-container font-semibold" id="tab-btn-checklist" onclick="switchTab('checklist')">
+      My Checklist &amp; Pipeline
+    </button>
+<button class="px-6 py-3 rounded-full text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high" id="tab-btn-discover" onclick="switchTab('discover')">
+      Discover Vendors
+    </button>
+</div>
+<!-- TAB 1: MY CHECKLIST -->
+<div class="space-y-space-lg" id="tab-checklist">
+<!-- Progress overview card -->
+<div class="bg-surface-container p-space-lg rounded-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-space-md">
+<div class="absolute right-0 top-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<span class="text-label-sm text-secondary uppercase tracking-wider mb-1 block">Production Status</span>
+<h2 class="font-headline-md text-headline-md">8 of 12 Categories Secured</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Next critical milestone: Catering final tasting &amp; floral mockups due in 14 days.</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="font-headline-lg text-primary">68%</span>
+<span class="block text-label-sm text-on-surface-variant uppercase">Completed</span>
+</div>
+<div class="w-32 h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+</div>
+<!-- Category Pipeline Groups -->
+<div class="space-y-space-md">
+<!-- Category Item 1 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-all p-space-md rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">photo_camera</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h3 class="font-headline-sm text-on-surface">Photography &amp; Cinematography</h3>
+<span class="px-3 py-1 rounded-full text-label-sm bg-emerald-500/10 text-emerald-400 font-medium">Contract Signed</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm mt-0.5">Assigned: LUMIERE Studios • $8,500 Budget</p>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<span class="text-label-sm text-on-surface-variant">Due: May 12</span>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('LUMIERE Studios')">View Details</button>
+</div>
+</div>
+<!-- Category Item 2 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-all p-space-md rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h3 class="font-headline-sm text-on-surface">Catering &amp; Bar Service</h3>
+<span class="px-3 py-1 rounded-full text-label-sm bg-amber-500/10 text-amber-400 font-medium">Proposal Review</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm mt-0.5">Shortlisted: Artisan Epicurean • $14,000 Estimate</p>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<span class="text-label-sm text-on-surface-variant">Due: May 20</span>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('Artisan Epicurean')">Review Proposal</button>
+</div>
+</div>
+<!-- Category Item 3 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-all p-space-md rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined">local_florist</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h3 class="font-headline-sm text-on-surface">Floral &amp; Production Design</h3>
+<span class="px-3 py-1 rounded-full text-label-sm bg-surface-container-highest text-on-surface-variant font-medium">Sourcing</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm mt-0.5">No vendor selected yet • 3 AI matches available</p>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<span class="text-label-sm text-on-surface-variant">Due: Jun 01</span>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full text-label-md transition-all" onclick="switchTab('discover')">Find Vendors</button>
+</div>
+</div>
+<!-- Category Item 4 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-all p-space-md rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h3 class="font-headline-sm text-on-surface">DJ &amp; Live Band</h3>
+<span class="px-3 py-1 rounded-full text-label-sm bg-blue-500/10 text-blue-400 font-medium">Deposit Paid</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm mt-0.5">Assigned: SonicWave Live • $3,200 Total</p>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<span class="text-label-sm text-on-surface-variant">Due: Completed</span>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('SonicWave Live')">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 2: DISCOVER VENDORS -->
+<div class="hidden space-y-space-lg" id="tab-discover">
+<!-- Filter Bar -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+<select class="bg-surface-container-highest text-on-surface px-4 py-3 rounded-full text-label-md outline-none border-0">
+<option>All Categories</option>
+<option>Photography</option>
+<option>Catering</option>
+<option>Florals &amp; Decor</option>
+<option>Music &amp; DJ</option>
+</select>
+<select class="bg-surface-container-highest text-on-surface px-4 py-3 rounded-full text-label-md outline-none border-0">
+<option>Price Range: Any</option>
+<option>$ Budget-Friendly ($)</option>
+<option>$$ Moderate ($$)</option>
+<option>$$$ Luxury ($$$)</option>
+</select>
+<select class="bg-surface-container-highest text-on-surface px-4 py-3 rounded-full text-label-md outline-none border-0">
+<option>Sort by AI Match Score</option>
+<option>Highest Rated</option>
+<option>Price: Low to High</option>
+</select>
+</div>
+<div class="flex items-center gap-2 w-full md:w-auto justify-end">
+<span class="text-label-sm text-on-surface-variant">Showing 24 verified partners</span>
+</div>
+</div>
+<!-- Vendor Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Vendor Card 1 -->
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col group relative">
+<!-- Match Score Badge -->
+<div class="absolute top-4 left-4 z-10 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 text-primary text-label-sm font-semibold shadow-lg">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span> 98% Match
+        </div>
+<!-- Compare Checkbox Overlay -->
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center gap-2 bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full cursor-pointer hover:bg-surface text-label-sm">
+<input class="accent-[#ffb59f] w-4 h-4 rounded" onchange="toggleCompare('Aether &amp; Light Studio')" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+<!-- Carousel / Image -->
+<div class="relative h-64 w-full bg-cover bg-center overflow-hidden" data-alt="High fashion editorial wedding photography session in a brutalist concrete architectural gallery with dramatic natural lighting and moody shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1F5uvPXjHJ7CqMPlaSKy_hxJR2I_I5AGHmvSzFv9KeKQpvS5L4pA8hEKF_TpSO-eK3T75oBByq2ysc69fkd-OjZ0WkWtGNimmS30jHN3EKJKVnS51HX4ggohlgf-plRpmU2qdFUFoa6apQpkCFTnESU33JkR_H83eyj6Kr3UJOHjF-iJ92AKjF1ZdcOT4SezExpcX-t44jF5GOd6mmz8UBzKE5iWNMoluqoQs7chcVrEGinTezA')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-80"></div>
+</div>
+<!-- Content -->
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Photography</span>
+<div class="flex items-center gap-1 text-on-surface text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span> 4.9 (128)
+              </div>
+</div>
+<h3 class="font-headline-sm text-on-surface text-xl">Aether &amp; Light Studio</h3>
+<p class="text-body-md text-on-surface-variant text-sm mt-1 line-clamp-2">Specializing in avant-garde documentary wedding and high-end editorial spatial narratives.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant block">Starting at</span>
+<span class="font-headline-sm text-on-surface">$4,500</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('Aether &amp; Light Studio')">View Profile</button>
+</div>
+</div>
+</div>
+<!-- Vendor Card 2 -->
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 left-4 z-10 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 text-primary text-label-sm font-semibold shadow-lg">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span> 94% Match
+        </div>
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center gap-2 bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full cursor-pointer hover:bg-surface text-label-sm">
+<input class="accent-[#ffb59f] w-4 h-4 rounded" onchange="toggleCompare('Botanica Floral Design')" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+<div class="relative h-64 w-full bg-cover bg-center overflow-hidden" data-alt="Exquisite minimalist wedding floral installation featuring cascading orchids, pampas grass, and sculptural branches in a dark industrial loft." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDb2jwvx9NcQY_uP1Kh5IaKQroiTn7jAANWGAftn8XOPM8fk7bFk3JZhZGvaNfb8gQBqXubsnhvmgMdPHOZTcXNpj3PN5aRPnZyVIkDBNSr9Yt9Wv6M92xBJ9Re8wGruxRUp0OpiJoqs_qWYjdkKTiYpxS-Qk6zAB1Il6cU772IqirDvoChmPhdNXk3e_VOEeSfrtr5HNQgv36ZKTVuP3DFf4WV0DP24GJ7_lld82Pgl9QiWHa6A')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Florals &amp; Decor</span>
+<div class="flex items-center gap-1 text-on-surface text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span> 4.8 (94)
+              </div>
+</div>
+<h3 class="font-headline-sm text-on-surface text-xl">Botanica Floral Design</h3>
+<p class="text-body-md text-on-surface-variant text-sm mt-1 line-clamp-2">Organic, oversized sculptural installations crafted with sustainably sourced botanical elements.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant block">Starting at</span>
+<span class="font-headline-sm text-on-surface">$3,800</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('Botanica Floral Design')">View Profile</button>
+</div>
+</div>
+</div>
+<!-- Vendor Card 3 -->
+<div class="bg-surface-container rounded-xl overflow-hidden flex flex-col group relative">
+<div class="absolute top-4 left-4 z-10 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 text-primary text-label-sm font-semibold shadow-lg">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span> 91% Match
+        </div>
+<div class="absolute top-4 right-4 z-10">
+<label class="flex items-center gap-2 bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full cursor-pointer hover:bg-surface text-label-sm">
+<input class="accent-[#ffb59f] w-4 h-4 rounded" onchange="toggleCompare('Velvet Note Acoustics')" type="checkbox"/>
+<span>Compare</span>
+</label>
+</div>
+<div class="relative h-64 w-full bg-cover bg-center overflow-hidden" data-alt="Sophisticated live jazz band performing under warm amber atmospheric stage lighting in an upscale metropolitan lounge." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAL2qEynLGu13mQNke3LnJYz6-b9TkzEZxGG9seLDl4w9hKQH7ikiRBK9tS2NrG89d_t7cl981NkcTJxRN8aBsj35yWpzTJvIsKusqsZpKX0urltgLpd_IjdAwXFrDw41sYlTDQKxL24GOm7ag09w91i1wcPwgMo3d2CV3gFoQzrh4fBUp6kMhCnK0TsexxpqVn6uFab5UoTqugOUsTdPkRrZ67xTMIRSoUAGnGOs9RU4zBtZLHOg')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm text-secondary uppercase tracking-wider">Music &amp; Sound</span>
+<div class="flex items-center gap-1 text-on-surface text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-amber-400" style="font-variation-settings: 'FILL' 1;">star</span> 5.0 (62)
+              </div>
+</div>
+<h3 class="font-headline-sm text-on-surface text-xl">Velvet Note Acoustics</h3>
+<p class="text-body-md text-on-surface-variant text-sm mt-1 line-clamp-2">Immersive live band and custom sound design tailored for high-end celebrations.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant block">Starting at</span>
+<span class="font-headline-sm text-on-surface">$2,900</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-full text-label-md transition-all" onclick="openVendorModal('Velvet Note Acoustics')">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COMPARE DRAWER (Floating at bottom when items selected) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface-container-high/95 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-full shadow-2xl z-50 hidden items-center gap-6 transition-all" id="compare-drawer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">compare_arrows</span>
+<span class="text-label-md text-on-surface" id="compare-count-text">2 vendors selected for comparison</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full text-label-md font-semibold hover:opacity-90" onclick="openCompareModal()">Compare Side-by-Side</button>
+<button class="text-on-surface-variant hover:text-on-surface text-label-md" onclick="clearCompare()">Clear</button>
+</div>
+</div>
+<!-- VENDOR PROFILE MODAL -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" id="vendor-modal">
+<div class="bg-surface-container max-w-4xl w-full max-h-[921px] overflow-y-auto rounded-xl p-space-lg relative animate-in fade-in zoom-in duration-200">
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface hover:bg-surface-bright" onclick="closeVendorModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-2xl bg-cover bg-center" data-alt="Vendor avatar logo minimalist geometric luxury mark." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSQqaMCb0Ge2L44OPmDAhUXmAR7SMl969NRagyvhaxYcCh9-FJc3nMeO8RdrlifTt2QTkO75GzeHz2Xhe84w7N6MTB_t2F4wjVOp5RIfQxtqSS3JnlwClnEy3bvhFLl-WfaaoGTYQSRCu8zybZfZVRIA3wl0EyFhkVOFGU_SfqAsmdo8cn-rGheXFbLEo61nRRWvUXPRuAXt8Nlvp4ZMKiLQ-T6YAwbHa9sU5ZWS0ZwZp3Q9o7xg')"></div>
+<div>
+<div class="flex items-center gap-3">
+<h2 class="font-headline-lg text-headline-md text-on-surface" id="modal-vendor-name">Aether &amp; Light Studio</h2>
+<span class="px-3 py-1 rounded-full text-label-sm bg-primary/10 text-primary font-semibold">98% AI Match</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Photography &amp; Visual Direction • New York &amp; Destination</p>
+</div>
+</div>
+<!-- Photo Carousel / Gallery -->
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="h-48 rounded-xl bg-cover bg-center" data-alt="Editorial wedding couple portrait in urban industrial setting with dramatic natural lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsqJShxhys3nJt18jteeIS5O6LyZcTQCwx_bBo-PUCYfwPvFb0yU9yQ6s7iepA3nmmobuQlRKqNQkQ5CGRuqIHA4c2BTrPj02m0jg1Qo40VTVxXFh-CX_3ShQcR8yH7KI3xjS_vvZbydESFBiBKcMrySOIUma6tVDwObmA7UdxUOXpOuB1N8ewqahnDMl-CjqTjWJCL0sWe-7vrA6eAnX8GxE_Fw6BvvdR5RkoPnfUKnD2fTZiXw')"></div>
+<div class="h-48 rounded-xl bg-cover bg-center" data-alt="Artistic close-up shot of wedding details and table settings with moody atmospheric tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcJtbIbrd_aJs1B4nCf7r9qVNCYHbuJNgCSg6aya_QiEbMUoa-kQT3dUAOMEPfF2dV6Jxc2H4y7Qlj8pNpBVX4c5a00G8_hyUxm0GYzhPrI9a9WPbLE9FW3wX3GbO7D7mokheVNzdMiDjVzzhYmFaMe-6gQfStFU6L6FmSy858ysDdY0Esgi4mnYyJ3NWReItw9HLl6HVSFRydiee8bMYIKpkcCut8lh0vFa2v5g--m3L9G7MDjg')"></div>
+<div class="h-48 rounded-xl bg-cover bg-center" data-alt="Dynamic candid shot of wedding reception celebration under warm ambient string lights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBa3FMBkMomu2NJ34Jogln-2bO6pYqO87d64jICCPw-bEJsFlVzyFxCNWmAck1IhHmub4aUdLHheIP9zzlNFhYvQp6ykfL9P67m55uW68lux9awsrkBa9F_U1bgz7p0taAqzuDa49PFULBUkYhTB_mpEfjIWTMmQb8_0VOnNs3QYWQQNJu1GIj-X3WWJIy7JWO3uNyePrXt3myYcj5b0v-hSqj69WmknDujc5e1cOO_noqMjQ452w')"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<div class="md:col-span-2 space-y-6">
+<div>
+<h3 class="font-headline-sm text-on-surface mb-2">About the Studio</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">We approach event documentation not just as recording an occasion, but as crafting a timeless cinematic archive. Our style fuses high-fashion editorial aesthetics with raw, unscripted photojournalism.</p>
+</div>
+<div>
+<h3 class="font-headline-sm text-on-surface mb-2">AI Compatibility Breakdown</h3>
+<ul class="space-y-3 text-body-md text-on-surface-variant">
+<li class="flex items-center justify-between bg-surface-container-high p-3 rounded-xl">
+<span>Aesthetic Alignment (Minimalist / Modern)</span>
+<span class="text-primary font-semibold">99%</span>
+</li>
+<li class="flex items-center justify-between bg-surface-container-high p-3 rounded-xl">
+<span>Budget Fit ($4,500 base vs $5,000 allocated)</span>
+<span class="text-primary font-semibold">95%</span>
+</li>
+<li class="flex items-center justify-between bg-surface-container-high p-3 rounded-xl">
+<span>Date Availability (October 14, 2025)</span>
+<span class="text-emerald-400 font-semibold">Available</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="bg-surface-container-high p-space-md rounded-xl flex flex-col justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant block uppercase tracking-wider mb-1">Pricing Structure</span>
+<div class="font-headline-lg text-on-surface mb-4">$4,500 <span class="text-sm font-normal text-on-surface-variant">/ package</span></div>
+<ul class="space-y-2 text-body-md text-on-surface-variant text-sm mb-6">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">check</span> 8 hours full coverage</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">check</span> 2 lead photographers</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-primary">check</span> Online gallery + 500 edited hi-res images</li>
+</ul>
+</div>
+<div class="space-y-3">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-full text-label-md font-semibold hover:opacity-90 transition-all text-center block">Request Booking Proposal</button>
+<button class="w-full bg-surface-container-highest text-on-surface py-3 rounded-full text-label-md hover:bg-surface-bright transition-all text-center block">Message Vendor</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COMPARE SIDE-BY-SIDE MODAL -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" id="compare-modal">
+<div class="bg-surface-container max-w-5xl w-full max-h-[921px] overflow-y-auto rounded-xl p-space-lg relative animate-in fade-in zoom-in duration-200">
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface hover:bg-surface-bright" onclick="closeCompareModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h2 class="font-headline-lg text-headline-md text-on-surface mb-6">Vendor Comparison Matrix</h2>
+<div class="grid grid-cols-3 gap-6">
+<div class="bg-surface-container-high p-space-md rounded-xl space-y-4">
+<div class="h-32 rounded-xl bg-cover bg-center" data-alt="Portfolio thumbnail photography studio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARd2MGYYFthdgxJ32R2Vr374ZzEF8DIWmzedrIb2cltNDu8SgBeDrbwFQo52PvPSHYNIl-otJBhTqzKQ6Oq8kk4AwQzMT67D_eWlhUj1SetQuGpKihDlZGT7qIXgWGBGftBd2BSAhQMaMjWs0696CLiP0wTQqO5e67Fngfri-7Lshp-Ci6XL6ykrrvpcgrsoZnDbpO8MCw4a3ouZ5euXWTzIGwSB22IYGjbYD_qBFBQhTFQypslw')"></div>
+<h3 class="font-headline-sm text-xl">Aether &amp; Light Studio</h3>
+<div class="space-y-2 text-sm text-on-surface-variant">
+<p><strong>Match Score:</strong> <span class="text-primary font-semibold">98%</span></p>
+<p><strong>Starting Price:</strong> $4,500</p>
+<p><strong>Rating:</strong> 4.9 (128 reviews)</p>
+<p><strong>Style:</strong> Avant-garde / Editorial</p>
+<p><strong>Turnaround:</strong> 3 weeks</p>
+</div>
+<button class="w-full bg-surface-container text-on-surface py-2 rounded-full text-label-md" onclick="closeCompareModal(); openVendorModal('Aether &amp; Light Studio')">Select Studio</button>
+</div>
+<div class="bg-surface-container-high p-space-md rounded-xl space-y-4">
+<div class="h-32 rounded-xl bg-cover bg-center" data-alt="Portfolio thumbnail floral design studio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbd5m7U_6sXbRXQ7jNKivBdS_FGQt0JkZkjU5J9Ul6XmtLqDgtPzGFLq_KwLXq6448Zc5i5P7HHmTk78hNaIsz3g9eTED61EN5mfd1yMdDVVmgJgq0sH_jsZTF2PXULkVDd2VEMrvKiImzWov0OIcVeLw_C5WI8oZ4LcNNsvkXntUN139s5aKWdoE8WoXBwzv3azcfnJFRglGp7keNDFlAnh5p5qJ3LefGdtn3ZJDU8Rl2GK_hPQ')"></div>
+<h3 class="font-headline-sm text-xl">Botanica Floral Design</h3>
+<div class="space-y-2 text-sm text-on-surface-variant">
+<p><strong>Match Score:</strong> <span class="text-primary font-semibold">94%</span></p>
+<p><strong>Starting Price:</strong> $3,800</p>
+<p><strong>Rating:</strong> 4.8 (94 reviews)</p>
+<p><strong>Style:</strong> Organic / Sculptural</p>
+<p><strong>Turnaround:</strong> Custom Mockup</p>
+</div>
+<button class="w-full bg-surface-container text-on-surface py-2 rounded-full text-label-md" onclick="closeCompareModal(); openVendorModal('Botanica Floral Design')">Select Studio</button>
+</div>
+<div class="bg-surface-container-high p-space-md rounded-xl space-y-4 border border-primary/30 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">add_circle</span>
+<p class="text-body-md text-on-surface-variant">Add a third vendor to compare side-by-side performance metrics and deliverables.</p>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full text-label-md mt-4" onclick="closeCompareModal()">Browse Marketplace</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Script for interactivity -->
+<script>
+    function switchTab(tab) {
+      const checklistTab = document.getElementById('tab-checklist');
+      const discoverTab = document.getElementById('tab-discover');
+      const btnChecklist = document.getElementById('tab-btn-checklist');
+      const btnDiscover = document.getElementById('tab-btn-discover');
+
+      if (tab === 'checklist') {
+        checklistTab.classList.remove('hidden');
+        discoverTab.classList.add('hidden');
+        btnChecklist.className = "px-6 py-3 rounded-full text-label-md transition-all bg-primary-container text-on-primary-container font-semibold";
+        btnDiscover.className = "px-6 py-3 rounded-full text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high";
+      } else {
+        checklistTab.classList.add('hidden');
+        discoverTab.classList.remove('hidden');
+        btnDiscover.className = "px-6 py-3 rounded-full text-label-md transition-all bg-primary-container text-on-primary-container font-semibold";
+        btnChecklist.className = "px-6 py-3 rounded-full text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high";
+      }
+    }
+
+    let selectedCount = 0;
+    function toggleCompare(vendorName) {
+      const checkbox = event.target;
+      if (checkbox.checked) {
+        selectedCount++;
+      } else {
+        selectedCount--;
+      }
+      const drawer = document.getElementById('compare-drawer');
+      const countText = document.getElementById('compare-count-text');
+      countText.innerText = selectedCount + ' vendor(s) selected for comparison';
+      if (selectedCount > 0) {
+        drawer.classList.remove('hidden');
+        drawer.classList.add('flex');
+      } else {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+      }
+    }
+
+    function clearCompare() {
+      selectedCount = 0;
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      const drawer = document.getElementById('compare-drawer');
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+
+    function openVendorModal(name) {
+      document.getElementById('modal-vendor-name').innerText = name;
+      const modal = document.getElementById('vendor-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVendorModal() {
+      const modal = document.getElementById('vendor-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openCompareModal() {
+      const modal = document.getElementById('compare-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCompareModal() {
+      const modal = document.getElementById('compare-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col py-space-md px-space-sm border-r border-white/5"><div class="flex items-center gap-space-sm px-4 mb-space-md"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-XgkUOsEnZk9KGzJdPeJATw8Xhj34P0y3Sj6WFRGwAlNZQPo6arQJos21LQHrinfF-c3DeMhLLqYKVyVwslSsHaqvDOtEwzecDE7cox9bNvr_xhp1DzogvzxCNA1c8yP1V_eGSstuHn0_aJxIR2SddiovxVKuMcQLfZySkQxduJX86_mafZ89fLUYFa3nxvwRATt7qHWH5HyVOcH4-FE4IlrZ42sTefL4-itUtyM6NUZ5ltvwHg"/><span class="font-headline-sm text-on-surface">Festora AI</span></div><nav class="flex-1 space-y-1 overflow-y-auto pr-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-2xl"><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="dashboard" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ai-assistant" href="#"><span class="material-symbols-outlined">smart_toy</span>AI Assistant</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="budget" href="#"><span class="material-symbols-outlined">payments</span>Budget</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="timeline" href="#"><span class="material-symbols-outlined">schedule</span>Timeline</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="vendors" href="#"><span class="material-symbols-outlined">storefront</span>Vendors</a><a aria-current="page" class="flex items-center px-4 py-3 transition-all gap-3 bg-primary-container text-on-primary-container font-semibold rounded-2xl" data-path="guests" href="#"><span class="material-symbols-outlined">group</span>Guests</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ideas" href="#"><span class="material-symbols-outlined">lightbulb</span>Ideas</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="seating" href="#"><span class="material-symbols-outlined">event_seat</span>Seating</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="run-sheet" href="#"><span class="material-symbols-outlined">view_list</span>Run Sheet</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="settings" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></nav></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-on-surface-variant">search</span><span class="text-label-md text-on-surface-variant">Search planning items...</span></div><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 px-gutter pb-space-xl min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Stats Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Stat 1 -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col justify-between relative overflow-hidden transition-all hover:translate-y-[-2px]">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Total Invited</span>
+<span class="material-symbols-outlined text-primary p-2 bg-surface-container-high rounded-full" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-display-lg text-on-surface">284</span>
+<span class="text-label-sm text-primary flex items-center gap-1">+12 this week</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col justify-between relative overflow-hidden transition-all hover:translate-y-[-2px]">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary-container/30 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Confirmed</span>
+<span class="material-symbols-outlined text-secondary p-2 bg-surface-container-high rounded-full" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-display-lg text-on-surface">192</span>
+<span class="text-label-sm text-secondary">67.6% rate</span>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col justify-between relative overflow-hidden transition-all hover:translate-y-[-2px]">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-error-container/20 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Declined</span>
+<span class="material-symbols-outlined text-error p-2 bg-surface-container-high rounded-full" style="font-variation-settings: 'FILL' 1;">cancel</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-display-lg text-on-surface">32</span>
+<span class="text-label-sm text-error">11.2% rate</span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col justify-between relative overflow-hidden transition-all hover:translate-y-[-2px]">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary-container/30 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Pending</span>
+<span class="material-symbols-outlined text-tertiary p-2 bg-surface-container-high rounded-full" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-display-lg text-on-surface">60</span>
+<span class="text-label-sm text-tertiary">Awaiting response</span>
+</div>
+</div>
+</div>
+<!-- Main Grid Area: Table on left/center, Mobile Preview & Drawer trigger -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left Section: Search, Filters, Bulk Actions, Table (span-8 on xl) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Toolbar: Search, Filters, Actions -->
+<div class="bg-surface-container rounded-lg p-space-md flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative w-full md:w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2.5 rounded-full text-body-md focus:outline-none focus:ring-1 focus:ring-secondary transition-all" placeholder="Search guests..." type="text"/>
+</div>
+<!-- Filter & Action buttons -->
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-end flex-wrap">
+<button class="bg-surface-container-lowest hover:bg-surface-container-high text-on-surface px-4 py-2.5 rounded-full text-label-md flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Filters</span>
+</button>
+<button class="bg-surface-container-lowest hover:bg-surface-container-high text-on-surface px-4 py-2.5 rounded-full text-label-md flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+<span>CSV Import</span>
+</button>
+<button class="bg-primary-container text-on-primary-container hover:opacity-90 px-5 py-2.5 rounded-full text-label-md font-semibold flex items-center gap-2 transition-all shadow-lg shadow-primary-container/20" onclick="toggleDrawer(true)">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">send</span>
+<span>Send Invites</span>
+</button>
+</div>
+</div>
+<!-- Bulk Actions Bar (Hidden by default or toggleable) -->
+<div class="hidden bg-surface-container-high rounded-lg px-space-md py-3 flex items-center justify-between" id="bulkActions">
+<div class="flex items-center gap-3">
+<span class="bg-primary text-on-primary text-label-sm font-semibold px-2.5 py-1 rounded-full">3 Selected</span>
+<span class="text-body-md text-on-surface">Bulk actions applied to selected guests</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-surface text-on-surface hover:bg-surface-container px-3 py-1.5 rounded-full text-label-md">Change Table</button>
+<button class="bg-surface text-on-surface hover:bg-surface-container px-3 py-1.5 rounded-full text-label-md">Mark Confirmed</button>
+<button class="bg-error text-on-error px-3 py-1.5 rounded-full text-label-md">Delete</button>
+</div>
+</div>
+<!-- Guests Table Container -->
+<div class="bg-surface-container rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant text-label-sm uppercase tracking-wider">
+<th class="p-4 w-12 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" onchange="toggleSelectAll(this)" type="checkbox"/>
+</th>
+<th class="p-4">Name</th>
+<th class="p-4">Group</th>
+<th class="p-4">Contact</th>
+<th class="p-4">RSVP Status</th>
+<th class="p-4">Meal</th>
+<th class="p-4 text-center">Plus-One</th>
+<th class="p-4">Table</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-4 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-label-md font-bold">EA</div>
+<div>
+<div>Eleanor Vance</div>
+<div class="text-label-sm text-on-surface-variant">VIP Guest</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Family</td>
+<td class="p-4 text-on-surface-variant text-sm">eleanor@example.com</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm bg-secondary/10 text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Confirmed
+                  </span>
+</td>
+<td class="p-4 text-on-surface-variant">Filet Mignon</td>
+<td class="p-4 text-center text-on-surface font-semibold">+1 (Marcus)</td>
+<td class="p-4"><span class="bg-surface-container-high px-2.5 py-1 rounded-md text-label-md text-secondary">Table 01</span></td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-4 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center text-label-md font-bold">JD</div>
+<div>
+<div>Julian De Vaux</div>
+<div class="text-label-sm text-on-surface-variant">Groom Party</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Wedding Party</td>
+<td class="p-4 text-on-surface-variant text-sm">+1 (555) 234-5678</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm bg-tertiary/10 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Pending
+                  </span>
+</td>
+<td class="p-4 text-on-surface-variant">Vegan Selection</td>
+<td class="p-4 text-center text-on-surface font-semibold">None</td>
+<td class="p-4"><span class="bg-surface-container-high px-2.5 py-1 rounded-md text-label-md text-tertiary">Unassigned</span></td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-4 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center text-label-md font-bold">SC</div>
+<div>
+<div>Sophia Chen</div>
+<div class="text-label-sm text-on-surface-variant">College Friend</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Friends</td>
+<td class="p-4 text-on-surface-variant text-sm">sophia.c@example.com</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm bg-error/10 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Declined
+                  </span>
+</td>
+<td class="p-4 text-on-surface-variant">-</td>
+<td class="p-4 text-center text-on-surface font-semibold">-</td>
+<td class="p-4"><span class="bg-surface-container-high px-2.5 py-1 rounded-md text-label-md text-on-surface-variant">-</span></td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-4 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-label-md font-bold">AR</div>
+<div>
+<div>Arthur Pendelton</div>
+<div class="text-label-sm text-on-surface-variant">Family</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Family</td>
+<td class="p-4 text-on-surface-variant text-sm">arthur@example.com</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm bg-secondary/10 text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Confirmed
+                  </span>
+</td>
+<td class="p-4 text-on-surface-variant">Herb Roasted Chicken</td>
+<td class="p-4 text-center text-on-surface font-semibold">+1 (Clara)</td>
+<td class="p-4"><span class="bg-surface-container-high px-2.5 py-1 rounded-md text-label-md text-secondary">Table 02</span></td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="p-4 text-center">
+<input class="rounded bg-surface-container-lowest text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="p-4 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center text-label-md font-bold">MK</div>
+<div>
+<div>Maya Kapoor</div>
+<div class="text-label-sm text-on-surface-variant">Work Colleague</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Colleagues</td>
+<td class="p-4 text-on-surface-variant text-sm">+1 (555) 987-6543</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm bg-secondary/10 text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Confirmed
+                  </span>
+</td>
+<td class="p-4 text-on-surface-variant">Vegetarian Risotto</td>
+<td class="p-4 text-center text-on-surface font-semibold">None</td>
+<td class="p-4"><span class="bg-surface-container-high px-2.5 py-1 rounded-md text-label-md text-secondary">Table 05</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="bg-surface-container-high px-space-md py-3 flex items-center justify-between text-label-md text-on-surface-variant">
+<span>Showing 1-5 of 284 guests</span>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg bg-surface text-on-surface hover:bg-surface-container disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-3 py-1 bg-primary text-on-primary rounded-lg font-semibold">1</span>
+<button class="p-1.5 rounded-lg bg-surface text-on-surface hover:bg-surface-container">2</button>
+<button class="p-1.5 rounded-lg bg-surface text-on-surface hover:bg-surface-container">3</button>
+<span class="px-2">...</span>
+<button class="p-1.5 rounded-lg bg-surface text-on-surface hover:bg-surface-container">57</button>
+<button class="p-1.5 rounded-lg bg-surface text-on-surface hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Section: Public Mobile RSVP Preview Card (span-4 on xl) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-on-surface">Mobile RSVP Preview</h3>
+<span class="text-label-sm text-secondary bg-secondary/10 px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">smartphone</span> Live View
+        </span>
+</div>
+<!-- Phone Frame Container -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border-4 border-surface-container-highest shadow-2xl relative mx-auto w-full max-w-sm flex flex-col items-center">
+<!-- Phone Speaker Notch -->
+<div class="w-28 h-4 bg-surface-container-highest rounded-full mb-4"></div>
+<!-- Phone Screen Content -->
+<div class="w-full bg-surface rounded-xl overflow-hidden flex flex-col border border-white/5 relative">
+<!-- Hero background for Mobile RSVP -->
+<div class="bg-cover bg-center h-40 w-full relative" data-alt="A luxurious minimalist wedding celebration venue illuminated by warm ambient lighting, featuring elegant floral centerpieces and crystal glassware on dark wood tables." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDL_e_Q0J2od6K_WXQZ4leQZ94BxO3zQWjABS7pKYqbPK5hpaS3bPiXGB9iJvO7BsB6l7uhBMkMstvviPUhs922acZoK66sveSJQOkyIFzmqPfX8PeQsFNKLuc6uydgTA-xq4HWZf_4MLb-xvPATv4s5qHj4OmmXmMnVDsT95izEDUrMJ9voF3HOVD1u4HSkHJ11VvMsDusd1wm6a_qy1IwhbG77ZLRPzZ-2n4-VJc6e3MGpc9fEA')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex flex-col">
+<span class="text-label-sm text-secondary uppercase tracking-widest">You're Invited</span>
+<h4 class="font-headline-sm text-on-surface">Eleanor &amp; Marcus</h4>
+</div>
+</div>
+<!-- Form Body -->
+<div class="p-4 flex flex-col gap-4 text-left">
+<p class="text-body-md text-on-surface-variant text-sm">We are thrilled to celebrate our special day with you. Please confirm your attendance.</p>
+<!-- Attendance Selector -->
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-primary text-on-primary py-2 rounded-xl text-label-md font-semibold text-center">Accept with Joy</button>
+<button class="bg-surface-container text-on-surface hover:bg-surface-container-high py-2 rounded-xl text-label-md text-center">Regretfully Decline</button>
+</div>
+<!-- Meal Choice Input -->
+<div class="flex flex-col gap-1">
+<label class="text-label-sm text-on-surface-variant">Meal Preference</label>
+<div class="bg-surface-container rounded-xl px-3 py-2 text-body-md text-on-surface flex items-center justify-between">
+<span>Filet Mignon (Beef)</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Plus One Input -->
+<div class="flex flex-col gap-1">
+<label class="text-label-sm text-on-surface-variant">Plus-One Full Name</label>
+<input class="bg-surface-container text-on-surface px-3 py-2 rounded-xl text-body-md focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Marcus Vance" type="text"/>
+</div>
+<!-- Submit Button -->
+<button class="bg-primary-container text-on-primary-container w-full py-2.5 rounded-xl font-semibold text-label-md shadow-md mt-2">Submit RSVP</button>
+</div>
+</div>
+<!-- Phone Home Indicator -->
+<div class="w-32 h-1 bg-surface-container-highest rounded-full mt-4"></div>
+</div>
+</div>
+</div>
+<!-- Right Drawer for 'Send Invitations' -->
+<div class="fixed inset-0 z-50 overflow-hidden hidden" id="inviteDrawer">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0" id="drawerBackdrop" onclick="toggleDrawer(false)"></div>
+<!-- Drawer Panel -->
+<div class="absolute inset-y-0 right-0 max-w-xl w-full bg-surface-container border-l border-white/10 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300" id="drawerPanel">
+<!-- Drawer Header -->
+<div class="p-space-md border-b border-white/5 flex items-center justify-between bg-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-on-surface">Send Invitations</h2>
+<p class="text-label-sm text-on-surface-variant">Broadcast invitations via email or SMS</p>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-all" onclick="toggleDrawer(false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content Body -->
+<div class="flex-1 overflow-y-auto p-space-md flex flex-col gap-space-md">
+<!-- Channel Choice -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md text-on-surface font-semibold">Select Channel</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-primary text-on-primary p-4 rounded-xl flex flex-col items-center gap-2 font-semibold text-label-md transition-all">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+<span>Email Invites</span>
+</button>
+<button class="bg-surface-container-lowest hover:bg-surface-container-high text-on-surface p-4 rounded-xl flex flex-col items-center gap-2 font-semibold text-label-md transition-all border border-white/5">
+<span class="material-symbols-outlined text-[24px]">sms</span>
+<span>SMS Broadcast</span>
+</button>
+</div>
+</div>
+<!-- Recipient Target -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md text-on-surface font-semibold">Recipients</label>
+<div class="bg-surface-container-lowest rounded-xl p-3 flex items-center justify-between">
+<span class="text-body-md text-on-surface">All Pending Guests (60 recipients)</span>
+<span class="text-label-sm text-secondary cursor-pointer hover:underline">Edit selection</span>
+</div>
+</div>
+<!-- Template Preview -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="text-label-md text-on-surface font-semibold">Template Preview</label>
+<span class="text-label-sm text-secondary cursor-pointer">Change template</span>
+</div>
+<!-- Template Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-white/5 flex flex-col gap-4 relative">
+<div class="flex items-center justify-between border-b border-white/5 pb-3">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Subject</span>
+<span class="text-body-md text-on-surface font-semibold">You're cordially invited to our celebration</span>
+</div>
+<div class="text-body-md text-on-surface-variant space-y-3">
+<p>Dear <span class="text-secondary font-medium">[Guest Name]</span>,</p>
+<p>We are delighted to invite you to celebrate our wedding day on October 14th, 2024 at The Glasshouse Pavilion.</p>
+<p>Please use the link below to review details and submit your RSVP by September 1st.</p>
+</div>
+<div class="pt-2">
+<div class="bg-primary text-on-primary text-center py-2.5 rounded-full text-label-md font-semibold inline-block px-6">
+                RSVP Now Online
+              </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="p-space-md border-t border-white/5 bg-surface-container-low flex items-center justify-end gap-3">
+<button class="bg-surface-container-lowest hover:bg-surface-container-high text-on-surface px-5 py-2.5 rounded-full text-label-md font-medium transition-all" onclick="toggleDrawer(false)">Cancel</button>
+<button class="bg-primary-container text-on-primary-container hover:opacity-90 px-6 py-2.5 rounded-full text-label-md font-semibold shadow-lg transition-all flex items-center gap-2" onclick="toggleDrawer(false); alert('Invitations sent successfully!');">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send 60 Invitations</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Script -->
+<script>
+    function toggleDrawer(open) {
+      const drawer = document.getElementById('inviteDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const panel = document.getElementById('drawerPanel');
+      
+      if (open) {
+        drawer.classList.remove('hidden');
+        setTimeout(() => {
+          backdrop.classList.remove('opacity-0');
+          panel.classList.remove('translate-x-full');
+        }, 10);
+      } else {
+        backdrop.classList.add('opacity-0');
+        panel.classList.add('translate-x-full');
+        setTimeout(() => {
+          drawer.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    function toggleSelectAll(master) {
+      const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = master.checked);
+      const bulkBar = document.getElementById('bulkActions');
+      if (master.checked) {
+        bulkBar.classList.remove('hidden');
+      } else {
+        bulkBar.classList.add('hidden');
+      }
+    }
+  </script>
+</div></main></div></body></html>

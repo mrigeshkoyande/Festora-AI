@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col py-space-md px-space-sm border-r border-white/5"><div class="flex items-center gap-space-sm px-4 mb-space-md"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkmay6syAbTOIH0yl9ffWoImuUjKc--_94uYIKoLDlyw7v2_a7xmMBEarzkjxA3S1LqIMCPWkO3_pM0ctTrmQZFUh0S8oOK-zijBLMI_Zvoll9kHiQTpN1TrWxK547czjmf3d7bIwET3hlgDVsIJnbQei7u355uFZicyL4f3N1C-zCvzWQYsLiYL0x4yotaiIYTMo1UfAeoYieICY0VTwezvU4rcbDFPar7VqpS8Qyuk9ebK88CA"/><span class="font-headline-sm text-on-surface">Festora AI</span></div><nav class="flex-1 space-y-1 overflow-y-auto pr-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-2xl"><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="dashboard" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ai-assistant" href="#"><span class="material-symbols-outlined">smart_toy</span>AI Assistant</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="budget" href="#"><span class="material-symbols-outlined">payments</span>Budget</a><a aria-current="page" class="flex items-center px-4 py-3 transition-all gap-3 bg-primary-container text-on-primary-container font-semibold rounded-2xl" data-path="timeline" href="#"><span class="material-symbols-outlined">schedule</span>Timeline</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="vendors" href="#"><span class="material-symbols-outlined">storefront</span>Vendors</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="guests" href="#"><span class="material-symbols-outlined">group</span>Guests</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ideas" href="#"><span class="material-symbols-outlined">lightbulb</span>Ideas</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="seating" href="#"><span class="material-symbols-outlined">event_seat</span>Seating</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="run-sheet" href="#"><span class="material-symbols-outlined">view_list</span>Run Sheet</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="settings" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></nav></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-on-surface-variant">search</span><span class="text-label-md text-on-surface-variant">Search planning items...</span></div><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 px-gutter pb-space-xl min-h-screen"><div class="flex flex-col w-full text-on-surface pb-16">
+<!-- Top Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-sm uppercase tracking-wider">Production Roadmap</span>
+<span class="text-on-surface-variant text-label-md">• 242 days until Grand Gala</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Master Timeline &amp; Tasks</h1>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all font-label-md cursor-pointer shadow-sm" onclick="triggerAIGenerate()">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+        Regenerate with AI
+      </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all font-label-md cursor-pointer shadow-sm" onclick="syncCalendar()">
+<span class="material-symbols-outlined text-secondary">sync</span>
+        Sync to Google Calendar
+      </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container hover:bg-primary text-on-primary-container font-headline-sm transition-all cursor-pointer shadow-lg shadow-primary-container/20" onclick="openTaskDrawer('New Task', 'Create a new milestone or task item')">
+<span class="material-symbols-outlined">add</span>
+        Add Task
+      </button>
+</div>
+</div>
+<!-- Stats & View Switcher Bar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+<!-- Quick Metrics -->
+<div class="lg:col-span-7 grid grid-cols-3 gap-4">
+<div class="bg-surface-container rounded-lg p-5 flex flex-col justify-between">
+<span class="text-on-surface-variant text-label-md">Total Tasks</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-md text-on-surface">48</span>
+<span class="text-xs text-primary font-semibold">+4 this week</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-5 flex flex-col justify-between">
+<span class="text-on-surface-variant text-label-md">Overdue</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-md text-error">3</span>
+<span class="text-xs text-error font-semibold">Needs action</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-5 flex flex-col justify-between">
+<span class="text-on-surface-variant text-label-md">Completion</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-lg text-headline-md text-secondary">64%</span>
+<span class="text-xs text-on-surface-variant">On track</span>
+</div>
+</div>
+</div>
+<!-- View Toggle & Filters -->
+<div class="lg:col-span-5 bg-surface-container rounded-lg p-4 flex items-center justify-between gap-4">
+<div class="flex items-center bg-surface rounded-full p-1 w-full max-w-xs">
+<button class="flex-1 py-2 px-4 rounded-full text-label-md font-semibold bg-primary-container text-on-primary-container transition-all cursor-pointer text-center" id="btn-gantt" onclick="switchView('gantt')">Gantt</button>
+<button class="flex-1 py-2 px-4 rounded-full text-label-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer text-center" id="btn-calendar" onclick="switchView('calendar')">Calendar</button>
+<button class="flex-1 py-2 px-4 rounded-full text-label-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer text-center" id="btn-kanban" onclick="switchView('kanban')">Kanban</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface hover:bg-surface-container-high text-on-surface-variant text-label-md transition-all" onclick="toggleFilterMenu()">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Filter</span>
+</button>
+</div>
+</div>
+</div>
+<!-- VIEW 1: GANTT / ROADMAP -->
+<div class="space-y-6" id="view-gantt">
+<div class="bg-surface-container rounded-lg p-6 overflow-x-auto shadow-sm">
+<!-- Timeline Header Months -->
+<div class="min-w-[1000px] grid grid-cols-12 gap-2 pb-4 mb-4 border-b border-white/5 text-label-sm text-on-surface-variant uppercase tracking-wider">
+<div class="col-span-3">Milestone Phases</div>
+<div class="text-center">Month 1</div>
+<div class="text-center">Month 2</div>
+<div class="text-center">Month 3</div>
+<div class="text-center">Month 4</div>
+<div class="text-center">Month 5</div>
+<div class="text-center">Month 6</div>
+<div class="text-center">Month 7</div>
+<div class="text-center">Month 8</div>
+<div class="text-center">Month 9</div>
+</div>
+<!-- Phase 1: Conceptualization -->
+<div class="min-w-[1000px] space-y-4 mb-8">
+<div class="flex items-center justify-between bg-surface-container-high px-4 py-2 rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">flag</span>
+<span class="font-headline-sm text-on-surface">Phase 1: Conceptualization &amp; Budgeting</span>
+</div>
+<span class="text-label-sm text-secondary bg-secondary-container/20 px-3 py-1 rounded-full">Completed (Days 1-30)</span>
+</div>
+<!-- Task Row 1 -->
+<div class="grid grid-cols-12 gap-2 items-center py-2 px-4 hover:bg-surface-container-high/50 rounded-xl cursor-pointer transition-all" onclick="openTaskDrawer('Finalize Master Budget', 'Review catering, venue, and decor cost allocations with stakeholders.')">
+<div class="col-span-3 flex items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Sarah Jenkins, finance lead, smiling professionally in an office setting with warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc_hmjONfFSeIYCmL8Q2hZO7YI5HhLjWijVQUPR6KLj_zevXB-OC5_6P9wdysL9ILRoMev7JcEAV8qxmE9VFoW4Vb7tQ0HrrYGvDw8jPuF15VkgYqGxExA8LwuK1kQH9ryADs4aIoDxdO-E6S_gkq8c6gknzu3S_RBVVtHw6a0ht6DJkNFzfRWVVjeqT12OS_b1sQxc1wtMXMeHPQPZOrttKOFWILqTGnvOP5p_EMoPFR6kEfSLg"/>
+<span class="text-body-md text-on-surface truncate">Finalize Master Budget</span>
+<span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-[10px] font-semibold">High</span>
+</div>
+<div class="col-span-9 relative h-8 bg-surface rounded-full flex items-center px-4">
+<div class="absolute left-[2%] w-[25%] h-5 bg-primary-container rounded-full flex items-center justify-between px-3 text-[11px] font-semibold text-on-primary-container shadow-sm">
+<span>Due Day 15</span>
+<span class="material-symbols-outlined text-[14px]">done</span>
+</div>
+<!-- Dependency line indicator -->
+<div class="absolute left-[27%] w-4 h-[2px] bg-primary/40"></div>
+</div>
+</div>
+<!-- Task Row 2 (Overdue) -->
+<div class="grid grid-cols-12 gap-2 items-center py-2 px-4 hover:bg-surface-container-high/50 rounded-xl cursor-pointer transition-all bg-error/5 rounded-xl" onclick="openTaskDrawer('Venue Contract Signing', 'Secure signatures and initial deposit for the Grand Ballroom venue.')">
+<div class="col-span-3 flex items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Alex Rivera, event coordinator, looking focused in a modern creative workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXVrd2RVt8c-s5E5Cwuc4IkpTGeZnhiD9RdXpXPxvsarhLtvn2ItH4XyqlLfFITaYGGYTvkEmcHkhSzYT6mtyez6TLqliJZcT5TEGFfMAq0eBlpuI8nRKKdKRk_iNCNuhezivvMphRlyGUiFz7atJc2xu5k5502FCziMakUAk08nEpMOeLkBqmGY3ZcQAeWZcIeFrNfem5OA_FL24TPFuT4xPXe63O6j-j5p6HUE8ucgszAuNt6g"/>
+<span class="text-body-md text-on-surface truncate">Venue Contract Signing</span>
+<span class="px-2 py-0.5 rounded-full bg-error text-on-error text-[10px] font-semibold animate-pulse">Overdue</span>
+</div>
+<div class="col-span-9 relative h-8 bg-surface rounded-full flex items-center px-4">
+<div class="absolute left-[22%] w-[30%] h-5 bg-error text-on-error rounded-full flex items-center justify-between px-3 text-[11px] font-semibold shadow-sm">
+<span>Due Day 25 (Overdue)</span>
+<span class="material-symbols-outlined text-[14px]">warning</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Phase 2: Vendor Curation -->
+<div class="min-w-[1000px] space-y-4 mb-8">
+<div class="flex items-center justify-between bg-surface-container-high px-4 py-2 rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">storefront</span>
+<span class="font-headline-sm text-on-surface">Phase 2: Vendor Curation &amp; Tastings</span>
+</div>
+<span class="text-label-sm text-primary-fixed-dim bg-primary-container/20 px-3 py-1 rounded-full">In Progress (Days 31-90)</span>
+</div>
+<!-- Task Row 3 -->
+<!-- Task Row 3 -->
+<div class="grid grid-cols-12 gap-2 items-center py-2 px-4 hover:bg-surface-container-high/50 rounded-xl cursor-pointer transition-all" onclick="openTaskDrawer('Catering Menu Tasting', 'Sample 3 menu options with Chef Laurent for 150 guests.')">
+<div class="col-span-3 flex items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Elena Rostova, culinary director, wearing a chef jacket in a professional commercial kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZEyAPZ_94CTB_7DsHooHsHSCZ6yN8S0AY1Bof-5RMErtHpaXYZc8-TI5oKM2lXi57KqEooGgxMGBX8FJrSQamAwg6s7IAvFwYqVQOBHoXZQrhLeN5Ag5Th93JukZcLvZrrMcOWYlaP46aKwUMzqiEuGw7UnUx1SU7wVyxxd_uTobrZmhcGgMX-kiUQRG_ijaKrGBY-q_sX5yokPMcU6J1n3ObeYs4UFJKdvvdwBtbbpQvnfznAg"/>
+<span class="text-body-md text-on-surface truncate">Catering Menu Tasting</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-semibold">Med</span>
+</div>
+<div class="col-span-9 relative h-8 bg-surface rounded-full flex items-center px-4">
+<div class="absolute left-[35%] w-[28%] h-5 bg-secondary text-on-secondary rounded-full flex items-center justify-between px-3 text-[11px] font-semibold shadow-sm">
+<span>Due Day 45</span>
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+</div>
+</div>
+</div>
+<!-- Task Row 4 -->
+<div class="grid grid-cols-12 gap-2 items-center py-2 px-4 hover:bg-surface-container-high/50 rounded-xl cursor-pointer transition-all" onclick="openTaskDrawer('Floral &amp; Lighting Design Mockup', 'Review 3D renders and physical sample table setup.')">
+<div class="col-span-3 flex items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Marcus Vance, lead floral designer, surrounded by exotic flowers in a bright design studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJm5ycd9lDyOBmqTuiXOpxcR4xtyJBUdurc-hR8AvHMsu9BDyDAJ6TiviU722S8MbIB0-FrzKWC6IYjfJ4mvl0_xo9wBu1a5TKhNrO2L5g9toOKiX4jVmJ7DbvkgKkHT3LuaT9gEfc6A-5hAeMkgpl-Wk-AF_XVcE7TOUSG4YM1rlYAerPLloyCcyIZd6VWmi6Zo_YQgzy8Voz14lzSJz9oneilVoTTc3x_Pf7qmAKyddJhhZ9zQ"/>
+<span class="text-body-md text-on-surface truncate">Floral Mockup Setup</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-semibold">High</span>
+</div>
+<div class="col-span-9 relative h-8 bg-surface rounded-full flex items-center px-4">
+<div class="absolute left-[50%] w-[25%] h-5 bg-primary-container text-on-primary-container rounded-full flex items-center justify-between px-3 text-[11px] font-semibold shadow-sm">
+<span>Due Day 65</span>
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Phase 3: Production & Logistics -->
+<div class="min-w-[1000px] space-y-4">
+<div class="flex items-center justify-between bg-surface-container-high px-4 py-2 rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">schedule</span>
+<span class="font-headline-sm text-on-surface">Phase 3: Production Design &amp; Day-Of Run Sheet</span>
+</div>
+<span class="text-label-sm text-on-surface-variant bg-surface-bright px-3 py-1 rounded-full">Upcoming (Days 91-180)</span>
+</div>
+<!-- Task Row 5 -->
+<div class="grid grid-cols-12 gap-2 items-center py-2 px-4 hover:bg-surface-container-high/50 rounded-xl cursor-pointer transition-all" onclick="openTaskDrawer('Final Guest Seating Arrangements', 'Import RSVP list and lock seating chart layout.')">
+<div class="col-span-3 flex items-center gap-3">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Chloe Bennett, guest relations manager, smiling while working on a laptop at a sleek wooden desk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-bZBih-3NbAlZVSYOVJ2U5SesPS-tQxvUORLd0j-8u02DpMYF8BwOrfXBTiAHGz82ZNz3J7nEmOg7LtreubUocnnUKmUrD3vXw6c-ZwbS0W2KTIgM1A_gTuHpquHtqnguGy4v7aSBkxmWjaj3Np6CRF67SM1Pcmh_adCjI5sLo-QBPN5YeA66iBrqaFekAYjEH8v3ncUBjzW4Sk78-g4XsmUrPbi7dJ4X8HW7JwL8UQw2xkbO6g"/>
+<span class="text-body-md text-on-surface truncate">Final Seating Chart</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-semibold">Med</span>
+</div>
+<div class="col-span-9 relative h-8 bg-surface rounded-full flex items-center px-4">
+<div class="absolute left-[78%] w-[20%] h-5 bg-surface-bright text-on-surface rounded-full flex items-center justify-between px-3 text-[11px] font-semibold shadow-sm">
+<span>Due Day 150</span>
+<span class="material-symbols-outlined text-[14px]">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- VIEW 2: CALENDAR (Hidden by default) -->
+<div class="hidden space-y-6" id="view-calendar">
+<div class="bg-surface-container rounded-lg p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-sm text-on-surface">October 2024</h2>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full bg-surface hover:bg-surface-container-high text-on-surface"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded-full bg-surface hover:bg-surface-container-high text-on-surface"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<!-- Calendar Grid Mock -->
+<div class="grid grid-cols-7 gap-3 text-center">
+<div class="text-label-sm text-on-surface-variant py-2">Mon</div>
+<div class="text-label-sm text-on-surface-variant py-2">Tue</div>
+<div class="text-label-sm text-on-surface-variant py-2">Wed</div>
+<div class="text-label-sm text-on-surface-variant py-2">Thu</div>
+<div class="text-label-sm text-on-surface-variant py-2">Fri</div>
+<div class="text-label-sm text-on-surface-variant py-2">Sat</div>
+<div class="text-label-sm text-on-surface-variant py-2">Sun</div>
+<!-- Days -->
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface-variant">1</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface-variant">2</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface-variant">3</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface-variant">4</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface-variant">5</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">6</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">7</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">8</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface flex flex-col justify-between bg-primary-container/10">
+<span class="text-primary font-semibold">9</span>
+<div class="bg-primary-container text-on-primary-container text-[11px] p-1 rounded-md truncate">Budget Review</div>
+</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">10</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">11</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">12</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface bg-error/10 flex flex-col justify-between">
+<span class="text-error font-semibold">13 (Overdue)</span>
+<div class="bg-error text-on-error text-[11px] p-1 rounded-md truncate">Venue Contract</div>
+</div>
+<div class="h-28 bg-surface rounded-xl p-2 text-left text-on-surface">14</div>
+</div>
+</div>
+</div>
+<!-- VIEW 3: KANBAN (Hidden by default) -->
+<div class="hidden grid grid-cols-1 md:grid-cols-4 gap-6" id="view-kanban">
+<!-- Column 1 -->
+<div class="bg-surface-container rounded-lg p-4 flex flex-col gap-4">
+<div class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="font-headline-sm text-on-surface">Backlog</span>
+<span class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-semibold">3</span>
+</div>
+<div class="bg-surface p-4 rounded-xl hover:bg-surface-bright cursor-pointer transition-all shadow-sm space-y-3" onclick="openTaskDrawer('Send Save-the-Dates', 'Design and dispatch electronic save-the-dates to VIP guest list.')">
+<div class="flex justify-between items-start">
+<span class="text-body-md font-semibold text-on-surface">Send Save-the-Dates</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px]">Med</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Design and dispatch electronic save-the-dates to VIP guest list.</p>
+<div class="flex items-center justify-between pt-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Chloe Bennett, guest relations manager." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPYtDAmGMuHbD6Gea4lYK02vAT2AS5K0BhZ2awlQkNcyBQwl1xdxEWB6QIypCE5il17eovqWmoCSNYEsD9IHX2cVs_ddAPpft-nOOsbpPs7KtA31Ul5S_RTD9GcIhiPFpPw9lWu8APZAx4JwFXvKfED2_i_raVfHCkajNaFsqudRtHF24VHbAiN-7YTkF3nIoC3E0PbPxHUKL4Nf15UanK-Xhe1AXrn92CMkrQqoN5aIQkOThO2w"/>
+<span class="text-xs text-on-surface-variant">Due Day 180</span>
+</div>
+</div>
+</div>
+<!-- Column 2 -->
+<div class="bg-surface-container rounded-lg p-4 flex flex-col gap-4">
+<div class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="font-headline-sm text-on-surface">In Progress</span>
+<span class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-semibold">2</span>
+</div>
+<div class="bg-surface p-4 rounded-xl hover:bg-surface-bright cursor-pointer transition-all shadow-sm space-y-3" onclick="openTaskDrawer('Catering Menu Tasting', 'Sample 3 menu options with Chef Laurent.')">
+<div class="flex justify-between items-start">
+<span class="text-body-md font-semibold text-on-surface">Catering Menu Tasting</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px]">High</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Sample 3 menu options with Chef Laurent for 150 guests.</p>
+<div class="flex items-center justify-between pt-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Elena Rostova, culinary director." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZi3T9XjzSjuB0RNnVE3m7OBzgl6wESRFMhRh1GrYDVmu0acQFDVIFeOwvQPuMIBPEQTFhc_6xBL2PX7DfK9OAwR1RWXMX3962lhdoSAu12gr49ISoWcOgasZxL8YnYdW6kELl_Qxb49sIAYQMkMmrLKx2DCCn6HK0ZQvvKEMWXCfxs3dLdiuvAWRqBhtW7xmPbcUC8X2ztF9ac9XIXchz6NoGFvfUk7yy0x1SZq9TdHFPtOlIYA"/>
+<span class="text-xs text-secondary font-semibold">Due Day 45</span>
+</div>
+</div>
+</div>
+<!-- Column 3 -->
+<div class="bg-surface-container rounded-lg p-4 flex flex-col gap-4">
+<div class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="font-headline-sm text-on-surface">Review</span>
+<span class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-semibold">1</span>
+</div>
+<div class="bg-surface p-4 rounded-xl hover:bg-surface-bright cursor-pointer transition-all shadow-sm space-y-3 border border-secondary/20" onclick="openTaskDrawer('Floral &amp; Lighting Design Mockup', 'Review 3D renders and physical sample table setup.')">
+<div class="flex justify-between items-start">
+<span class="text-body-md font-semibold text-on-surface">Floral Mockup Setup</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px]">Med</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Review 3D renders and physical sample table setup.</p>
+<div class="flex items-center justify-between pt-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Marcus Vance, floral designer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDHgfFGxLnFA-oHo18b0oU4lp8KXcMCoJvh0FKJtAegVjoZH-F5DcxdVLDD_Bzimr3QxUARJ5wDLl6afUeBtpCeADTsFHHHCqdx-vk8RqTzB3yv8Pt_nYwzWtlxhM5OCPc7K9Y2nazKci6fYqI4e-jbVInintAZSFJTGITbUdNCBb-dHD9wP6Cjp17NwoVwjL8f3dFHkzpFR8_6WkBwhI7086N98eL8pXDEGKHcqmsIlaOV7E48w"/>
+<span class="text-xs text-on-surface-variant">Due Day 65</span>
+</div>
+</div>
+</div>
+<!-- Column 4 -->
+<div class="bg-surface-container rounded-lg p-4 flex flex-col gap-4">
+<div class="flex items-center justify-between pb-2 border-b border-white/5">
+<span class="font-headline-sm text-on-surface">Completed</span>
+<span class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-semibold">5</span>
+</div>
+<div class="bg-surface p-4 rounded-xl hover:bg-surface-bright cursor-pointer transition-all shadow-sm space-y-3 opacity-60" onclick="openTaskDrawer('Finalize Master Budget', 'Review catering and venue cost allocations.')">
+<div class="flex justify-between items-start">
+<span class="text-body-md font-semibold text-on-surface line-through">Finalize Master Budget</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px]">Done</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Review catering, venue, and decor cost allocations.</p>
+<div class="flex items-center justify-between pt-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Sarah Jenkins, finance lead." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSDBJtUvQS369M_m_ty_Awni6ngGa62EIMxx0fSmn4ta4RuOXYkKlpIhMUgV9pU18fn3HulJAFhYYaGmPnyLeeuTYhq2SoyL2ToRpzfJKYsNe-uOiF2Cnb6Y26kI1mIh0Ot9F5JWq0BUWccvWI3ewR30kTAPVFc0OuhOxmywQR_jyJrU0yKUSqgSAyWspYQ0BnXJ64k9mjLtNtWrUDHHYnRE1ObbTsXcGgLVd5BJxT5hi4rO2k-A"/>
+<span class="text-xs text-secondary font-semibold">Completed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SIDE DRAWER FOR TASK DETAILS -->
+<div class="fixed inset-y-0 right-0 w-full max-w-md bg-surface-container-high z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col" id="task-drawer">
+<div class="p-6 flex items-center justify-between border-b border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">task_alt</span>
+<span class="font-headline-sm text-on-surface" id="drawer-title">Task Details</span>
+</div>
+<button class="p-2 rounded-full bg-surface hover:bg-surface-bright text-on-surface transition-all cursor-pointer" onclick="closeTaskDrawer()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Task Title</label>
+<input class="w-full mt-2 bg-surface px-4 py-3 rounded-full text-on-surface text-body-md outline-none focus:ring-1 focus:ring-secondary" id="drawer-input-title" type="text" value="Venue Contract Signing"/>
+</div>
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Description</label>
+<textarea class="w-full mt-2 bg-surface p-4 rounded-xl text-on-surface text-body-md outline-none focus:ring-1 focus:ring-secondary resize-none" id="drawer-input-desc" rows="3">Secure signatures and initial deposit for the Grand Ballroom venue.</textarea>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Owner</label>
+<div class="flex items-center gap-3 mt-2 bg-surface px-4 py-2.5 rounded-full">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Alex Rivera, event coordinator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEJ-hK2BSdnkBmROtHvFHynib9AFO8nugUsNWD8ftVk8a1Clkt_bbd6CWiNTfOUFkeRMYo2fxohrCYNVIVqibqROBXFJwRKC88xLzPN5LKLl8NzbTRecqFKuUm54B5uN1hEpgL51F6KGbi6oXNvEIlbfjDdDmLPC5idES2xbbEkoPgdpY-tjc0SQiC61J5j2_ab6-D_ZA1MoZUVkAZwZbQgc3UwfjgK7NUjISJJTy3g_LW6VnBHA"/>
+<span class="text-body-md text-on-surface">Alex Rivera</span>
+</div>
+</div>
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Priority</label>
+<div class="mt-2 bg-surface px-4 py-2.5 rounded-full flex items-center justify-between text-error font-semibold">
+<span>High</span>
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+</div>
+</div>
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Dependencies</label>
+<div class="mt-2 bg-surface p-4 rounded-xl space-y-2">
+<div class="flex items-center justify-between text-body-md text-on-surface">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-[16px]">link</span> Finalize Master Budget</span>
+<span class="text-xs text-secondary bg-secondary-container/20 px-2 py-0.5 rounded-full">Completed</span>
+</div>
+</div>
+</div>
+<div>
+<label class="text-label-sm text-on-surface-variant uppercase tracking-wider">Checklist Items</label>
+<div class="mt-2 space-y-2">
+<div class="flex items-center gap-3 bg-surface px-4 py-3 rounded-full">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+<span class="text-body-md text-on-surface line-through">Draft contract addendum</span>
+</div>
+<div class="flex items-center gap-3 bg-surface px-4 py-3 rounded-full">
+<input class="w-4 h-4 rounded text-primary accent-primary cursor-pointer" type="checkbox"/>
+<span class="text-body-md text-on-surface">Wire transfer deposit</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-white/5 flex items-center justify-end gap-3 bg-surface-container">
+<button class="px-5 py-2.5 rounded-full bg-surface hover:bg-surface-bright text-on-surface text-label-md cursor-pointer" onclick="closeTaskDrawer()">Cancel</button>
+<button class="px-6 py-2.5 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-label-md cursor-pointer" onclick="closeTaskDrawer()">Save Changes</button>
+</div>
+</div>
+<!-- Backdrop for drawer -->
+<div class="fixed inset-0 bg-black/60 z-40 hidden transition-opacity" id="drawer-backdrop" onclick="closeTaskDrawer()"></div>
+<!-- Client-side script for interactivity -->
+<script>
+    function switchView(view) {
+      document.getElementById('view-gantt').classList.add('hidden');
+      document.getElementById('view-calendar').classList.add('hidden');
+      document.getElementById('view-kanban').classList.add('hidden');
+      
+      document.getElementById('btn-gantt').className = "flex-1 py-2 px-4 rounded-full text-label-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer text-center";
+      document.getElementById('btn-calendar').className = "flex-1 py-2 px-4 rounded-full text-label-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer text-center";
+      document.getElementById('btn-kanban').className = "flex-1 py-2 px-4 rounded-full text-label-md text-on-surface-variant hover:text-on-surface transition-all cursor-pointer text-center";
+
+      document.getElementById('view-' + view).classList.remove('hidden');
+      document.getElementById('btn-' + view).className = "flex-1 py-2 px-4 rounded-full text-label-md font-semibold bg-primary-container text-on-primary-container transition-all cursor-pointer text-center";
+    }
+
+    function openTaskDrawer(title, desc) {
+      document.getElementById('drawer-title').innerText = title;
+      document.getElementById('drawer-input-title').value = title;
+      document.getElementById('drawer-input-desc').value = desc;
+      document.getElementById('task-drawer').classList.remove('translate-x-full');
+      document.getElementById('drawer-backdrop').classList.remove('hidden');
+    }
+
+    function closeTaskDrawer() {
+      document.getElementById('task-drawer').classList.add('translate-x-full');
+      document.getElementById('drawer-backdrop').classList.add('hidden');
+    }
+
+    function triggerAIGenerate() {
+      alert('Festora AI is analyzing your project scale and optimizing milestone phases...');
+    }
+
+    function syncCalendar() {
+      alert('Successfully synced 48 timeline items to Google Calendar.');
+    }
+  </script>
+</div></main></div></body></html>

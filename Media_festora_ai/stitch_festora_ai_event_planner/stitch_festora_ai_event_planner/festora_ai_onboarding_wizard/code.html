@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col py-space-md px-space-sm border-r border-white/5"><div class="flex items-center gap-space-sm px-4 mb-space-md"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNAyXsqIQoBQsHsEY-3B38MelSTGX3sfyuHrrF8bYNX6n9Y6HwL2h-nCe91GR8dpgoFbXOyEAZK6WBnVsiq6FGFQdKgsEgCV8oOrhN2axl6_8sMlzL7A26Fx3sQ_NVAN6mDFCz3sN2_max_G2-KZVW-fjsbBtXEbpq3FFJvwatD7QXFykMorS1xGKtKd_3PBtYHW3pIhmv_qYjoECMKIeXfF3VEJJzve_CDDtIfuM6qHtA0R4lCg"/><span class="font-headline-sm text-on-surface">Festora AI</span></div><nav class="flex-1 space-y-1 overflow-y-auto pr-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-2xl"><a aria-current="page" class="flex items-center px-4 py-3 transition-all gap-3 bg-primary-container text-on-primary-container font-semibold rounded-2xl" data-path="dashboard" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ai-assistant" href="#"><span class="material-symbols-outlined">smart_toy</span>AI Assistant</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="budget" href="#"><span class="material-symbols-outlined">payments</span>Budget</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="timeline" href="#"><span class="material-symbols-outlined">schedule</span>Timeline</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="vendors" href="#"><span class="material-symbols-outlined">storefront</span>Vendors</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="guests" href="#"><span class="material-symbols-outlined">group</span>Guests</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="ideas" href="#"><span class="material-symbols-outlined">lightbulb</span>Ideas</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="seating" href="#"><span class="material-symbols-outlined">event_seat</span>Seating</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="run-sheet" href="#"><span class="material-symbols-outlined">view_list</span>Run Sheet</a><a class="flex items-center px-4 py-3 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all gap-3" data-path="settings" href="#"><span class="material-symbols-outlined">settings</span>Settings</a></nav></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-on-surface-variant">search</span><span class="text-label-md text-on-surface-variant">Search planning items...</span></div><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-20 px-gutter pb-space-xl min-h-screen"><div class="flex flex-col w-full">
+<!-- Slim Progress Bar at Top -->
+<div class="fixed top-20 left-72 right-0 h-1 bg-surface-container-high z-40">
+<div class="h-full bg-primary transition-all duration-500 ease-out" id="wizard-progress" style="width: 14.28%;"></div>
+</div>
+<div class="max-w-5xl mx-auto w-full pt-space-lg pb-space-xl px-4">
+<!-- Step Container -->
+<div class="relative min-h-[550px] flex flex-col justify-between" id="wizard-container">
+<!-- STEP 1: Event Type -->
+<div class="wizard-step flex flex-col space-y-space-lg" data-step="1">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 01 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">What kind of extraordinary celebration are we crafting?</h1>
+<p class="text-body-lg text-on-surface-variant">Select the primary archetype for your upcoming gathering.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+<div class="wizard-card cursor-pointer group bg-surface-container p-space-md rounded-2xl transition-all duration-300 hover:bg-surface-container-high hover:scale-[1.02] border-2 border-transparent relative overflow-hidden flex flex-col justify-between h-72" data-value="Wedding" onclick="selectCard(this, 'event_type')">
+<div class="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity" data-alt="Luxurious Indian wedding mandap floral decoration with warm ambient lighting, elegant drapery, and romantic atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAcPBHj4BNzAlFOSm784s_uC4U5nCzbpWqkSFcKmMl7_Jp6b0RgA15dm8xWuyxz1uRqZA4qLyAXZwGAxaAkeriVrLbfqDwq3K-jferCPbAMPUSLkhYx7oCTsHmBMJnZ2LGFwtO5gaANW_eQ9DGwtf42UIFfOm5PYy2IY0S4ZLmc9aM6ZeLriv6LzPJhZglaqlW9lAEDgkdGU-8lZpxPGI-lLHe2RsACFCt-oXg01pd6Hh7dXvz5RA')"></div>
+<div class="relative z-10 flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-3xl">favorite</span>
+<div class="radio-indicator w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary opacity-0 transition-opacity"></div>
+</div>
+</div>
+<div class="relative z-10 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Grand Wedding</h3>
+<p class="text-body-md text-on-surface-variant">Multi-day celebrations, sangeet, pheras, and high-end receptions.</p>
+</div>
+</div>
+<div class="wizard-card cursor-pointer group bg-surface-container p-space-md rounded-2xl transition-all duration-300 hover:bg-surface-container-high hover:scale-[1.02] border-2 border-transparent relative overflow-hidden flex flex-col justify-between h-72" data-value="Corporate" onclick="selectCard(this, 'event_type')">
+<div class="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity" data-alt="High-end corporate gala dinner in a modern glass ballroom with striking architectural lighting and sleek tablescapes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC6Ksr2nP8hBwnvIhXo0WVw_vbcZGPmYpSXAs-MI_ULS5U2NG9yZsYVAvSlfvIqfcsLSEppV8-4dPJFagE-2quJ0ErjhcL9QiebI1Cg89HnRjUYaOnLTP1T7YuazQpQeDkdlbS94rXmdr2cmVUeC8_4-gUoebgwfLMpbNxdmj3rB9oe7uKXU9_bxZbIYgW_dwLGpAvSqOeztrM9FdZmdSxrU5d8Tg1xEf0nHDcZW6fVQHQU-zGNQ')"></div>
+<div class="relative z-10 flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-3xl">domain</span>
+<div class="radio-indicator w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary opacity-0 transition-opacity"></div>
+</div>
+</div>
+<div class="relative z-10 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Corporate Gala</h3>
+<p class="text-body-md text-on-surface-variant">Annual summits, product launches, elite retreats, and award nights.</p>
+</div>
+</div>
+<div class="wizard-card cursor-pointer group bg-surface-container p-space-md rounded-2xl transition-all duration-300 hover:bg-surface-container-high hover:scale-[1.02] border-2 border-transparent relative overflow-hidden flex flex-col justify-between h-72" data-value="Social" onclick="selectCard(this, 'event_type')">
+<div class="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-50 transition-opacity" data-alt="Vibrant birthday anniversary celebration with artistic cocktail bar, ambient fairy lights, and stylish lounge seating." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSXJ-Yn0YTtCdEaU72nS0kfnJT7asUClb4id63NE07MRGzve7ChzJTPum-D27OsBhO9Iea_C0-tZCkqEJajed6rCj1nBUSkinKPNYN7BhOcdOZtAwktAdOFai3H5tt6J2Ny6ESVfeja9nmwYkJyyPXyxlZeRXVeFvmJQ9V9C8HCmq8IlvW912qyVMdLq8Zp6bGRUdkzBwzw_PQ1QgnFblrE_HIyRNkvI5M_4VkRV1JGuHD3P0CeQ')"></div>
+<div class="relative z-10 flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-3xl">celebration</span>
+<div class="radio-indicator w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center transition-colors">
+<div class="w-3 h-3 rounded-full bg-primary opacity-0 transition-opacity"></div>
+</div>
+</div>
+<div class="relative z-10 space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Private Milestone</h3>
+<p class="text-body-md text-on-surface-variant">Birthdays, anniversaries, private dinners, and themed parties.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 2: Basics -->
+<div class="wizard-step hidden flex flex-col space-y-space-lg" data-step="2">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 02 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Let's lock in the fundamentals.</h1>
+<p class="text-body-lg text-on-surface-variant">Provide the foundational parameters for schedule and scale.</p>
+</div>
+<div class="max-w-2xl mx-w-2xl mx-auto w-full bg-surface-container p-space-lg rounded-2xl space-y-space-md">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface">Event Title</label>
+<input class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary border border-white/5" placeholder="e.g., Ananya &amp; Rohan's Wedding Celebration" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-label-md text-on-surface">Target Date</label>
+<input class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary border border-white/5" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-md text-on-surface">City / Destination</label>
+<input class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary border border-white/5" placeholder="e.g., Udaipur, Rajasthan" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-label-md text-on-surface">Estimated Guest Count</label>
+<span class="text-primary font-bold" id="guest-count-val">350 Guests</span>
+</div>
+<input class="w-full accent-primary bg-surface-container-lowest rounded-lg cursor-pointer h-2" max="2000" min="50" oninput="document.getElementById('guest-count-val').innerText = this.value + ' Guests'" step="25" type="range" value="350"/>
+</div>
+</div>
+</div>
+<!-- STEP 3: Budget (INR) -->
+<div class="wizard-step hidden flex flex-col space-y-space-lg" data-step="3">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 03 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">What is your investment allocation?</h1>
+<p class="text-body-lg text-on-surface-variant">Set your total target budget in Indian Rupees (₹).</p>
+</div>
+<div class="max-w-2xl mx-auto w-full bg-surface-container p-space-lg rounded-2xl space-y-space-md text-center">
+<div class="py-4">
+<span class="font-display-lg text-primary" id="budget-display">₹ 45,00,000</span>
+<p class="text-body-md text-on-surface-variant mt-2">Estimated tier: Premium Luxury Experience</p>
+</div>
+<input class="w-full accent-primary bg-surface-container-lowest rounded-lg cursor-pointer h-2" max="20000000" min="500000" oninput="updateBudget(this.value)" step="100000" type="range" value="4500000"/>
+<div class="grid grid-cols-3 gap-4 pt-4">
+<button class="py-3 bg-surface-container-low hover:bg-surface-container-high rounded-xl text-label-md text-on-surface transition-colors" onclick="setBudget(1500000)">₹ 15 Lakhs</button>
+<button class="py-3 bg-surface-container-low hover:bg-surface-container-high rounded-xl text-label-md text-on-surface transition-colors" onclick="setBudget(4500000)">₹ 45 Lakhs</button>
+<button class="py-3 bg-surface-container-low hover:bg-surface-container-high rounded-xl text-label-md text-on-surface transition-colors" onclick="setBudget(10000000)">₹ 1 Crore+</button>
+</div>
+</div>
+</div>
+<!-- STEP 4: Style & Vibe -->
+<div class="wizard-step hidden flex flex-col space-y-space-lg" data-step="4">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 04 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Define your aesthetic and palette.</h1>
+<p class="text-body-lg text-on-surface-variant">Pick mood chips that resonate with your design vision.</p>
+</div>
+<div class="max-w-3xl mx-auto w-full space-y-space-md">
+<div class="flex flex-wrap gap-3 justify-center">
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5 active-chip" onclick="toggleChip(this)">Royal Heritage</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Boho Chic</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Minimalist Elegance</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Neon Futuristic</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Botanical Garden</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Art Deco Glamour</button>
+<button class="px-6 py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all border border-white/5" onclick="toggleChip(this)">Rustic Vintage</button>
+</div>
+<div class="bg-surface-container p-space-md rounded-2xl flex items-center justify-between max-w-lg mx-auto">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Signature Color Palette</h4>
+<p class="text-body-md text-on-surface-variant">Choose primary accent shade</p>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-12 h-12 rounded-full bg-transparent cursor-pointer border-0" type="color" value="#ffb59f"/>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 5: Priorities -->
+<div class="wizard-step hidden flex flex-col space-y-space-lg" data-step="5">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 05 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Rank your experiential priorities.</h1>
+<p class="text-body-lg text-on-surface-variant">Drag or order what matters most for your guests' memories.</p>
+</div>
+<div class="max-w-xl mx-auto w-full space-y-3">
+<div class="flex items-center justify-between bg-surface-container p-4 rounded-2xl cursor-grab hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">01</span>
+<span class="text-on-surface font-medium">Culinary Experience &amp; Gastronomy</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container p-4 rounded-2xl cursor-grab hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">02</span>
+<span class="text-on-surface font-medium">Immersive Decor &amp; Lighting Design</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container p-4 rounded-2xl cursor-grab hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">03</span>
+<span class="text-on-surface font-medium">Entertainment &amp; Live Performances</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container p-4 rounded-2xl cursor-grab hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">04</span>
+<span class="text-on-surface font-medium">Seamless Guest Hospitality &amp; Logistics</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">drag_indicator</span>
+</div>
+</div>
+</div>
+<!-- STEP 6: Special Requirements -->
+<div class="wizard-step hidden flex flex-col space-y-space-lg" data-step="6">
+<div class="space-y-space-xs text-center max-w-2xl mx-auto">
+<span class="text-label-sm uppercase tracking-widest text-primary">Step 06 / 07</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Any specific requirements or traditions?</h1>
+<p class="text-body-lg text-on-surface-variant">Festora AI will factor custom cultural rituals or dietary needs.</p>
+</div>
+<div class="max-w-2xl mx-auto w-full bg-surface-container p-space-lg rounded-2xl space-y-4">
+<textarea class="w-full bg-surface-container-lowest text-on-surface p-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary border border-white/5" placeholder="e.g., Traditional Marwari welcome ritual, Jain food counters, drone photography permit needed..." rows="4"></textarea>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center gap-3 cursor-pointer p-3 bg-surface-container-lowest rounded-xl">
+<input class="accent-primary w-5 h-5 rounded" type="checkbox"/>
+<span class="text-body-md text-on-surface">Valet Parking Service</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer p-3 bg-surface-container-lowest rounded-xl">
+<input class="accent-primary w-5 h-5 rounded" type="checkbox"/>
+<span class="text-body-md text-on-surface">Dedicated Kids Play Area</span>
+</label>
+</div>
+</div>
+</div>
+<!-- STEP 7: Final Processing Screen -->
+<div class="wizard-step hidden flex flex-col items-center justify-center space-y-space-lg text-center py-12" data-step="7">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-4 border-primary/20 border-t-primary animate-spin"></div>
+<span class="material-symbols-outlined text-primary text-4xl animate-pulse">auto_awesome</span>
+</div>
+<div class="space-y-2 max-w-md mx-auto">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Festora AI is crafting your plan...</h1>
+<p class="text-body-lg text-on-surface-variant">Synthesizing vendors, drafting intelligent timelines, and calculating budget splits.</p>
+</div>
+<div class="w-full max-w-md bg-surface-container p-space-md rounded-2xl space-y-3 text-left">
+<div class="flex items-center gap-3 text-on-surface text-body-md">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>Analyzing venue acoustics &amp; capacity</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface text-body-md">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>Sourcing elite regional culinary artists</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface text-body-md">
+<span class="material-symbols-outlined text-primary text-xl animate-spin">progress_activity</span>
+<span class="text-primary font-medium">Generating bespoke design moodboards...</span>
+</div>
+</div>
+</div>
+<!-- Wizard Controls -->
+<div class="flex justify-between items-center pt-8 mt-12 border-t border-white/5">
+<button class="px-6 py-3 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed" disabled="" id="prev-btn" onclick="changeStep(-1)">
+<span class="material-symbols-outlined">arrow_back</span>
+          Back
+        </button>
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary hover:opacity-90 transition-opacity font-semibold flex items-center gap-2" id="next-btn" onclick="changeStep(1)">
+          Continue
+          <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    let currentStep = 1;
+    const totalSteps = 7;
+
+    function selectCard(card, groupName) {
+      const parent = card.parentElement;
+      parent.querySelectorAll('.wizard-card').forEach(c => {
+        c.classList.remove('border-primary', 'bg-surface-container-high');
+        c.querySelector('.radio-indicator div').classList.remove('opacity-100');
+        c.querySelector('.radio-indicator div').classList.add('opacity-0');
+      });
+      card.classList.add('border-primary', 'bg-surface-container-high');
+      card.querySelector('.radio-indicator div').classList.remove('opacity-0');
+      card.querySelector('.radio-indicator div').classList.add('opacity-100');
+    }
+
+    function toggleChip(btn) {
+      btn.classList.toggle('bg-primary');
+      btn.classList.toggle('text-on-primary');
+      btn.classList.toggle('bg-surface-container');
+    }
+
+    function updateBudget(val) {
+      const formatted = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+      document.getElementById('budget-display').innerText = formatted;
+    }
+
+    function setBudget(val) {
+      document.querySelector('input[type="range"][min="500000"]').value = val;
+      updateBudget(val);
+    }
+
+    function changeStep(direction) {
+      const newStep = currentStep + direction;
+      if (newStep < 1 || newStep > totalSteps) return;
+
+      document.querySelector(`[data-step="${currentStep}"]`).classList.add('hidden');
+      currentStep = newStep;
+      document.querySelector(`[data-step="${currentStep}"]`).classList.remove('hidden');
+
+      // Update progress bar
+      const progressPercent = (currentStep / totalSteps) * 100;
+      document.getElementById('wizard-progress').style.width = progressPercent + '%';
+
+      // Update buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+
+      if (currentStep === 1) {
+        prevBtn.disabled = true;
+        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        prevBtn.disabled = false;
+        prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+
+      if (currentStep === totalSteps) {
+        nextBtn.style.display = 'none';
+        prevBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = 'flex';
+        prevBtn.style.display = 'flex';
+        if (currentStep === totalSteps - 1) {
+          nextBtn.innerHTML = 'Generate Plan <span class="material-symbols-outlined">auto_awesome</span>';
+        } else {
+          nextBtn.innerHTML = 'Continue <span class="material-symbols-outlined">arrow_forward</span>';
+        }
+      }
+    }
+  </script>
+</div></main></div></body></html>

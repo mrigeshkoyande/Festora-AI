@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#d0b174", "tertiary-fixed-dim": "#c9c6c0", "on-tertiary": "#31312c", "secondary-fixed-dim": "#e2c384", "on-secondary": "#402d00", "secondary-fixed": "#ffdfa0", "on-primary": "#5f1600", "primary-fixed-dim": "#ffb59f", "primary-container": "#ff6b3d", "on-tertiary-fixed-variant": "#474742", "tertiary-container": "#9c9a94", "surface-container": "#201f20", "surface-container-highest": "#353436", "on-surface-variant": "#e1bfb6", "surface-variant": "#353436", "inverse-on-surface": "#313031", "on-tertiary-fixed": "#1c1c18", "background": "#131314", "secondary-container": "#594411", "error-container": "#93000a", "tertiary": "#c9c6c0", "surface-bright": "#3a393a", "secondary": "#e2c384", "tertiary-fixed": "#e5e2db", "inverse-surface": "#e5e2e3", "primary-fixed": "#ffdbd1", "surface": "#131314", "surface-container-lowest": "#0e0e0f", "on-surface": "#e5e2e3", "outline": "#a88a81", "on-primary-fixed": "#3a0a00", "outline-variant": "#59413a", "on-error-container": "#ffdad6", "on-primary-fixed-variant": "#862300", "surface-dim": "#131314", "on-error": "#690005", "surface-container-high": "#2a2a2b", "primary": "#ffb59f", "on-secondary-fixed": "#261a00", "error": "#ffb4ab", "on-background": "#e5e2e3", "on-primary-container": "#611700", "surface-tint": "#ffb59f", "surface-container-low": "#1c1b1c", "on-tertiary-container": "#32322e", "on-secondary-fixed-variant": "#594411", "inverse-primary": "#ae3203" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-lg": "3rem", "gutter": "2rem", "margin": "3rem", "space-md": "1.5rem", "space-xl": "6rem", "space-xs": "0.375rem" }, "fontFamily": { "headline-lg": ["Bricolage Grotesque"], "body-md": ["Inter"], "label-md": ["Inter"], "body-lg": ["Inter"], "headline-sm": ["Bricolage Grotesque"], "display-xl": ["Bricolage Grotesque"], "display-lg": ["Bricolage Grotesque"], "label-sm": ["Inter"], "headline-md": ["Bricolage Grotesque"] }, "fontSize": { "headline-lg": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }], "display-xl": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.03em", "fontWeight": "800" }], "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "1.3", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-md": ["28px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } }</script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col"><header class="fixed top-6 left-0 right-0 z-50 px-gutter"><div class="max-w-7xl mx-auto h-20 bg-surface-container/80 backdrop-blur-xl rounded-full shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-space-lg flex items-center justify-between border border-white/10"><div class="flex items-center gap-space-sm"><img alt="Festora AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_QdtESFVH45r8XNsiwApCfyAKbjH2gnLe0EYVZxFz8-yP5bij3uef-pQOUZs63ItSSGJ5bwbvRwm_XbuX2A0eT6Q3tpcIaQ31Sd1nUk_C_wK45vsLQAlslznf-t2HgLAWb7miRFwoIFjsvPwiiN9V7Kju_HQXJl81g9bfuJ2LShBMdRPEPYZxOYDtog_2oiWYWpi8i35oiU7S1hJi0aAbjpePvGnQOLYzMPBS96EkoprJqJNuHQ"/><span class="font-headline-sm text-on-surface tracking-tight">Festora AI</span></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-full"><a aria-current="page" class="transition-colors px-3 py-2 bg-primary-container text-on-primary-container font-semibold rounded-full" data-path="features" href="#">Features</a><a class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-3 py-2" data-path="how-it-works" href="#">How it works</a><a class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-3 py-2" data-path="event-types" href="#">Event types</a><a class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-3 py-2" data-path="pricing" href="#">Pricing</a><a class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-3 py-2" data-path="stories" href="#">Stories</a></nav><div class="flex items-center gap-space-md"><a class="text-label-md text-on-surface hover:text-primary transition-colors px-4 py-2" data-path="login" href="#">Log in</a><a class="bg-primary-container text-on-primary-container text-label-md font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity flex items-center gap-2" data-path="dashboard" href="#">Start planning free</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 pt-32 w-full max-w-7xl mx-auto px-gutter"><div class="flex flex-col w-full">
+<!-- 2. HERO SECTION -->
+<section class="relative pt-12 pb-24 overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -left-24 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 flex flex-col items-start gap-space-md z-10">
+<div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full text-label-md text-primary">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>Next-Gen Event Architecture powered by AI</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface tracking-tight">
+          Plan the day. <br/><span class="text-primary">Keep the magic.</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-xl">
+          Festora AI orchestrates every detail from concept to final toast. Eliminate coordination friction, discover verified world-class vendors, and execute flawless celebrations effortlessly.
+        </p>
+<div class="flex flex-wrap items-center gap-space-sm pt-4">
+<a class="bg-primary-container text-on-primary-container font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity flex items-center gap-3 text-label-md shadow-lg shadow-primary-container/20" href="#">
+<span>Start planning free</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-bright transition-colors px-8 py-4 rounded-full font-semibold text-label-md flex items-center gap-2" onclick="openDemoModal()">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Watch demo</span>
+</button>
+</div>
+<div class="flex items-center gap-space-md pt-6 text-on-surface-variant text-label-md">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling professional event planner with dark hair and sophisticated attire, shot in natural studio lighting with soft bokeh background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBHRWHzVpgP_Ex87Mp8eqfvPNGaVaiYGfp32LlPcVuhWp3Y43sMsZFVYv_9kd1qmUQ34yDSG0RyvbNlX3W3EXJPY4u58rImDwvz3BjspdKKUun8qLmPzUq30rKFBn2dt82R53lZFj_JPaAIKPeaToHhUGK4m-5NvRyGvcu4oW9cjAWwNuUDrJrS0arRGt6j8paPESaEQIDvPXmp4YRrvHch5cLz6DjliWnJ1ps0200kOgnQrofJQ"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close-up portrait of a creative director in modern minimalist workspace, warm amber lighting, high contrast photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLCjFo3MNcakRcHwDu6c1ecErNOhI2dVUVdpEJq_CryEqtqs64H1sKms5nFgeMM87grdLHrXHtQsYscDFVB0zt34n6lc3-Idjv_qXrhPmBIy_NW41gnvAXqXtYmgVLvqCPSC-fHX10EJvBine9laQNUZwYniAXoID6yDBlfQdJtU2tQ8le1Vt_iJZbuEoBvtJXkrtrePJgE9sW_tgBFIjA35gLewTwYrraPrNCoAxo7bAg2ugmcw"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of an elegant bride smiling happily during a luxury venue walkthrough, soft afternoon sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfmJBBTYL0Jxv3tGm_ZT0VDfW6F_BHhQeOWpGWlpcW3wKe-Zn4JTkeLnDkqtp2pcDW7X3C1hFYgBWW6fW7NEViBX9VVv8M94gsaXQWWMTzHFcCfaBS7HbofyLExgKJHHJzh-kau_a_F0-24o0pWqmnIo4sXKRpXWdROLsRfaEVmAhPAWKMHPsUjqdjSyENkP1TyXR3CQRPyXufhMi__N2Se3Z99Sf5KtJ4VH_DPdX0_-gnwSyo9A"/>
+</div>
+<div>
+<div class="flex items-center text-secondary gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-xs">Trusted by 15,000+ top-tier planners globally</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A breathtaking luxury destination wedding reception under a massive glass pavilion at twilight, warm ambient string lights, elegant floral tablescapes, deep amber and coral color palette, high-end editorial photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDF6dopTd00mopLaPObSV52mdZ_saDHzT7ZSwhfkacw59XpfmwKCymPbKNOiN2bQtUjA0mExKi8hYvooc32gQ6AKPWD6SyaB6sGnrsCCJiHz-q1PuCE5fKUgJo4--ue2JE-GoZ8xRwT8jgXCSpSCV-ewBT6Ar5iJ41gH7YQvMWdCJ0BpaINWQ8Ih25WhytYUzqLgdMDAhsJJklcWteM02zyt3-fHAgUHO_KICLEtMTXM_vj2KGDKQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<!-- Floating UI Card 1 -->
+<div class="absolute top-6 left-6 right-6 bg-surface/90 backdrop-blur-xl p-4 rounded-2xl shadow-xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-label-md font-semibold text-on-surface">Timeline Optimized</p>
+<p class="text-xs text-on-surface-variant">All vendor arrivals synchronized</p>
+</div>
+</div>
+<span class="text-xs px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-semibold">98% Match</span>
+</div>
+<!-- Floating UI Card 2 -->
+<div class="absolute bottom-6 left-6 right-6 bg-surface/90 backdrop-blur-xl p-4 rounded-2xl shadow-xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-label-md font-semibold text-on-surface">Budget Health</p>
+<p class="text-xs text-on-surface-variant">$4,250 saved via AI negotiation</p>
+</div>
+</div>
+<span class="text-xs px-2.5 py-1 rounded-full bg-secondary/20 text-secondary font-semibold">On Track</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. MARQUEE STRIP -->
+<section class="py-space-md w-full overflow-hidden bg-surface-container-lowest my-space-lg rounded-3xl">
+<div class="flex whitespace-nowrap animate-marquee items-center gap-12 text-on-surface-variant font-headline-sm uppercase tracking-wider text-sm opacity-80">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Luxury Weddings</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Corporate Galas</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> VIP Birthdays</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Product Launches</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Charity Balls</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Immersive Festivals</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Luxury Weddings</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span> Corporate Galas</span>
+</div>
+</section>
+<!-- 4. STATS BAND -->
+<section class="py-space-xl grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-4">Time Efficiency</span>
+<h3 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-2">40%</h3>
+<p class="font-body-md text-on-surface-variant">average time saved on manual logistics and vendor outreach.</p>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+<span class="text-label-sm text-secondary uppercase font-semibold tracking-widest mb-4">Vendor Network</span>
+<h3 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-2">2.3x</h3>
+<p class="font-body-md text-on-surface-variant">more elite verified vendors compared to traditional directories.</p>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-4">Financial Precision</span>
+<h3 class="font-display-lg text-display-lg text-on-surface tracking-tight mb-2">92%</h3>
+<p class="font-body-md text-on-surface-variant">of planners successfully stay strictly within allocated budgets.</p>
+</div>
+</section>
+<!-- 5. FEATURES BENTO GRID -->
+<section class="py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Comprehensive Suite</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Everything your event needs, in one place</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Feature 1: Large Card -->
+<div class="md:col-span-8 bg-surface-container p-10 rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-40 bg-cover bg-center" data-alt="Abstract UI interface preview showing sleek dark mode timeline planning tools with coral highlights and typography, high resolution tech mockup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjxVbgYostO4QNbBVT3efUeXQLFIhuKT8rKnK90JO4bm48BUF4mu7hzIVuzGYRsUw6QN18XLlmTNGMoaM4dLpHdRcYXS6G21iWQW-zyRDea2wIhWkdvsjihMVKI4tTl7SLF-5pB-Pd6MS7lF7_VhsbzICCLJk-aeC2XOTDqlvBSGO3f2FvGtQC6XfRh8bJBy_rvyYOiV6yb91itlmCpKU-R1SlBuAdA5RCIc6i68RBkzSukY9xpg')"></div>
+<div class="relative z-10 max-w-md">
+<div class="w-12 h-12 rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">AI Copilot for Real-Time Logistics</h3>
+<p class="font-body-md text-on-surface-variant">Our generative planning engine automatically adjusts schedules when vendor delays occur, notifying all stakeholders instantly.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-4 bg-surface-container p-10 rounded-3xl flex flex-col justify-between min-h-[380px]">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Curated Vetted Vendors</h3>
+<p class="font-body-md text-on-surface-variant">Hand-picked caterers, photographers, and venues with verified reviews and instant contract generation.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-4 bg-surface-container p-10 rounded-3xl flex flex-col justify-between min-h-[380px]">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">pie_chart</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Dynamic Budgeting</h3>
+<p class="font-body-md text-on-surface-variant">Smart allocation formulas that track deposits, taxes, and gratuities without messy spreadsheets.</p>
+</div>
+</div>
+<!-- Feature 4: Large Card -->
+<div class="md:col-span-8 bg-surface-container p-10 rounded-3xl relative overflow-hidden flex flex-col justify-between min-h-[380px]">
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-40 bg-cover bg-center" data-alt="Cooperative team dashboard showing live collaboration cursors on a stunning modern event seating chart editor." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDksTvTb2L79BoqOAFgSDGpRyoSvjCHpsgk4lxYdLpWQNV_gWgsZt1puNRLGU7-GPR75RNKQeNOuhVJZl0mxJ356FZ1CTBXPFdIXvcarcNcP7j_uFtygioWWNmWqTMeHtNzpHM0nTcVI2Iql9OuhUYDKO1EjTRbi8Riz8gbm_Vhtpkz9OJAlR_s0subtzEHKx0SFXHjwpemmBq7zlnkYCfX1GQ31xr6dP4aF_9RnM6u6R6qLqCNlg')"></div>
+<div class="relative z-10 max-w-md">
+<div class="w-12 h-12 rounded-2xl bg-primary-container text-on-primary-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">group</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Seamless Client &amp; Team Collaboration</h3>
+<p class="font-body-md text-on-surface-variant">Invite stakeholders with granular permission controls. Share mood boards, vote on catering menus, and approve budgets with single taps.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. HOW IT WORKS (Sticky Section) -->
+<section class="py-space-xl bg-surface-container-lowest -mx-gutter px-gutter rounded-3xl my-space-xl">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Methodology</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">From concept to execution in 4 steps</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+<div class="space-y-16">
+<div class="bg-surface-container p-8 rounded-3xl">
+<span class="text-primary font-bold text-label-md mb-2 block">STEP 01</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Define Your Vision</h3>
+<p class="font-body-md text-on-surface-variant">Input your event goals, guest count, aesthetic style preferences, and overall target budget into our intelligent intake wizard.</p>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl">
+<span class="text-primary font-bold text-label-md mb-2 block">STEP 02</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">AI Blueprint Generation</h3>
+<p class="font-body-md text-on-surface-variant">Festora AI instantly compiles a tailored master blueprint including venue options, timeline milestones, and vendor shortlists.</p>
+</div>
+</div>
+<div class="space-y-16 md:mt-24">
+<div class="bg-surface-container p-8 rounded-3xl">
+<span class="text-primary font-bold text-label-md mb-2 block">STEP 03</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">One-Click Booking &amp; Syncing</h3>
+<p class="font-body-md text-on-surface-variant">Review contracts, secure dates, and sync all vendor schedules into a unified master timeline automatically.</p>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl">
+<span class="text-primary font-bold text-label-md mb-2 block">STEP 04</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Flawless Day-Of Execution</h3>
+<p class="font-body-md text-on-surface-variant">Rely on our real-time mobile assistant to manage cues, vendor check-ins, and last-minute adjustments seamlessly.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. EVENT TYPES PHOTO CARDS -->
+<section class="py-space-xl">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16">
+<div>
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Specializations</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Designed for every extraordinary occasion</h2>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-md mt-4 md:mt-0">Tailored AI models trained on thousands of successful events across diverse categories.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group relative h-[450px] rounded-3xl overflow-hidden bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="Opulent luxury wedding setup with cascading white florals, crystal chandeliers, and candlelight in a grand historic ballroom." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxxOzFHAT9g8Fl2RqjfwERjKWY9nAg2pfJ9kFR-FUKqbIHyY-1izA7oxOOX3X9o_X1cn-rPe0d08JDZZZPc1Z2ArQAIriLma6Dx4t1d1NN5Ol4cBN2v6dzhpgegwA0gM7kh_YKKT3jUDgGm0lE97Eea7ZS07OBmkN_rk3IEnZ5FZq1KlVMtgSWjjaIk45edqIGwax0j1Zdoz0I_XSnDTBia7yKESrOqgiGY-8fwwURdtSk81KrWg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8">
+<span class="text-xs uppercase tracking-wider text-primary font-semibold">Weddings</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Bespoke Nuptials</h3>
+<p class="font-body-md text-on-surface-variant text-sm">From intimate destination elopements to grand multi-day celebrations.</p>
+</div>
+</div>
+<div class="group relative h-[450px] rounded-3xl overflow-hidden bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="High-end tech product launch event with dramatic purple and coral stage lighting, large LED screens, and engaged audience in a dark auditorium." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzYq_sMRR3R4pkaEgi9XVTno-K6d5Rqh7oOFi4BGMKR7r6YrRE0M_rPMtRp-AS8zpOvLuxfAmYsVh2ijr0ELWA0s6dZpKWpaiRUmuPshia0TFm77JGibI38QhahDuCWyF4QXaSXvV4HMgB34kW9N_sXhLlJtUmstl8EhA2UwXA7Y2Z26T8HaGzp7DArvSra8OZ1KwUgtwJojNRVbDkIKpEm3IM57P1FlMkCcoEOfnwSN7-7GOh4w')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8">
+<span class="text-xs uppercase tracking-wider text-primary font-semibold">Corporate</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Conferences &amp; Galas</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Immersive brand experiences, keynote stages, and VIP cocktail receptions.</p>
+</div>
+</div>
+<div class="group relative h-[450px] rounded-3xl overflow-hidden bg-surface-container">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="Exclusive VIP rooftop birthday party at sunset with glowing cocktail bars, ambient lounge furniture, and stunning city skyline view." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmXnGufxus-x_a0mb4whVhuL1ldFX6-XKD4IqKVLEb5f4pKkHbw0ZRVdo-HnOnq1m3mHMyKEcPbAzZ_D0oT_bu7xoVUT4SxpOHtgNfD0x_BwRcRDnz8ialoHnB9w7jVeaaldke7XEEmOsZIfaxYsbWQVobIXETb-62FkvefytsbA9ZlC0G1DhTw18pcSdaK3JoST0IVjNbtTUIlLABJMtr6tTK8CrcJT9_loRlx0CilTtPjq83UA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 right-0 p-8">
+<span class="text-xs uppercase tracking-wider text-primary font-semibold">Private Celebrations</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">Milestone Parties</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Anniversaries, milestone birthdays, and private club gatherings.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. LIVE AI DEMO DARK CHAT PANEL -->
+<section class="py-space-xl">
+<div class="bg-surface-container p-8 md:p-12 rounded-3xl max-w-4xl mx-auto relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-primary animate-ping"></div>
+<span class="font-headline-sm text-on-surface">Festora AI Assistant (Live Preview)</span>
+</div>
+<span class="text-xs px-3 py-1 rounded-full bg-surface-container-high text-primary font-semibold">Interactive</span>
+</div>
+<div class="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2" id="chat-messages">
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">AI</div>
+<div class="bg-surface-container-high p-4 rounded-2xl text-on-surface text-body-md max-w-lg">
+            Hello! I am your Festora AI coordinator. What kind of event are we designing today?
+          </div>
+</div>
+</div>
+<div class="flex gap-2">
+<input class="flex-1 bg-background px-6 py-4 rounded-full text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-1 focus:ring-primary" id="chat-input" placeholder="e.g., Plan a 150-person garden wedding in Napa Valley..." type="text"/>
+<button class="bg-primary-container text-on-primary-container px-6 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity flex items-center justify-center" onclick="sendChatMessage()">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 9. TESTIMONIALS CAROUSEL -->
+<section class="py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Testimonials</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Loved by elite planners worldwide</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between">
+<div>
+<div class="flex text-secondary gap-1 mb-4">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface mb-6">"Festora AI cut our planning time in half. The vendor matching algorithm is genuinely revolutionary."</p>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Professional headshot of a female luxury wedding planner with blonde hair in an upscale boutique office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyKPYrcV_oauHge-HzIWquQNZFiqg8I9YFzuKfzV_X1ErFpUjVah1lwYbmsyLWFcwoiYMtlLtz9ntL_yLeFHi-Maf_GuBI1Cc1BU_RteDLxsKQhqj1aJVoiELSkqIqhdYfDpkLFJBCl77XxhSQT93eqDMdQDUYPwiguRllwYZmXeDx4jsyEncS38l2DMwadmpEhuEp-wB4ywq2Xt3VY3R0qtfXgNYfRTzpNtFK94l9fR5ApehDeQ"/>
+<div>
+<p class="font-semibold text-on-surface text-label-md">Claire Dupond</p>
+<p class="text-xs text-on-surface-variant">Principal, Atelier Lumiere</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between">
+<div>
+<div class="flex text-secondary gap-1 mb-4">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface mb-6">"We managed a 500-guest corporate summit with zero friction. The real-time updates saved us during unexpected rain."</p>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a male corporate events director in a sharp navy suit against a concrete urban backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABXtfZ0GMTQiAQJ1wvFUaquDCIi8vqb_MUUDlqxK_5qMm8pB3hQ2rfVkd6YUKv1gtYs4oiXhXNB62rmu_kYA3x5_BczexTcOOp4uQCKooyzZw_iU_dGmwF7iDSNWOBaYdArueRLS9EHarr_sMITSqLnLU7fW9zl2dsbMf_iX3yRBvefliQ9FtQQ9eOX2vW7GJWRU0bkQ_oIqNJeTwIQP73AWRvaTGdqzxj1SSuVfKBkfcxww6TmQ"/>
+<div>
+<p class="font-semibold text-on-surface text-label-md">Marcus Vance</p>
+<p class="text-xs text-on-surface-variant">VP Events, Nexus Global</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between">
+<div>
+<div class="flex text-secondary gap-1 mb-4">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface mb-6">"The budget tracking features alone paid for the subscription tenfold. Incredible tool for high-end celebrations."</p>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a charismatic event producer wearing modern designer glasses in a sunlit loft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbpsBF6OJ8PK05fHVssqpHrg7PJeZzN1oRO_Cy_pcOMJyoQVVFUYX0mj_mtdesbKx75bz0voHlc-765V1JD-wUKQ-RC1cfFMolKMVK6GEF1zXpVw3E6NCwGZkHq4j-pf83PqaXR4aEFCxBKko6NqXnAGEEwvwcK-zXeXTkZ_-P56NulXjkLrwci2oOWJerUF_-XRKs_3FlAcrlipWVMfxC9IFwSPgAgcsWnnkxVzwlFzzs1sJwxw"/>
+<div>
+<p class="font-semibold text-on-surface text-label-md">Elena Rostova</p>
+<p class="text-xs text-on-surface-variant">Founder, Vela Events</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. PRICING 3 TIERS -->
+<section class="py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Investment</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Simple, transparent pricing</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Tier 1 -->
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Starter</span>
+<div class="flex items-baseline gap-1 my-4">
+<span class="font-display-lg text-display-lg text-on-surface">$0</span>
+<span class="text-on-surface-variant text-label-md">/month</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">Perfect for personal celebrations and small birthday parties.</p>
+<ul class="space-y-4 mb-8 text-on-surface text-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Up to 50 guests</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Basic AI timeline tool</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Standard vendor directory</li>
+</ul>
+</div>
+<a class="w-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-semibold py-4 rounded-full text-center transition-colors text-label-md" href="#">Get Started Free</a>
+</div>
+<!-- Tier 2 (Highlighted) -->
+<div class="bg-surface-container-high p-8 rounded-3xl flex flex-col justify-between relative shadow-2xl">
+<div class="absolute -top-4 right-8 bg-primary-container text-on-primary-container text-xs font-semibold px-4 py-1.5 rounded-full">Most Popular</div>
+<div>
+<span class="text-label-sm text-primary uppercase font-semibold tracking-wider">Professional</span>
+<div class="flex items-baseline gap-1 my-4">
+<span class="font-display-lg text-display-lg text-on-surface">$49</span>
+<span class="text-on-surface-variant text-label-md">/month</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">Built for professional planners and high-end luxury weddings.</p>
+<ul class="space-y-4 mb-8 text-on-surface text-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Unlimited guests</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Advanced AI Copilot</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Verified elite vendors</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Real-time budget tracking</li>
+</ul>
+</div>
+<a class="w-full bg-primary-container text-on-primary-container font-semibold py-4 rounded-full text-center hover:opacity-90 transition-opacity text-label-md" href="#">Start 14-Day Trial</a>
+</div>
+<!-- Tier 3 -->
+<div class="bg-surface-container p-8 rounded-3xl flex flex-col justify-between">
+<div>
+<span class="text-label-sm text-on-surface-variant uppercase font-semibold tracking-wider">Enterprise</span>
+<div class="flex items-baseline gap-1 my-4">
+<span class="font-display-lg text-display-lg text-on-surface">$199</span>
+<span class="text-on-surface-variant text-label-md">/month</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">For agencies and corporate event management teams.</p>
+<ul class="space-y-4 mb-8 text-on-surface text-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Multi-team workspace</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Custom API integrations</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Dedicated account manager</li>
+</ul>
+</div>
+<a class="w-full bg-surface-container-high hover:bg-surface-bright text-on-surface font-semibold py-4 rounded-full text-center transition-colors text-label-md" href="#">Contact Sales</a>
+</div>
+</div>
+</section>
+<!-- 11. FAQ ACCORDION -->
+<section class="py-space-xl max-w-3xl mx-auto w-full">
+<div class="text-center mb-16">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Support</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently asked questions</h2>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center font-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>How does Festora AI match vendors?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 text-on-surface-variant text-body-md">
+          Our algorithm analyzes thousands of verified past events, style preferences, geographic availability, and pricing tiers to curate the ideal vendor shortlist tailored specifically to your aesthetic and budget.
+        </div>
+</div>
+<div class="bg-surface-container rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center font-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>Can I invite my clients and team members?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 text-on-surface-variant text-body-md">
+          Yes! Festora AI includes robust collaboration controls. You can assign granular permissions to clients, co-planners, and vendors so everyone stays aligned.
+        </div>
+</div>
+<div class="bg-surface-container rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center font-headline-sm text-on-surface" onclick="toggleFaq(this)">
+<span>Is there a free trial for the Professional plan?</span>
+<span class="material-symbols-outlined transition-transform">expand_more</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 text-on-surface-variant text-body-md">
+          All paid tiers come with a risk-free 14-day trial with full access to all advanced features. No credit card required to start.
+        </div>
+</div>
+</div>
+</section>
+<!-- 12. FINAL CTA WITH GRADIENT-BLOB BACKGROUND -->
+<section class="py-space-xl relative overflow-hidden rounded-3xl bg-surface-container my-space-xl text-center px-gutter">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-container/20 via-secondary/10 to-transparent blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl mx-auto py-12">
+<span class="text-label-sm text-primary uppercase font-semibold tracking-widest mb-3 block">Get Started Today</span>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-6">Ready to transform your event planning?</h2>
+<p class="font-body-lg text-on-surface-variant mb-8">Join thousands of elite planners creating unforgettable experiences with Festora AI.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="bg-primary-container text-on-primary-container font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity text-label-md" href="#">Start planning free</a>
+<a class="bg-surface-container-high text-on-surface hover:bg-surface-bright transition-colors font-semibold px-8 py-4 rounded-full text-label-md" href="#">Schedule a live tour</a>
+</div>
+</div>
+</section>
+</div>
+<script>
+  function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    const container = document.getElementById('chat-messages');
+    if (!input.value.trim()) return;
+
+    // User message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'flex gap-4 justify-end';
+    userDiv.innerHTML = `<div class="bg-primary-container text-on-primary-container p-4 rounded-2xl text-body-md max-w-lg">${input.value}</div><div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shrink-0">You</div>`;
+    container.appendChild(userDiv);
+
+    const query = input.value;
+    input.value = '';
+    container.scrollTop = container.scrollHeight;
+
+    // AI simulated response
+    setTimeout(() => {
+      const aiDiv = document.createElement('div');
+      aiDiv.className = 'flex gap-4';
+      aiDiv.innerHTML = `<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">AI</div><div class="bg-surface-container-high p-4 rounded-2xl text-on-surface text-body-md max-w-lg">Analyzing "${query}"... I have generated a customized venue shortlist and preliminary budget breakdown for you. Check your dashboard to review!</div>`;
+      container.appendChild(aiDiv);
+      container.scrollTop = container.scrollHeight;
+    }, 1000);
+  }
+
+  function toggleFaq(button) {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('.material-symbols-outlined');
+    content.classList.toggle('hidden');
+    icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+
+  function openDemoModal() {
+    alert("Opening interactive Festora AI video walkthrough player...");
+  }
+</script></main><footer class="w-full bg-surface-container-lowest py-space-xl mt-space-xl border-t border-white/5"><div class="max-w-7xl mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-space-md text-on-surface-variant text-label-md"><p>© 2024 Festora AI. All rights reserved.</p><div class="flex gap-space-lg"><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Security</a></div></div></footer></body></html>
