@@ -53,10 +53,13 @@ export function BentoCard({
       )}
     >
       {bgImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-15 transition-opacity duration-500 group-hover:opacity-25"
-          style={{ backgroundImage: `url(${bgImage})` }}
-        />
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
+            style={{ backgroundImage: `url(${bgImage})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40 pointer-events-none" />
+        </>
       )}
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div>

@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, Zap, Star, Calendar, Users } from "lucide-react";
 import Image from "next/image";
 
-// Auto-dismiss after 5.5 seconds so the animation plays fully before exit
-const AUTO_DISMISS_MS = 5500;
+// Fast 1-second cinematic intro sequence
+const AUTO_DISMISS_MS = 1000;
 
 // Floating feature nodes data
 const NODES = [
@@ -31,8 +31,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
       Array.from({ length: 40 }, () => ({
         left: `${Math.random() * 100}%`,
         top:  `${Math.random() * 100}%`,
-        delay: Math.random() * 4,
-        duration: 2 + Math.random() * 3,
+        delay: Math.random() * 2,
+        duration: 1 + Math.random() * 1.5,
       }))
     );
 
@@ -43,8 +43,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
       return;
     }
 
-    const t1 = setTimeout(() => setPhase("reveal"), 600);
-    const t2 = setTimeout(() => setPhase("hold"), 5000);
+    const t1 = setTimeout(() => setPhase("reveal"), 120);
+    const t2 = setTimeout(() => setPhase("hold"), 550);
     const t3 = setTimeout(handleDismiss, AUTO_DISMISS_MS);
     timerRef.current = t3;
 
@@ -64,7 +64,7 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
     setTimeout(() => {
       setIsVisible(false);
       onComplete?.();
-    }, 900);
+    }, 350);
   };
 
   if (!mounted || !isVisible) return null;
