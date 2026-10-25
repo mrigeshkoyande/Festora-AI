@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Search } from "lucide-react";
 
 export function Footer() {
   return (
@@ -102,10 +105,25 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright line */}
+        {/* Bottom copyright line with static Quick Navigation */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-bg/60">
           <p>© {new Date().getFullYear()} Festora AI. All rights reserved. Crafted with liquid glass & intelligence.</p>
           <div className="flex items-center gap-6">
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-command-palette"));
+                }
+              }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-pill bg-white/10 hover:bg-white/20 text-bg text-xs font-medium transition-all cursor-pointer border border-white/15"
+            >
+              <Search className="w-3.5 h-3.5 text-gold" />
+              <span>Quick Navigation</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-white/15 text-[10px] font-mono text-bg">
+                ⌘K
+              </kbd>
+            </button>
             <Link href="/privacy" className="hover:text-bg transition-colors">
               Privacy
             </Link>

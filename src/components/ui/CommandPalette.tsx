@@ -33,8 +33,13 @@ export function CommandPalette() {
         setIsOpen(false);
       }
     };
+    const handleOpen = () => setIsOpen(true);
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("open-command-palette", handleOpen);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("open-command-palette", handleOpen);
+    };
   }, []);
 
   const items = [
@@ -62,21 +67,7 @@ export function CommandPalette() {
   };
 
   return (
-    <>
-      {/* Floating ⌘K shortcut trigger pill on bottom right */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 hidden md:flex items-center gap-2 px-4 py-2.5 rounded-pill glass-strong border border-navy/20 shadow-lg text-xs font-semibold text-navy hover:scale-105 transition-all cursor-pointer"
-      >
-        <Search className="w-3.5 h-3.5 text-navy" />
-        <span>Quick Navigation</span>
-        <kbd className="px-1.5 py-0.5 rounded bg-navy/10 text-[10px] font-mono text-ink">
-          ⌘K
-        </kbd>
-      </button>
-
-      <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)} maxWidth="max-w-2xl">
+    <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)} maxWidth="max-w-2xl">
         <div className="flex flex-col gap-4">
           <div className="relative flex items-center border-b border-navy/10 pb-3">
             <Search className="w-5 h-5 text-navy/50 mr-3" />
@@ -126,6 +117,5 @@ export function CommandPalette() {
           </div>
         </div>
       </Dialog>
-    </>
   );
 }
