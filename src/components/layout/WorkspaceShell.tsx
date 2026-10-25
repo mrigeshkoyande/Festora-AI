@@ -25,7 +25,6 @@ import {
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { GlassSurface } from "@/components/ui/GlassSurface";
-import { CommandPalette } from "@/components/ui/CommandPalette";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -166,7 +165,14 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
             >
               <Menu className="w-5 h-5" />
             </button>
-            <div className="flex items-center gap-2 text-ink/50 bg-bg px-4 py-2 rounded-pill border border-navy/10 w-64 md:w-80 cursor-pointer">
+            <div
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-command-palette"));
+                }
+              }}
+              className="flex items-center gap-2 text-ink/50 bg-bg px-4 py-2 rounded-pill border border-navy/10 w-64 md:w-80 cursor-pointer hover:border-navy/30 transition-colors"
+            >
               <Search className="w-4 h-4 text-navy/60" />
               <span className="text-xs">Search planning items... (⌘K)</span>
             </div>
@@ -192,9 +198,6 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
           {children}
         </main>
       </div>
-
-      {/* Global ⌘K Command Palette */}
-      <CommandPalette />
     </div>
   );
 }
