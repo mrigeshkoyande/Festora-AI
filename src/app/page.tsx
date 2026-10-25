@@ -176,6 +176,7 @@ export default function LandingPage() {
                   src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&auto=format&fit=crop"
                   alt="Luxury Celebration Setting"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center brightness-90 group-hover:brightness-[0.65] group-hover:blur-md group-hover:scale-105 transition-all duration-700 ease-out"
                   priority
                 />
@@ -419,6 +420,7 @@ export default function LandingPage() {
                 src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop"
                 alt="Luxury Indian Wedding"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
@@ -439,6 +441,7 @@ export default function LandingPage() {
                 src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop"
                 alt="Corporate Gala & Summit"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
@@ -459,6 +462,7 @@ export default function LandingPage() {
                 src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop"
                 alt="Milestone Birthday Party"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
@@ -901,22 +905,29 @@ export default function LandingPage() {
         description="Experience autonomous event blueprinting in 60 seconds."
       >
         <div className="space-y-4">
-          <div className="aspect-video w-full rounded-card bg-navy flex flex-col items-center justify-center text-bg p-8 text-center relative overflow-hidden">
-            <Sparkles className="w-12 h-12 text-gold animate-bounce mb-3" />
-            <h4 className="font-grotesk font-bold text-xl mb-1">Interactive Guided Walkthrough</h4>
-            <p className="text-xs text-bg/70 max-w-md">
-              Watch how Festora AI generates budget splits, detects schedule risks, and syncs 60+ verified wedding vendors in real time.
-            </p>
+          <div className="aspect-video w-full rounded-card overflow-hidden bg-navy shadow-2xl relative border border-navy/20">
+            <video
+              src="/demo-video.mp4"
+              controls
+              autoPlay
+              playsInline
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="flex justify-end gap-3 pt-2">
-            <Button variant="secondary" onClick={() => setDemoModalOpen(false)}>
-              Close
-            </Button>
-            <Link href="/onboarding">
-              <Button variant="orange" onClick={() => setDemoModalOpen(false)}>
-                Try Intake Wizard
+          <div className="flex items-center justify-between pt-2">
+            <p className="text-xs text-ink/70">
+              Watch Festora AI orchestrate timelines, budgets, and vendors in real time.
+            </p>
+            <div className="flex gap-2">
+              <Button variant="secondary" size="sm" onClick={() => setDemoModalOpen(false)}>
+                Close
               </Button>
-            </Link>
+              <Link href="/onboarding">
+                <Button variant="orange" size="sm" onClick={() => setDemoModalOpen(false)}>
+                  Start Planning
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </Dialog>
