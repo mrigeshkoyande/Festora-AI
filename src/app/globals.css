@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Mandatory 5-Color System */
+  --navy: #2C3E50;
+  --orange: #E67E22;
+  --gold: #F1C40F;
+  --bg: #F8F9FA;
+  --ink: #1E272E;
+
+  /* Derived Tints */
+  --navy-tint8: rgba(44, 62, 80, 0.08);
+  --navy-tint16: rgba(44, 62, 80, 0.16);
+  --navy-tint24: rgba(44, 62, 80, 0.24);
+  --navy-tint40: rgba(44, 62, 80, 0.40);
+  --navy-tint64: rgba(44, 62, 80, 0.64);
+
+  --orange-soft: rgba(230, 126, 34, 0.12);
+  --orange-tint24: rgba(230, 126, 34, 0.24);
+
+  --gold-soft: rgba(241, 196, 15, 0.16);
+  --gold-tint24: rgba(241, 196, 15, 0.24);
+
+  --ink-tint8: rgba(30, 39, 46, 0.08);
+  --ink-tint16: rgba(30, 39, 46, 0.16);
+  --ink-tint24: rgba(30, 39, 46, 0.24);
+  --ink-tint40: rgba(30, 39, 46, 0.40);
+
+  /* Mouse tracking for specular spotlight */
+  --mx: 50%;
+  --my: 50%;
+}
+
+.dark {
+  --bg: #12181F;
+  --ink: #F8F9FA;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings font */
+h1, h2, h3, h4, h5, h6, .font-grotesk {
+  font-family: var(--font-grotesk), "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* ========================================================
+   LIQUID GLASS ELEVATION STYLES
+   ======================================================== */
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(248, 249, 250, 0.20) 100%);
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.04);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.04);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 24px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(30, 39, 46, 0.12),
+    0 2px 6px rgba(30, 39, 46, 0.06);
+  position: relative;
+}
+
+.glass-strong {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(248, 249, 250, 0.35) 100%);
+  backdrop-filter: blur(28px) saturate(190%) brightness(1.06);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) brightness(1.06);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    0 16px 48px rgba(30, 39, 46, 0.16),
+    0 4px 12px rgba(30, 39, 46, 0.08);
+  position: relative;
+}
+
+.glass-dark {
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.82) 0%, rgba(30, 39, 46, 0.88) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 20px 50px rgba(0, 0, 0, 0.28),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* Diagonal Specular Sheen pseudo-element */
+.glass::before, .glass-strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cursor-reactive radial specular glow */
+.glass-interactive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(350px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glass-interactive:hover::after {
+  opacity: 1;
+}
+
+/* Progressive enhancement with inline SVG liquid filter for Chromium */
+@supports (backdrop-filter: url(#liquid-glass)) {
+  .liquid-refraction {
+    backdrop-filter: url(#liquid-glass) blur(24px) saturate(180%);
+  }
+}
+
+/* Fallback for reduced transparency / reduced motion */
+@media (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+  .glass, .glass-strong, .glass-dark {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #FFFFFF !important;
+    border-color: rgba(44, 62, 80, 0.20) !important;
+    box-shadow: 0 4px 16px rgba(30, 39, 46, 0.10) !important;
+  }
+  .dark .glass, .dark .glass-strong, .dark .glass-dark {
+    background: #1A232D !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+  }
+  .animate-blob-slow, .animate-blob-reverse {
+    animation: none !important;
+  }
+}
+
+/* Tabular figures for dense financial and timeline grids */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(44, 62, 80, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 62, 80, 0.4);
+}
+
+/* 3D Transform & Perspective Utilities */
+.perspective-\[1200px\] {
+  perspective: 1200px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
