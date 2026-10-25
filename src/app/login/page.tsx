@@ -15,25 +15,30 @@ export default function AuthPage() {
   const [email, setEmail] = useState("priya.sharma@festora.ai");
   const [password, setPassword] = useState("••••••••••••");
   const [agreeTerms, setAgreeTerms] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/dashboard");
+    setIsSubmitting(true);
+    setTimeout(() => {
+      router.push("/dashboard");
+    }, 400);
   };
 
   return (
     <div className="min-h-screen bg-bg text-ink flex items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-md bg-white rounded-card-lg border border-navy/12 shadow-2xl overflow-hidden relative">
         {/* Top Visual Banner with Floating Testimonial Glass Chip */}
-        <div className="relative w-full h-56 bg-navy overflow-hidden">
+        <div className="relative w-full h-48 sm:h-52 bg-navy overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop"
             alt="Luxury Event Setup"
             fill
+            sizes="(max-width: 640px) 100vw, 450px"
             className="object-cover brightness-75"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
           {/* Floating Glass Testimonial Badge */}
           <GlassSurface
