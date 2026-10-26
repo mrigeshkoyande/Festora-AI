@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { reconcileBudgetAllocations } from "@/lib/utils/budget";
 
 export interface PlanGenerationInput {
   eventType: string; // "Wedding" | "Corporate" | "Social"
@@ -96,6 +97,7 @@ Output strictly valid JSON conforming to the requested schema.`;
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          signal: AbortSignal.timeout(8000),
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
             generationConfig: { responseMimeType: "application/json" },
@@ -110,7 +112,14 @@ Output strictly valid JSON conforming to the requested schema.`;
           const parsed = JSON.parse(rawText);
           const validated = GeneratedPlanSchema.safeParse(parsed);
           if (validated.success) {
-            return validated.data;
+            const reconciledCategories = reconcileBudgetAllocations(
+              input.totalBudget,
+              validated.data.budgetCategories
+            );
+            return {
+              ...validated.data,
+              budgetCategories: reconciledCategories,
+            };
           }
         }
       }
@@ -129,7 +138,7 @@ function generateDeterministicPlan(input: PlanGenerationInput): GeneratedPlan {
   const isCorporate = input.eventType.toLowerCase().includes("corporate");
 
   // Dynamic percentage allocation summing exactly to 100%
-  const budgetCategories = isWedding
+  const rawBudgetCategories = isWedding
     ? [
         {
           name: "Venue & Palace Pavilions",
@@ -263,6 +272,8 @@ function generateDeterministicPlan(input: PlanGenerationInput): GeneratedPlan {
           ],
         },
       ];
+
+  const budgetCategories = reconcileBudgetAllocations(b, rawBudgetCategories);
 
   const phases = [
     {

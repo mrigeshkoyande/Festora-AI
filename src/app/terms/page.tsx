@@ -23,7 +23,7 @@ export default function TermsPage() {
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[var(--navy)]/10 shadow-sm space-y-6 text-xs sm:text-sm leading-relaxed text-[var(--ink)]/80">
           <h2 className="text-lg font-bold text-[var(--navy)]">1. Acceptance of Terms</h2>
           <p>
-            By accessing or subscribing to the Festora AI platform ("Service"), you agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of an event planning firm or enterprise client, you represent that you possess the requisite authority.
+            By accessing or subscribing to the Festora AI platform (&quot;Service&quot;), you agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of an event planning firm or enterprise client, you represent that you possess the requisite authority.
           </p>
 
           <h2 className="text-lg font-bold text-[var(--navy)]">2. AI Assistance Disclaimer</h2>

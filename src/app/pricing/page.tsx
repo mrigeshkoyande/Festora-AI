@@ -152,7 +152,7 @@ export default function PricingPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--navy)]">What's Included:</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--navy)]">What&apos;s Included:</span>
                   <ul className="space-y-2.5">
                     {tier.features.map((feat, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-2.5 text-xs text-[var(--ink)]/80">

@@ -74,6 +74,14 @@ export default function RootLayout({
         className="min-h-screen flex flex-col bg-bg text-ink selection:bg-orange selection:text-ink"
         suppressHydrationWarning
       >
+        {/* Skip to Main Content Link for Keyboard & Screen Reader Accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2.5 focus:bg-navy focus:text-bg focus:rounded-pill focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-gold font-grotesk text-xs font-bold transition-all"
+        >
+          Skip to main content
+        </a>
+
         {/* SVG Liquid Refraction Filter */}
         <LiquidGlassFilter />
 

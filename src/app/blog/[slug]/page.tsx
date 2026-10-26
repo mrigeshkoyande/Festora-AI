@@ -76,7 +76,7 @@ export default function BlogPostDetailPage() {
             1. Locking Your Palace Venue & Acoustic Sound Restrictions
           </h2>
           <p>
-            Jaipur's premier palace estates—such as Samode Palace, Fairmont, and Rambagh—enforce strict district decibel regulations. Outdoor amplified music must taper down by 22:00 IST to protect heritage wildlife corridors.
+            Jaipur&apos;s premier palace estates—such as Samode Palace, Fairmont, and Rambagh—enforce strict district decibel regulations. Outdoor amplified music must taper down by 22:00 IST to protect heritage wildlife corridors.
           </p>
           <p>
             When drafting your master timeline in Festora AI, always schedule acoustic brass and folk ensembles (like Manganiyar or Langa artists) for sunset poolside pheras, transitioning to enclosed Durbar ballrooms for post-midnight celebrations.
@@ -101,7 +101,7 @@ export default function BlogPostDetailPage() {
               <Sparkles className="w-4 h-4 text-[var(--orange)]" /> Festora AI Pro-Tip
             </h4>
             <p className="text-xs text-[var(--ink)]/70">
-              Run the AI Budget Optimizer in "Balanced" mode prior to paying vendor advances. This automatically locks off-peak negotiated rates and protects your 10% emergency reserve.
+              Run the AI Budget Optimizer in &quot;Balanced&quot; mode prior to paying vendor advances. This automatically locks off-peak negotiated rates and protects your 10% emergency reserve.
             </p>
           </div>
         </div>

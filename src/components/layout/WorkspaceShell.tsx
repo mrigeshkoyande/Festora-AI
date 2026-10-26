@@ -107,7 +107,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
             <span className="w-2 h-2 rounded-full bg-orange animate-pulse" />
           </div>
           <p className="text-xs font-bold text-navy truncate">
-            Ananya & Rohan's Wedding
+            Ananya &amp; Rohan&apos;s Wedding
           </p>
           <p className="text-[11px] text-ink/60 mt-0.5">Jaipur • 47 days to go</p>
         </div>
@@ -194,7 +194,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 px-6 md:px-10 py-8 max-w-7xl w-full mx-auto">
+        <main id="main-content" tabIndex={-1} className="flex-1 px-6 md:px-10 py-8 max-w-7xl w-full mx-auto outline-none">
           {children}
         </main>
       </div>

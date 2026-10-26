@@ -288,8 +288,8 @@ export default function GuestsPage() {
                   <option value="Immediate Family">Immediate Family</option>
                   <option value="College Friends">College Friends</option>
                   <option value="VIP Dignitaries">VIP Dignitaries</option>
-                  <option value="Bride's Side">Bride's Side</option>
-                  <option value="Groom's Side">Groom's Side</option>
+                  <option value="Bride's Side">Bride&apos;s Side</option>
+                  <option value="Groom's Side">Groom&apos;s Side</option>
                 </Select>
               </div>
 
@@ -533,8 +533,8 @@ export default function GuestsPage() {
                 <option value="Immediate Family">Immediate Family</option>
                 <option value="College Friends">College Friends</option>
                 <option value="VIP Dignitaries">VIP Dignitaries</option>
-                <option value="Bride's Side">Bride's Side</option>
-                <option value="Groom's Side">Groom's Side</option>
+                <option value="Bride's Side">Bride&apos;s Side</option>
+                <option value="Groom's Side">Groom&apos;s Side</option>
               </Select>
             </div>
             <div>

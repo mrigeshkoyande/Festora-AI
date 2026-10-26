@@ -95,7 +95,7 @@ export default function LandingPage() {
       {/* 1. FIXED LIQUID GLASS NAVBAR */}
       <Navbar />
 
-      <main className="flex-1 w-full pt-28">
+      <main id="main-content" tabIndex={-1} className="flex-1 w-full pt-28 outline-none">
         {/* 2. HERO SECTION */}
         <section className="relative pt-12 pb-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
           {/* Ambient Drifting Liquid Glowing Blobs */}
@@ -598,7 +598,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  "Festora AI cut our planning time in half. The vendor matching algorithm and automatic contract milestone tracking are genuinely revolutionary."
+                  &ldquo;Festora AI cut our planning time in half. The vendor matching algorithm and automatic contract milestone tracking are genuinely revolutionary.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
@@ -622,7 +622,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  "We managed a 500-guest summit in Mumbai with zero friction. The real-time timeline rescheduling saved us during unexpected monsoon showers."
+                  &ldquo;We managed a 500-guest summit in Mumbai with zero friction. The real-time timeline rescheduling saved us during unexpected monsoon showers.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
@@ -646,7 +646,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  "The budget optimization scenarios alone saved our clients over ₹6 Lakhs while boosting decor quality. An absolute masterpiece tool."
+                  &ldquo;The budget optimization scenarios alone saved our clients over ₹6 Lakhs while boosting decor quality. An absolute masterpiece tool.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">

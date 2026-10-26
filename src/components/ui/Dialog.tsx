@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useId } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -22,16 +22,24 @@ export function Dialog({
   maxWidth?: string;
   className?: string;
 }) {
+  const generatedTitleId = useId();
+  const generatedDescId = useId();
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -44,16 +52,21 @@ export function Dialog({
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="fixed inset-0 bg-ink/50 backdrop-blur-md transition-opacity"
+            aria-hidden="true"
           />
 
           {/* Dialog Container */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? generatedTitleId : undefined}
+            aria-describedby={description ? generatedDescId : undefined}
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ type: "spring", stiffness: 350, damping: 28 }}
             className={cn(
-              "relative w-full rounded-card-lg bg-white border border-navy/15 shadow-2xl p-6 sm:p-8 z-10 my-8",
+              "relative w-full rounded-card-lg bg-white border border-navy/15 shadow-2xl p-6 sm:p-8 z-10 my-8 focus:outline-none",
               maxWidth,
               className
             )}
@@ -61,20 +74,23 @@ export function Dialog({
             <div className="flex items-start justify-between mb-5">
               <div>
                 {title && (
-                  <h3 className="font-grotesk text-2xl font-bold text-navy">
+                  <h3 id={generatedTitleId} className="font-grotesk text-2xl font-bold text-navy">
                     {title}
                   </h3>
                 )}
                 {description && (
-                  <p className="text-sm text-ink/70 mt-1">{description}</p>
+                  <p id={generatedDescId} className="text-sm text-ink/70 mt-1">
+                    {description}
+                  </p>
                 )}
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="p-2 rounded-full hover:bg-navy/8 text-ink/60 hover:text-ink transition-colors cursor-pointer"
+                aria-label="Close dialog"
+                className="p-2 rounded-full hover:bg-navy/8 text-ink/60 hover:text-ink transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-navy"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
             <div>{children}</div>
@@ -102,16 +118,23 @@ export function Drawer({
   width?: string;
   className?: string;
 }) {
+  const generatedTitleId = useId();
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>
@@ -124,16 +147,20 @@ export function Drawer({
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="absolute inset-0 bg-ink/50 backdrop-blur-sm"
+            aria-hidden="true"
           />
 
           {/* Drawer Slide Panel */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? generatedTitleId : undefined}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
             className={cn(
-              "absolute inset-y-0 right-0 w-full bg-white border-l border-navy/15 shadow-2xl flex flex-col z-10",
+              "absolute inset-y-0 right-0 w-full bg-white border-l border-navy/15 shadow-2xl flex flex-col z-10 focus:outline-none",
               width,
               className
             )}
@@ -142,7 +169,7 @@ export function Drawer({
             <div className="p-6 border-b border-navy/10 flex items-center justify-between bg-bg/60">
               <div>
                 {title && (
-                  <h2 className="font-grotesk text-xl font-bold text-navy">
+                  <h2 id={generatedTitleId} className="font-grotesk text-xl font-bold text-navy">
                     {title}
                   </h2>
                 )}
@@ -153,9 +180,10 @@ export function Drawer({
               <button
                 type="button"
                 onClick={onClose}
-                className="p-2 rounded-full hover:bg-navy/8 text-ink/60 hover:text-ink transition-colors cursor-pointer"
+                aria-label="Close drawer"
+                className="p-2 rounded-full hover:bg-navy/8 text-ink/60 hover:text-ink transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-navy"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
 

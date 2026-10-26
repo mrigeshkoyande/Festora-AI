@@ -197,7 +197,7 @@ export default function AIAssistantPage() {
           <div className="px-6 py-3 bg-[var(--bg)] border-b border-[var(--navy)]/10 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[var(--orange)] animate-pulse" />
-              <span className="font-bold text-[var(--navy)]">Ananya & Rohan's Royal Wedding</span>
+              <span className="font-bold text-[var(--navy)]">Ananya &amp; Rohan&apos;s Royal Wedding</span>
               <span className="text-[var(--ink)]/40">•</span>
               <span className="text-[var(--ink)]/60">Jaipur (47 days remaining)</span>
             </div>
@@ -266,7 +266,7 @@ export default function AIAssistantPage() {
                             </div>
                           </div>
 
-                          <p className="text-[11px] text-[var(--ink)]/70 italic">"{msg.widgetData.reason}"</p>
+                          <p className="text-[11px] text-[var(--ink)]/70 italic">&ldquo;{msg.widgetData.reason}&rdquo;</p>
 
                           <div className="pt-2 flex justify-end gap-2">
                             {budgetApplied ? (
@@ -324,7 +324,7 @@ export default function AIAssistantPage() {
                       {msg.interactiveWidget === "invitation-draft" && msg.widgetData && (
                         <div className="mt-4 p-4 bg-white rounded-xl border border-[var(--navy)]/15 shadow-sm space-y-2">
                           <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Royal Heritage Wording</span>
-                          <p className="text-xs italic text-[var(--ink)] leading-relaxed">"{msg.widgetData.content}"</p>
+                          <p className="text-xs italic text-[var(--ink)] leading-relaxed">&ldquo;{msg.widgetData.content}&rdquo;</p>
                           <div className="pt-2 flex justify-end">
                             <Button
                               variant="ghost"

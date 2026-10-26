@@ -299,7 +299,7 @@ export default function OnboardingWizardPage() {
                   Step 02 / 07
                 </span>
                 <h1 className="font-grotesk text-3xl sm:text-4xl font-extrabold text-navy">
-                  Let's lock in the fundamentals
+                  Let&apos;s lock in the fundamentals
                 </h1>
                 <p className="text-ink/70 text-sm mt-2">
                   Provide the foundational parameters for schedule and scale.

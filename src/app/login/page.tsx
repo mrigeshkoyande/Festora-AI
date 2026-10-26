@@ -184,7 +184,7 @@ export default function AuthPage() {
                 className="w-4 h-4 accent-navy rounded mt-0.5 cursor-pointer"
               />
               <span>
-                I agree to Festora AI's{" "}
+                I agree to Festora AI&apos;s{" "}
                 <Link href="/terms" className="text-navy font-semibold underline">
                   Terms
                 </Link>{" "}

@@ -36,8 +36,9 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
       }))
     );
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const seen = sessionStorage.getItem("festora_intro_seen");
-    if (seen === "true") {
+    if (seen === "true" || prefersReducedMotion) {
       setIsVisible(false);
       onComplete?.();
       return;

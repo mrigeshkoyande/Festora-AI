@@ -1,34 +1,65 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { generateEventPlan } from "@/lib/ai/provider";
+import { PlanGenerationRequestSchema } from "@/lib/utils/validation";
+import { checkRateLimit, sanitizeInput } from "@/lib/utils/security";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      eventType = "Wedding",
-      title = "New Celebration",
-      targetDate = new Date(Date.now() + 60 * 24 * 3600 * 1000).toISOString(),
-      city = "Jaipur, Rajasthan",
-      guestCount = 150,
-      totalBudget = 4500000,
-      currency = "INR",
-      styleVibe = "Royal Heritage",
-      specialNeeds = "",
-    } = body;
+    // 1. Rate limiting check (15 requests per 60 seconds per IP/client)
+    const clientIp = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "anonymous-client";
+    const rateCheck = checkRateLimit(`ai-generate:${clientIp}`, 15, 60);
 
-    // 1. Generate Plan via AI
-    const plan = await generateEventPlan({
-      eventType,
-      title,
-      targetDate,
-      city,
-      guestCount,
-      totalBudget,
-      currency,
-      styleVibe,
-      specialNeeds,
-    });
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Rate limit exceeded. Please wait before generating another celebration plan.",
+          retryAfter: rateCheck.resetSeconds,
+        },
+        {
+          status: 429,
+          headers: { "Retry-After": String(rateCheck.resetSeconds) },
+        }
+      );
+    }
+
+    // 2. Body Parsing & Runtime Zod Schema Validation
+    let rawBody: unknown;
+    try {
+      rawBody = await req.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: "Invalid JSON payload" },
+        { status: 400 }
+      );
+    }
+
+    const validationResult = PlanGenerationRequestSchema.safeParse(rawBody);
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Validation failed",
+          details: validationResult.error.flatten().fieldErrors,
+        },
+        { status: 422 }
+      );
+    }
+
+    const validatedInput = validationResult.data;
+
+    // 3. Input Sanitization
+    const sanitizedInput = {
+      ...validatedInput,
+      title: sanitizeInput(validatedInput.title, 100),
+      city: sanitizeInput(validatedInput.city, 100),
+      styleVibe: sanitizeInput(validatedInput.styleVibe, 100),
+      specialNeeds: sanitizeInput(validatedInput.specialNeeds || "", 500),
+    };
+
+    // 4. Generate Plan via Dual-Engine AI
+    const plan = await generateEventPlan(sanitizedInput);
 
     // 2. Safely attempt DB persistence if available
     let createdEventId = `evt-demo-${Date.now()}`;
@@ -55,16 +86,16 @@ export async function POST(req: Request) {
         data: {
           workspaceId: workspace.id,
           title: plan.title,
-          type: eventType,
-          targetDate: new Date(targetDate),
-          city,
-          guestCount,
-          currency,
-          totalBudget,
+          type: sanitizedInput.eventType,
+          targetDate: new Date(sanitizedInput.targetDate),
+          city: sanitizedInput.city,
+          guestCount: sanitizedInput.guestCount,
+          currency: sanitizedInput.currency,
+          totalBudget: sanitizedInput.totalBudget,
           spentBudget: 0,
-          styleVibe,
+          styleVibe: sanitizedInput.styleVibe,
           planHealth: plan.planHealth,
-          specialNeeds,
+          specialNeeds: sanitizedInput.specialNeeds,
           coverImage: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1000",
         },
       });
@@ -110,7 +141,7 @@ export async function POST(req: Request) {
         if (phase.tasks && phase.tasks.length > 0) {
           await db.task.createMany({
             data: phase.tasks.map((t, idx) => {
-              const dueDate = new Date(targetDate);
+              const dueDate = new Date(sanitizedInput.targetDate);
               dueDate.setDate(dueDate.getDate() - t.daysBeforeEvent);
               return {
                 eventId: createdEventId,
@@ -132,7 +163,7 @@ export async function POST(req: Request) {
         data: {
           eventId: createdEventId,
           feature: "planner",
-          prompt: JSON.stringify(body),
+          prompt: JSON.stringify(sanitizedInput),
           response: JSON.stringify(plan),
           tokens: 850,
           cost: 0.0012,

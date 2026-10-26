@@ -280,7 +280,7 @@ export default function IdeasPage() {
 
             {/* Rendered Wording */}
             <div className="p-4 bg-white rounded-xl border border-[var(--navy)]/15 shadow-sm text-xs leading-relaxed text-[var(--ink)] italic">
-              "{wordingVariants[selectedTone]}"
+              &ldquo;{wordingVariants[selectedTone]}&rdquo;
             </div>
 
             <div className="flex justify-between items-center pt-2">

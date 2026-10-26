@@ -59,7 +59,7 @@ export default function DashboardPage() {
             <div className="flex items-center gap-2 mb-1.5">
               <Badge variant="default">Event Dashboard</Badge>
               <span className="text-xs text-ink/60 font-medium">
-                • Ananya & Rohan's Wedding
+                • Ananya &amp; Rohan&apos;s Wedding
               </span>
             </div>
             <h1 className="font-grotesk text-3xl sm:text-4xl font-extrabold text-navy">

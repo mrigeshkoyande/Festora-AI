@@ -5,103 +5,201 @@ export interface Workspace {
   id: string;
   name: string;
   slug: string;
+  ownerId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface User {
   id: string;
   name: string;
   email: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-export interface Event {
+export interface EventRecord {
   id: string;
   workspaceId: string;
-  name: string;
+  title: string;
   type: string;
-  tier: string;
-  guestCount: number;
-  budgetTotal: number;
+  targetDate: Date;
   city: string;
-  date: Date;
-  status: string;
+  guestCount: number;
+  currency: string;
+  totalBudget: number;
+  spentBudget: number;
+  styleVibe: string;
+  planHealth: number;
+  specialNeeds?: string;
+  coverImage?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-// Global in-memory storage arrays
+export interface BudgetCategoryRecord {
+  id: string;
+  eventId: string;
+  name: string;
+  allocated: number;
+  spent: number;
+  percentage: number;
+  icon: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface BudgetItemRecord {
+  id: string;
+  categoryId: string;
+  name: string;
+  estimated: number;
+  actual: number;
+  status: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface PhaseRecord {
+  id: string;
+  eventId: string;
+  title: string;
+  order: number;
+  status: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface TaskRecord {
+  id: string;
+  eventId: string;
+  phaseId: string;
+  title: string;
+  priority: "high" | "medium" | "low";
+  dueDate: Date;
+  status: string;
+  assigneeRole: string;
+  order: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface AIGenerationRecord {
+  id: string;
+  eventId: string;
+  feature: string;
+  prompt: string;
+  response: string;
+  tokens: number;
+  cost: number;
+  status: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+// Global typed in-memory storage tables
 const memoryStore = {
   workspaces: [
     {
       id: "workspace-jaipur-royale",
       name: "Jaipur Royale Celebrations",
       slug: "jaipur-royale",
+      ownerId: "user-priya-sharma",
+      createdAt: new Date("2026-01-01"),
+      updatedAt: new Date("2026-01-01"),
     },
-  ] as any[],
+  ] as Workspace[],
   users: [
     {
       id: "user-priya-sharma",
       name: "Priya Sharma",
       email: "priya.sharma@festora.ai",
+      createdAt: new Date("2026-01-01"),
+      updatedAt: new Date("2026-01-01"),
     },
-  ] as any[],
-  events: [] as any[],
-  budgetCategories: [] as any[],
-  budgetItems: [] as any[],
-  phases: [] as any[],
-  tasks: [] as any[],
-  aiGenerations: [] as any[],
+  ] as User[],
+  events: [] as EventRecord[],
+  budgetCategories: [] as BudgetCategoryRecord[],
+  budgetItems: [] as BudgetItemRecord[],
+  phases: [] as PhaseRecord[],
+  tasks: [] as TaskRecord[],
+  aiGenerations: [] as AIGenerationRecord[],
 };
 
-const createInMemoryModel = (storeKey: keyof typeof memoryStore, singular: string) => ({
-  findFirst: async (predicate?: any) => {
-    return memoryStore[storeKey][0] ?? null;
-  },
-  findMany: async (predicate?: any) => {
-    return [...memoryStore[storeKey]];
-  },
-  create: async ({ data }: { data: any }) => {
-    const item = {
-      id: `${singular}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      ...data,
-    };
-    memoryStore[storeKey].push(item);
-    return item;
-  },
-  createMany: async ({ data }: { data: any[] }) => {
-    const items = Array.isArray(data) ? data : [data];
-    const created = items.map((d) => ({
-      id: `${singular}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      ...d,
-    }));
-    memoryStore[storeKey].push(...created);
-    return { count: created.length };
-  },
-  update: async ({ where, data }: { where: any; data: any }) => {
-    const idx = memoryStore[storeKey].findIndex((item: any) => item.id === where?.id);
-    if (idx !== -1) {
-      memoryStore[storeKey][idx] = { ...memoryStore[storeKey][idx], ...data, updatedAt: new Date() };
-      return memoryStore[storeKey][idx];
-    }
-    return { id: where?.id, ...data };
-  },
-  delete: async ({ where }: { where: any }) => {
-    const idx = memoryStore[storeKey].findIndex((item: any) => item.id === where?.id);
-    if (idx !== -1) {
-      memoryStore[storeKey].splice(idx, 1);
-    }
-    return { success: true };
-  },
-});
+function createInMemoryModel<T extends { id: string }>(
+  storeKey: keyof typeof memoryStore,
+  singular: string
+) {
+  const store = memoryStore[storeKey] as unknown as T[];
+
+  return {
+    findFirst: async (predicate?: (item: T) => boolean): Promise<T | null> => {
+      if (!predicate) return store[0] ?? null;
+      return store.find(predicate) ?? null;
+    },
+    findMany: async (predicate?: (item: T) => boolean): Promise<T[]> => {
+      if (!predicate) return [...store];
+      return store.filter(predicate);
+    },
+    create: async ({ data }: { data: Omit<T, "id" | "createdAt" | "updatedAt"> }): Promise<T> => {
+      const item = {
+        id: `${singular}-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        ...data,
+      } as unknown as T;
+      store.push(item);
+      return item;
+    },
+    createMany: async ({
+      data,
+    }: {
+      data: Omit<T, "id" | "createdAt" | "updatedAt">[];
+    }): Promise<{ count: number }> => {
+      const items = Array.isArray(data) ? data : [data];
+      const created = items.map(
+        (d) =>
+          ({
+            id: `${singular}-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            ...d,
+          } as unknown as T)
+      );
+      store.push(...created);
+      return { count: created.length };
+    },
+    update: async ({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: Partial<T>;
+    }): Promise<T | null> => {
+      const idx = store.findIndex((item) => item.id === where.id);
+      if (idx !== -1) {
+        store[idx] = { ...store[idx], ...data, updatedAt: new Date() };
+        return store[idx];
+      }
+      return null;
+    },
+    delete: async ({ where }: { where: { id: string } }): Promise<{ success: boolean }> => {
+      const idx = store.findIndex((item) => item.id === where.id);
+      if (idx !== -1) {
+        store.splice(idx, 1);
+      }
+      return { success: true };
+    },
+  };
+}
 
 export const db = {
-  workspace: createInMemoryModel("workspaces", "ws"),
-  user: createInMemoryModel("users", "usr"),
-  event: createInMemoryModel("events", "evt"),
-  budgetCategory: createInMemoryModel("budgetCategories", "bcat"),
-  budgetItem: createInMemoryModel("budgetItems", "bitem"),
-  phase: createInMemoryModel("phases", "phase"),
-  task: createInMemoryModel("tasks", "task"),
-  aIGeneration: createInMemoryModel("aiGenerations", "aigen"),
+  workspace: createInMemoryModel<Workspace>("workspaces", "ws"),
+  user: createInMemoryModel<User>("users", "usr"),
+  event: createInMemoryModel<EventRecord>("events", "evt"),
+  budgetCategory: createInMemoryModel<BudgetCategoryRecord>("budgetCategories", "bcat"),
+  budgetItem: createInMemoryModel<BudgetItemRecord>("budgetItems", "bitem"),
+  phase: createInMemoryModel<PhaseRecord>("phases", "phase"),
+  task: createInMemoryModel<TaskRecord>("tasks", "task"),
+  aIGeneration: createInMemoryModel<AIGenerationRecord>("aiGenerations", "aigen"),
 };
