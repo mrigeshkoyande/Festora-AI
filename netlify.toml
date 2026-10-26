@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # NODE_ENV is set in the site environment, which makes npm skip devDependencies.
+  # Build-time tooling (typescript, tailwindcss, postcss, autoprefixer) lives there.
+  NPM_FLAGS = "--include=dev"
