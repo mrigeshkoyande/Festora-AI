@@ -340,10 +340,23 @@ npm run check-contrast
 
 ### 2. TypeScript Static Typecheck
 ```bash
-npx tsc --noEmit
+npm run typecheck
 ```
+Executes strict compilation checks across the entire Next.js and test codebase with zero errors.
 
-### 3. Production Compilation Build
+### 3. ESLint Core Web Vitals Audit
+```bash
+npm run lint
+```
+Enforces React and Next.js production lint rules and JSX safety standards.
+
+### 4. Unit & Integration Test Suite (25 Tests / 7 Suites)
+```bash
+npm test
+```
+Verifies pure domain logic, budget invariant reconciliation, integer monetary precision, O(N) dependency timeline shifts, spatial seating constraints, sliding-window rate limiting, input sanitization, runtime Zod validation, and AI deterministic fallback.
+
+### 5. Production Compilation Build
 ```bash
 npm run build
 ```
