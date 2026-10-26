@@ -4,7 +4,7 @@ import {
   checkRateLimit,
   sanitizeInput,
   getSafeServerConfig,
-} from "../src/lib/utils/security.ts";
+} from "../src/lib/utils/security";
 
 describe("Security Controls & Input Protection", () => {
   it("allows requests under the rate limit threshold", () => {

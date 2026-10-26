@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { generateEventPlan, PlanGenerationInput } from "../src/lib/ai/provider.ts";
+import { generateEventPlan, PlanGenerationInput } from "../src/lib/ai/provider";
 
 describe("AI Dual-Engine Provider & Deterministic Fallback", () => {
   it("generates complete, schema-compliant event plan via deterministic fallback when offline", async () => {

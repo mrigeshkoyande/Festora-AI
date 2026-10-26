@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   reconcileBudgetAllocations,
   calculateBudgetScenarios,
-} from "../src/lib/utils/budget.ts";
+} from "../src/lib/utils/budget";
 
 describe("Budget Allocation & Invariant Reconciliation", () => {
   it("enforces exact 100% sum invariant on budget categories", () => {

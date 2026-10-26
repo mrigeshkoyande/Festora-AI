@@ -5,7 +5,7 @@ import {
   formatCompactCurrency,
   toPaise,
   toRupees,
-} from "../src/lib/utils/currency.ts";
+} from "../src/lib/utils/currency";
 
 describe("Currency & Monetary Precision Utilities", () => {
   it("formats standard amounts in INR currency format", () => {

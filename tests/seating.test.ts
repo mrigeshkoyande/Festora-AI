@@ -5,7 +5,7 @@ import {
   autoArrangeSeating,
   GuestItem,
   SeatingTable,
-} from "../src/lib/utils/seating.ts";
+} from "../src/lib/utils/seating";
 
 describe("Seating Logistics & Capacity Verification", () => {
   it("detects over-capacity violations correctly", () => {

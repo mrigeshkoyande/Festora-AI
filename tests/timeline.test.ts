@@ -4,7 +4,7 @@ import {
   calculateEventCountdown,
   shiftTaskSchedule,
   TaskItem,
-} from "../src/lib/utils/timeline.ts";
+} from "../src/lib/utils/timeline";
 
 describe("Timeline, Countdown & Dependency Propagation", () => {
   it("calculates positive countdown for future dates", () => {

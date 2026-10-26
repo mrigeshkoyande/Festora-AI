@@ -5,7 +5,7 @@ import {
   TaskUpdateSchema,
   GuestRosterSchema,
   BudgetAdjustmentSchema,
-} from "../src/lib/utils/validation.ts";
+} from "../src/lib/utils/validation";
 
 describe("Runtime Data Validation Schemas (Zod)", () => {
   it("validates well-formed event plan generation request", () => {
