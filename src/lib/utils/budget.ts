@@ -6,6 +6,7 @@
 export interface CategoryAllocationInput {
   name: string;
   percentage: number;
+  allocated?: number;
   icon?: string;
   items?: { name: string; percentageOfCategory?: number; estimated?: number; status: string }[];
 }
@@ -23,10 +24,15 @@ export interface ReconciledCategory {
 }
 
 /**
- * Reconciles category percentage allocations so:
- * 1. The percentages sum strictly to 100.
+ * Reconciles category percentage allocations so that:
+ * 1. The percentages sum strictly to 100%.
  * 2. The sum of allocated amounts strictly equals `totalBudget` (0 rupee discrepancy).
  * 3. Any rounding remainder is allocated deterministically to the largest category.
+ *
+ * @param totalBudget - Total monetary celebration budget
+ * @param categories - Array of raw category percentage allocations
+ * @returns Array of reconciled categories guaranteeing exact mathematical equality
+ * @complexity O(N) Time | O(N) Space where N is number of budget categories
  */
 export function reconcileBudgetAllocations(
   totalBudget: number,
@@ -64,12 +70,12 @@ export function reconcileBudgetAllocations(
 
   // 2. Allocate currency amounts
   let allocatedSum = 0;
-  const result: ReconciledCategory[] = normalizedCategories.map((c, idx) => {
+  const result: ReconciledCategory[] = normalizedCategories.map((c) => {
     const amount = Math.floor((safeTotalBudget * c.normalizedPct) / 100);
     allocatedSum += amount;
 
     // Sub-items reconciliation
-    const items = (c.items || []).map((it, itIdx) => {
+    const items = (c.items || []).map((it) => {
       const itPct = it.percentageOfCategory ?? (100 / Math.max(1, c.items?.length || 1));
       return {
         name: it.name,
@@ -120,8 +126,13 @@ export interface ScenarioResult {
 }
 
 /**
- * Calculates the 3-scenario AI budget optimization (Conservative Cut, Balanced, VIP Luxury).
- * All scenarios guarantee exact 100% arithmetic sums.
+ * Calculates the 3-scenario AI budget optimization (Conservative Cut -15%, Balanced, VIP Luxury +20%).
+ * All scenarios guarantee exact 100% arithmetic sums with zero missing or invented capital.
+ *
+ * @param baseBudget - Baseline celebration budget
+ * @param categories - Original category allocation percentages
+ * @returns Three complete reconciled scenarios with strategic rationales
+ * @complexity O(N) Time | O(N) Space
  */
 export function calculateBudgetScenarios(
   baseBudget: number,

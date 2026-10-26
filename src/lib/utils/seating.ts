@@ -20,7 +20,11 @@ export interface SeatingTable {
 }
 
 /**
- * Validates that no table exceeds its physical seating capacity.
+ * Validates that no banquet table exceeds its physical seating capacity.
+ *
+ * @param tables - Array of current tables with assigned guest IDs
+ * @returns Object indicating overall validity and array of overfilled table violations
+ * @complexity O(T) Time | O(T) Space where T is number of tables
  */
 export function validateTableCapacities(tables: SeatingTable[]): {
   isValid: boolean;
@@ -46,10 +50,15 @@ export function validateTableCapacities(tables: SeatingTable[]): {
 
 /**
  * Deterministic AI Auto-Arranger:
- * Automatically groups unassigned guests into tables prioritizing:
- * 1. Family side harmony (Bride / Groom / VIP)
- * 2. Strict dietary alignment (e.g. Pure Jain banquet clusters)
+ * Automatically groups unassigned celebration guests into tables prioritizing:
+ * 1. Family side harmony (Bride / Groom / VIP / Corporate)
+ * 2. Strict dietary alignment (e.g. Pure Jain banquet clusters together)
  * 3. Strict capacity limits per table
+ *
+ * @param guests - Array of invited guests with cultural and dietary profiles
+ * @param tables - Array of available banquet tables
+ * @returns Object with updated table assignments and count of remaining unassigned guests
+ * @complexity O(G * T) Time | O(G + T) Space where G is guests count and T is tables count
  */
 export function autoArrangeSeating(
   guests: GuestItem[],
@@ -58,50 +67,64 @@ export function autoArrangeSeating(
   arrangedTables: SeatingTable[];
   unassignedGuestsCount: number;
 } {
-  // Deep clone tables
-  const tableCopies: SeatingTable[] = tables.map((t) => ({
+  const tableClones: SeatingTable[] = tables.map((t) => ({
     ...t,
     assignedGuestIds: [...t.assignedGuestIds],
   }));
 
-  // Find all guests already assigned
-  const alreadyAssigned = new Set<string>();
-  tableCopies.forEach((t) => t.assignedGuestIds.forEach((id) => alreadyAssigned.add(id)));
+  const unassigned = guests.filter((g) => !g.tableId);
 
-  const unassigned = guests.filter((g) => !alreadyAssigned.has(g.id));
-
-  // Sort unassigned guests: VIPs first, then grouped by side and dietary
-  unassigned.sort((a, b) => {
+  // Sort guests: VIPs first, then grouped by family side, then dietary
+  const sortedGuests = [...unassigned].sort((a, b) => {
     if (a.isVIP && !b.isVIP) return -1;
     if (!a.isVIP && b.isVIP) return 1;
     if (a.side !== b.side) return a.side.localeCompare(b.side);
     return a.dietary.localeCompare(b.dietary);
   });
 
-  // Assign guests to matching tables that have available capacity
-  for (const guest of unassigned) {
-    // 1. Try to find table with matching family side and dietary profile with space
-    let targetTable = tableCopies.find((t) => {
-      if (t.assignedGuestIds.length >= t.capacity) return false;
-      const currentGuests = t.assignedGuestIds.map((id) => guests.find((g) => g.id === id)).filter(Boolean);
-      return currentGuests.some((cg) => cg?.side === guest.side || cg?.dietary === guest.dietary);
-    });
+  const guestMap = new Map(guests.map((g) => [g.id, g]));
 
-    // 2. If no matched table found, find any table with remaining capacity
-    if (!targetTable) {
-      targetTable = tableCopies.find((t) => t.assignedGuestIds.length < t.capacity);
+  for (const guest of sortedGuests) {
+    // 1. Find best table with capacity
+    let bestTable: SeatingTable | null = null;
+    let bestScore = -1;
+
+    for (const table of tableClones) {
+      const remainingCapacity = table.capacity - table.assignedGuestIds.length;
+      if (remainingCapacity <= 0) continue;
+
+      let score = 0;
+
+      // VIP affinity: Table 1 / Head table preference for VIPs
+      if (guest.isVIP && (table.name.toLowerCase().includes("vip") || table.name.includes("1"))) {
+        score += 50;
+      }
+
+      // Check current occupants for alignment
+      for (const assignedId of table.assignedGuestIds) {
+        const occupant = guestMap.get(assignedId);
+        if (!occupant) continue;
+
+        if (occupant.side === guest.side) score += 10;
+        if (occupant.dietary === guest.dietary) score += 15;
+      }
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestTable = table;
+      }
     }
 
-    if (targetTable) {
-      targetTable.assignedGuestIds.push(guest.id);
-      alreadyAssigned.add(guest.id);
+    if (bestTable) {
+      bestTable.assignedGuestIds.push(guest.id);
     }
   }
 
-  const remainingUnassigned = guests.length - alreadyAssigned.size;
+  const assignedCount = tableClones.reduce((sum, t) => sum + t.assignedGuestIds.length, 0);
+  const unassignedGuestsCount = Math.max(0, guests.length - assignedCount);
 
   return {
-    arrangedTables: tableCopies,
-    unassignedGuestsCount: remainingUnassigned,
+    arrangedTables: tableClones,
+    unassignedGuestsCount,
   };
 }

@@ -8,10 +8,18 @@ export interface CurrencyFormatOptions {
   showDecimals?: boolean;
 }
 
+const ONE_CRORE = 10_000_000;
+const ONE_LAKH = 100_000;
+const ONE_THOUSAND = 1_000;
+const ONE_MILLION = 1_000_000;
+
 /**
  * Formats a monetary amount into a culturally appropriate locale string (e.g. Indian Lakhs/Crores).
+ *
  * @param amountInRupees - The amount in full currency units (e.g. 4500000)
- * @param currencyCode - Standard 3-letter currency code (default: INR)
+ * @param currencyCode - Standard 3-letter ISO-4217 currency code (default: "INR")
+ * @returns Formatted currency string with appropriate locale separators (e.g. "₹45,00,000")
+ * @complexity O(1) Time | O(1) Space
  */
 export function formatCurrency(
   amountInRupees: number,
@@ -43,6 +51,11 @@ export function formatCurrency(
 
 /**
  * Formats large amounts into human-readable compact form (e.g. ₹45 Lakhs, ₹1.5 Cr).
+ *
+ * @param amount - Full monetary amount to compact
+ * @param currencyCode - Standard 3-letter currency code (default: "INR")
+ * @returns Compact readable notation
+ * @complexity O(1) Time | O(1) Space
  */
 export function formatCompactCurrency(
   amount: number,
@@ -54,27 +67,27 @@ export function formatCompactCurrency(
   const sign = amount < 0 ? "-" : "";
 
   if (currencyCode.toUpperCase() === "INR") {
-    if (abs >= 10000000) {
-      const cr = (abs / 10000000).toFixed(1).replace(/\.0$/, "");
+    if (abs >= ONE_CRORE) {
+      const cr = (abs / ONE_CRORE).toFixed(1).replace(/\.0$/, "");
       return `${sign}₹${cr} Cr`;
     }
-    if (abs >= 100000) {
-      const lakh = (abs / 100000).toFixed(1).replace(/\.0$/, "");
+    if (abs >= ONE_LAKH) {
+      const lakh = (abs / ONE_LAKH).toFixed(1).replace(/\.0$/, "");
       return `${sign}₹${lakh} Lakhs`;
     }
-    if (abs >= 1000) {
-      const k = (abs / 1000).toFixed(0);
+    if (abs >= ONE_THOUSAND) {
+      const k = (abs / ONE_THOUSAND).toFixed(0);
       return `${sign}₹${k}k`;
     }
     return `${sign}₹${abs}`;
   }
 
-  if (abs >= 1000000) {
-    const m = (abs / 1000000).toFixed(1).replace(/\.0$/, "");
+  if (abs >= ONE_MILLION) {
+    const m = (abs / ONE_MILLION).toFixed(1).replace(/\.0$/, "");
     return `${sign}$${m}M`;
   }
-  if (abs >= 1000) {
-    const k = (abs / 1000).toFixed(0);
+  if (abs >= ONE_THOUSAND) {
+    const k = (abs / ONE_THOUSAND).toFixed(0);
     return `${sign}$${k}k`;
   }
   return `${sign}$${abs}`;
@@ -82,6 +95,10 @@ export function formatCompactCurrency(
 
 /**
  * Converts whole rupees to paise (minor units) for safe integer arithmetic.
+ *
+ * @param rupees - Whole rupee amount
+ * @returns Exact integer paise representation
+ * @complexity O(1) Time | O(1) Space
  */
 export function toPaise(rupees: number): number {
   return Math.round(rupees * 100);
@@ -89,6 +106,10 @@ export function toPaise(rupees: number): number {
 
 /**
  * Converts paise back to whole rupees with safe rounding.
+ *
+ * @param paise - Minor currency unit amount
+ * @returns Rupee value with two decimal precision
+ * @complexity O(1) Time | O(1) Space
  */
 export function toRupees(paise: number): number {
   return Math.round(paise) / 100;

@@ -9,7 +9,7 @@
     "start:standalone": "node .next/standalone/server.js",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/currency.test.ts tests/budget.test.ts tests/timeline.test.ts tests/seating.test.ts tests/security.test.ts tests/validation.test.ts tests/ai-provider.test.ts",
+    "test": "tsx --test tests/currency.test.ts tests/budget.test.ts tests/timeline.test.ts tests/seating.test.ts tests/security.test.ts tests/validation.test.ts tests/ai-provider.test.ts tests/integration-flow.test.ts",
     "check-contrast": "node scripts/check-contrast.mjs"
   },
   "dependencies": {

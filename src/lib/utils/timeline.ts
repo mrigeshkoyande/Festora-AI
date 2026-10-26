@@ -12,8 +12,16 @@ export interface TaskItem {
   dependsOnTaskId?: string;
 }
 
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+const MS_PER_HOUR = 1000 * 60 * 60;
+
 /**
- * Calculates countdown metrics (days, hours, minutes remaining) until the event date.
+ * Calculates countdown metrics (days, hours remaining, past flag) until the event date.
+ *
+ * @param targetDate - ISO string or Date instance representing celebration date
+ * @param now - Optional reference date (defaults to current system time)
+ * @returns Breakdown of remaining days, hours, past status, and localized badge string
+ * @complexity O(1) Time | O(1) Space
  */
 export function calculateEventCountdown(targetDate: string | Date, now: Date = new Date()): {
   days: number;
@@ -32,8 +40,8 @@ export function calculateEventCountdown(targetDate: string | Date, now: Date = n
     return { days: 0, hours: 0, isPast: true, formatted: "Celebration Today / Past" };
   }
 
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const days = Math.floor(diffMs / MS_PER_DAY);
+  const hours = Math.floor((diffMs % MS_PER_DAY) / MS_PER_HOUR);
 
   return {
     days,
@@ -45,7 +53,13 @@ export function calculateEventCountdown(targetDate: string | Date, now: Date = n
 
 /**
  * Shifts task schedules dynamically when an upstream vendor arrival or delivery shifts.
- * Runs in linear O(N) time with dependency DAG resolution.
+ * Runs in linear O(N) time with dependency DAG resolution and circular dependency protection.
+ *
+ * @param tasks - Array of existing milestone and planning tasks
+ * @param shiftedTaskId - ID of the root task being moved
+ * @param deltaDays - Signed number of days to shift (+/-)
+ * @returns Immutably updated task array with propagated shifts
+ * @complexity O(N) Time | O(N) Space where N is total number of tasks
  */
 export function shiftTaskSchedule(
   tasks: TaskItem[],

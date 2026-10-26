@@ -1,5 +1,6 @@
 /**
  * Festora AI — Security & Input Protection Utilities
+ * Protects endpoints against denial of service, prompt injection, and XSS attacks.
  */
 
 interface RateLimitRecord {
@@ -7,35 +8,35 @@ interface RateLimitRecord {
   resetTime: number;
 }
 
-// In-memory sliding window cache for rate limiting
 const rateLimitStore = new Map<string, RateLimitRecord>();
 
 /**
- * Checks if a given request key (e.g. client IP or identifier) is within rate limits.
- * Default: 15 requests per 60 seconds for expensive generative endpoints.
+ * Sliding-window in-memory IP rate limiter.
+ *
+ * @param identifier - Unique client identifier (e.g., client IP or session ID)
+ * @param limit - Maximum allowed requests in the time window (default: 15)
+ * @param windowMs - Time window in milliseconds (default: 60,000ms = 1 minute)
+ * @returns Object with allowed boolean, remaining quota, and reset seconds
+ * @complexity O(1) Time | O(U) Space where U is unique active client IPs
  */
 export function checkRateLimit(
-  key: string,
+  identifier: string,
   limit: number = 15,
-  windowSeconds: number = 60
-): {
-  allowed: boolean;
-  remaining: number;
-  resetSeconds: number;
-} {
+  windowMs: number = 60_000
+): { allowed: boolean; remaining: number; resetSeconds: number } {
   const now = Date.now();
-  const windowMs = windowSeconds * 1000;
-  const record = rateLimitStore.get(key);
+  const record = rateLimitStore.get(identifier);
 
+  // Clean expired or initialize
   if (!record || now > record.resetTime) {
-    rateLimitStore.set(key, {
+    rateLimitStore.set(identifier, {
       count: 1,
       resetTime: now + windowMs,
     });
     return {
       allowed: true,
       remaining: limit - 1,
-      resetSeconds: windowSeconds,
+      resetSeconds: Math.ceil(windowMs / 1000),
     };
   }
 
@@ -56,10 +57,15 @@ export function checkRateLimit(
 }
 
 /**
- * Sanitizes user text input:
+ * Sanitizes untrusted user text input:
  * - Trims whitespace
  * - Strips `<script>`, `<iframe>`, `javascript:`, HTML tags to prevent XSS
- * - Caps maximum string length
+ * - Caps maximum string length to prevent memory exhaustion
+ *
+ * @param input - Untrusted user input value
+ * @param maxLength - Maximum permitted character length (default: 500)
+ * @returns Sanitized safe text string
+ * @complexity O(L) Time | O(L) Space where L is input length
  */
 export function sanitizeInput(input: unknown, maxLength: number = 500): string {
   if (typeof input !== "string") return "";
@@ -75,6 +81,9 @@ export function sanitizeInput(input: unknown, maxLength: number = 500): string {
 
 /**
  * Validates server configuration and ensures private credentials are never leaked.
+ *
+ * @returns Safe server diagnostic object omitting secret keys
+ * @complexity O(1) Time | O(1) Space
  */
 export function getSafeServerConfig(): {
   hasGeminiKey: boolean;

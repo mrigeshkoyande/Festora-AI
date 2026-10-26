@@ -5,6 +5,9 @@
 
 import { z } from "zod";
 
+/**
+ * Zod schema enforcing valid celebration intake generation requests.
+ */
 export const PlanGenerationRequestSchema = z.object({
   eventType: z.string().min(2, "Event type is required").max(50),
   title: z.string().min(2, "Event title is required").max(100),
@@ -21,6 +24,9 @@ export const PlanGenerationRequestSchema = z.object({
 
 export type PlanGenerationRequest = z.infer<typeof PlanGenerationRequestSchema>;
 
+/**
+ * Zod schema enforcing valid guest roster records.
+ */
 export const GuestRosterSchema = z.object({
   name: z.string().min(2, "Name required").max(100),
   side: z.enum(["Bride's Side", "Groom's Side", "Mutual", "VIP", "Corporate"]),
@@ -32,11 +38,17 @@ export const GuestRosterSchema = z.object({
 
 export type GuestRosterInput = z.infer<typeof GuestRosterSchema>;
 
+/**
+ * Zod schema enforcing valid task status mutations.
+ */
 export const TaskUpdateSchema = z.object({
   taskId: z.string().min(1),
   status: z.enum(["todo", "in_progress", "completed"]),
 });
 
+/**
+ * Zod schema enforcing valid budget category adjustments.
+ */
 export const BudgetAdjustmentSchema = z.object({
   categoryName: z.string().min(1),
   percentage: z.number().min(0).max(100),
