@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { GlassSurface } from "@/components/ui/GlassSurface";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -103,10 +104,13 @@ export default function CelebrationMicrositePage() {
       <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden">
         {/* Background Image with Rich Navy Tint Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop"
             alt="Samode Palace"
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/90 via-[var(--navy)]/60 to-[var(--navy)]/80" />
         </div>

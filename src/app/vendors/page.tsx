@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { WorkspaceShell } from "@/components/layout/WorkspaceShell";
 import { GlassSurface } from "@/components/ui/GlassSurface";
 import { Button } from "@/components/ui/Button";
@@ -351,10 +352,12 @@ export default function VendorsPage() {
                   <div>
                     {/* Image Header with Badge Overlay */}
                     <div className="relative h-52 w-full overflow-hidden bg-[var(--navy)]/10">
-                      <img
+                      <Image
                         src={vendor.image}
                         alt={vendor.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/80 via-transparent to-black/20" />
 
@@ -471,7 +474,7 @@ export default function VendorsPage() {
                         className="p-3 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10 hover:border-[var(--navy)]/30 cursor-pointer transition-all shadow-sm group"
                       >
                         <div className="flex items-center gap-2 mb-1.5">
-                          <img src={v.image} alt={v.name} className="w-8 h-8 rounded-lg object-cover" />
+                          <Image src={v.image} alt={v.name} width={32} height={32} className="w-8 h-8 rounded-lg object-cover" />
                           <div className="flex-1 min-w-0">
                             <h4 className="text-xs font-bold text-[var(--navy)] truncate group-hover:text-[var(--orange)] transition-colors">
                               {v.name}
@@ -512,10 +515,12 @@ export default function VendorsPage() {
         >
           <div className="space-y-6">
             <div className="relative h-64 rounded-2xl overflow-hidden">
-              <img
+              <Image
                 src={selectedVendorForModal.image}
                 alt={selectedVendorForModal.name}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 text-white flex justify-between items-end">
@@ -676,7 +681,13 @@ export default function VendorsPage() {
               <div key={vendor.id} className="bg-white rounded-2xl p-4 border border-[var(--navy)]/15 shadow-sm flex flex-col justify-between">
                 <div>
                   <div className="relative h-32 rounded-xl overflow-hidden mb-3">
-                    <img src={vendor.image} alt={vendor.name} className="w-full h-full object-cover" />
+                    <Image
+                      src={vendor.image}
+                      alt={vendor.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      className="object-cover"
+                    />
                     <button
                       onClick={() => toggleCompare(vendor)}
                       className="absolute top-2 right-2 bg-black/60 text-white rounded-full p-1 hover:bg-black"

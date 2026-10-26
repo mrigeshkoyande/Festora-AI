@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassSurface } from "@/components/ui/GlassSurface";
@@ -73,10 +74,12 @@ export default function BlogPage() {
             >
               <div>
                 <div className="relative h-56 overflow-hidden bg-[var(--navy)]/10">
-                  <img
+                  <Image
                     src={article.coverImage}
                     alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
                     <Badge variant="navy">{article.category}</Badge>

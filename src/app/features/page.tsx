@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassSurface } from "@/components/ui/GlassSurface";
@@ -165,11 +166,13 @@ export default function FeaturesPage() {
 
               {/* Visual Side (6 cols) */}
               <div className={`relative ${isReversed ? "lg:col-span-6 lg:order-1" : "lg:col-span-6"}`}>
-                <div className="relative rounded-3xl overflow-hidden border border-[var(--navy)]/15 shadow-2xl bg-[var(--navy)]">
-                  <img
+                <div className="relative rounded-3xl overflow-hidden border border-[var(--navy)]/15 shadow-2xl bg-[var(--navy)] h-[400px]">
+                  <Image
                     src={block.image}
                     alt={block.title}
-                    className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/60 via-transparent to-transparent" />
                 </div>

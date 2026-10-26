@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { WorkspaceShell } from "@/components/layout/WorkspaceShell";
 import { GlassSurface } from "@/components/ui/GlassSurface";
 import { Button } from "@/components/ui/Button";
@@ -427,10 +428,12 @@ export default function AIAssistantPage() {
           {/* Active Event Summary */}
           <GlassSurface elevation="card" className="p-4 rounded-2xl border border-[var(--navy)]/10 space-y-4">
             <div className="relative h-32 rounded-xl overflow-hidden">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop"
                 alt="Samode Palace"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 350px"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/80 to-transparent" />
               <div className="absolute bottom-3 left-3 right-3 text-white">

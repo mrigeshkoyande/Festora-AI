@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -58,11 +59,14 @@ export default function BlogPostDetailPage() {
         </div>
 
         {/* Featured Image */}
-        <div className="rounded-3xl overflow-hidden border border-[var(--navy)]/10 shadow-xl max-h-[460px]">
-          <img
+        <div className="relative rounded-3xl overflow-hidden border border-[var(--navy)]/10 shadow-xl h-[380px] sm:h-[460px]">
+          <Image
             src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&auto=format&fit=crop"
             alt="Royal Jaipur Wedding"
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 896px"
+            className="object-cover"
           />
         </div>
 

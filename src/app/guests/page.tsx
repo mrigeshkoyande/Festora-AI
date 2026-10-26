@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { WorkspaceShell } from "@/components/layout/WorkspaceShell";
 import { GlassSurface } from "@/components/ui/GlassSurface";
 import { Button } from "@/components/ui/Button";
@@ -412,10 +413,12 @@ export default function GuestsPage() {
             <div className="bg-[#F8F9FA] rounded-[34px] overflow-hidden p-4 space-y-4 text-left border border-[var(--navy)]/10 text-[var(--ink)]">
               {/* Event Header Card */}
               <div className="relative rounded-2xl overflow-hidden h-28 bg-[var(--navy)] text-white p-3 flex flex-col justify-end">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&auto=format&fit=crop"
                   alt="Wedding Palace"
-                  className="absolute inset-0 w-full h-full object-cover opacity-40"
+                  fill
+                  sizes="300px"
+                  className="object-cover opacity-40"
                 />
                 <div className="relative z-10">
                   <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Royal Jaipur Celebration</span>

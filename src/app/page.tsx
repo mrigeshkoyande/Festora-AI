@@ -140,19 +140,25 @@ export default function LandingPage() {
               {/* Social Proof */}
               <div className="flex items-center gap-4 pt-4 border-t border-navy/10 w-full max-w-lg">
                 <div className="flex -space-x-3">
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
                     alt="Planner portrait"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full border-2 border-white object-cover"
                   />
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces"
                     alt="Planner portrait"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full border-2 border-white object-cover"
                   />
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=faces"
                     alt="Planner portrait"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full border-2 border-white object-cover"
                   />
                 </div>
@@ -602,9 +608,11 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
                   alt="Claire Dupond"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
@@ -626,9 +634,11 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
                   alt="Marcus Vance"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
@@ -650,9 +660,11 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop"
                   alt="Elena Rostova"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>

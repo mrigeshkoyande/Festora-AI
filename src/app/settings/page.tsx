@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { WorkspaceShell } from "@/components/layout/WorkspaceShell";
 import { GlassSurface } from "@/components/ui/GlassSurface";
 import { Button } from "@/components/ui/Button";
@@ -238,7 +239,7 @@ export default function SettingsPage() {
               {team.map((member) => (
                 <div key={member.id} className="py-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <img src={member.avatar} alt={member.name} className="w-10 h-10 rounded-full object-cover border border-[var(--navy)]/10" />
+                    <Image src={member.avatar} alt={member.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover border border-[var(--navy)]/10" />
                     <div>
                       <h4 className="text-xs font-bold text-[var(--navy)]">{member.name}</h4>
                       <p className="text-[11px] text-[var(--ink)]/50">{member.email}</p>
