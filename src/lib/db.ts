@@ -1,6 +1,7 @@
 // Pure TypeScript in-memory data store for serverless & edge runtime reliability
 // Eliminates all binary engine dependencies and database lock issues in production.
 
+/** In-memory workspace record used by the prototype persistence adapter. */
 export interface Workspace {
   id: string;
   name: string;
@@ -10,6 +11,7 @@ export interface Workspace {
   updatedAt?: Date;
 }
 
+/** In-memory user record; authentication is outside the current prototype scope. */
 export interface User {
   id: string;
   name: string;
@@ -18,6 +20,7 @@ export interface User {
   updatedAt?: Date;
 }
 
+/** Event record persisted only for the lifetime of the current server process. */
 export interface EventRecord {
   id: string;
   workspaceId: string;
@@ -37,6 +40,7 @@ export interface EventRecord {
   updatedAt?: Date;
 }
 
+/** Budget category attached to an event. */
 export interface BudgetCategoryRecord {
   id: string;
   eventId: string;
@@ -49,6 +53,7 @@ export interface BudgetCategoryRecord {
   updatedAt?: Date;
 }
 
+/** Line item attached to a budget category. */
 export interface BudgetItemRecord {
   id: string;
   categoryId: string;
@@ -60,6 +65,7 @@ export interface BudgetItemRecord {
   updatedAt?: Date;
 }
 
+/** Ordered planning phase attached to an event. */
 export interface PhaseRecord {
   id: string;
   eventId: string;
@@ -70,6 +76,7 @@ export interface PhaseRecord {
   updatedAt?: Date;
 }
 
+/** Operational task attached to a planning phase. */
 export interface TaskRecord {
   id: string;
   eventId: string;
@@ -84,6 +91,7 @@ export interface TaskRecord {
   updatedAt?: Date;
 }
 
+/** Audit record for a generated planning response. */
 export interface AIGenerationRecord {
   id: string;
   eventId: string;
@@ -128,7 +136,7 @@ const memoryStore = {
 
 function createInMemoryModel<T extends { id: string }>(
   storeKey: keyof typeof memoryStore,
-  singular: string
+  singular: string,
 ) {
   const store = memoryStore[storeKey] as unknown as T[];
 
@@ -164,7 +172,7 @@ function createInMemoryModel<T extends { id: string }>(
             createdAt: new Date(),
             updatedAt: new Date(),
             ...d,
-          } as unknown as T)
+          }) as unknown as T,
       );
       store.push(...created);
       return { count: created.length };
@@ -193,6 +201,7 @@ function createInMemoryModel<T extends { id: string }>(
   };
 }
 
+/** Process-local database facade; replace with durable storage before production use. */
 export const db = {
   workspace: createInMemoryModel<Workspace>("workspaces", "ws"),
   user: createInMemoryModel<User>("users", "usr"),

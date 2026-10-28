@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, Zap, Star, Calendar, Users } from "lucide-react";
 import Image from "next/image";
 
 // 2-second cinematic intro sequence for complete 3D visibility
 const AUTO_DISMISS_MS = 2000;
+const STARS = Array.from({ length: 40 }, (_, index) => ({
+  left: `${(index * 37) % 100}%`,
+  top: `${(index * 61) % 100}%`,
+  delay: (index % 8) * 0.25,
+  duration: 1 + (index % 4) * 0.25,
+}));
 
 // Floating feature nodes data
 const NODES = [
@@ -18,12 +24,13 @@ const NODES = [
 ];
 
 export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
   const [phase, setPhase] = useState<"loading" | "reveal" | "hold" | "exit">("loading");
   const [isVisible, setIsVisible] = useState(true);
-  const [stars, setStars] = useState<
-    { left: string; top: string; delay: number; duration: number }[]
-  >([]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleDismiss = useCallback(() => {
@@ -37,22 +44,13 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
   }, [onComplete]);
 
   useEffect(() => {
-    setMounted(true);
-    // Generate star positions client-side only to avoid hydration mismatch
-    setStars(
-      Array.from({ length: 40 }, () => ({
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: Math.random() * 2,
-        duration: 1 + Math.random() * 1.5,
-      })),
-    );
-
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const seen = sessionStorage.getItem("festora_intro_seen");
     if (seen === "true" || prefersReducedMotion) {
-      setIsVisible(false);
-      onComplete?.();
+      window.setTimeout(() => {
+        setIsVisible(false);
+        onComplete?.();
+      }, 0);
       return;
     }
 
@@ -102,7 +100,7 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               }}
             />
             {/* Subtle star field — generated client-side to avoid hydration mismatch */}
-            {stars.map((star, i) => (
+            {STARS.map((star, i) => (
               <motion.div
                 key={i}
                 animate={{ opacity: [0, 1, 0] }}

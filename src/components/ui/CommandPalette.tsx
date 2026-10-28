@@ -45,26 +45,66 @@ export function CommandPalette() {
   }, []);
 
   const items = [
-    { label: "Dashboard Overview", path: "/dashboard", icon: <LayoutDashboard className="w-4 h-4 text-navy" /> },
-    { label: "AI Planning Assistant", path: "/ai-assistant", icon: <Bot className="w-4 h-4 text-orange" /> },
-    { label: "Budget & Expense Intelligence", path: "/budget", icon: <IndianRupee className="w-4 h-4 text-gold" /> },
-    { label: "Master Timeline & Tasks", path: "/timeline", icon: <Calendar className="w-4 h-4 text-navy" /> },
-    { label: "Vendor Marketplace", path: "/vendors", icon: <Store className="w-4 h-4 text-navy" /> },
-    { label: "Guests & RSVP Management", path: "/guests", icon: <Users className="w-4 h-4 text-navy" /> },
-    { label: "Interactive Seating Chart", path: "/seating", icon: <Armchair className="w-4 h-4 text-navy" /> },
-    { label: "Day-Of Run Sheet", path: "/run-sheet", icon: <FileSpreadsheet className="w-4 h-4 text-orange" /> },
-    { label: "Ideas & Moodboard Studio", path: "/ideas", icon: <Sparkles className="w-4 h-4 text-gold" /> },
-    { label: "Onboarding Intake Wizard", path: "/onboarding", icon: <Sparkles className="w-4 h-4 text-navy" /> },
-    { label: "Settings & Collaborators", path: "/settings", icon: <Settings className="w-4 h-4 text-navy" /> },
+    {
+      label: "Dashboard Overview",
+      path: "/dashboard",
+      icon: <LayoutDashboard className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "AI Planning Assistant",
+      path: "/ai-assistant",
+      icon: <Bot className="w-4 h-4 text-orange" />,
+    },
+    {
+      label: "Budget & Expense Intelligence",
+      path: "/budget",
+      icon: <IndianRupee className="w-4 h-4 text-gold" />,
+    },
+    {
+      label: "Master Timeline & Tasks",
+      path: "/timeline",
+      icon: <Calendar className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "Vendor Marketplace",
+      path: "/vendors",
+      icon: <Store className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "Guests & RSVP Management",
+      path: "/guests",
+      icon: <Users className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "Interactive Seating Chart",
+      path: "/seating",
+      icon: <Armchair className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "Day-Of Run Sheet",
+      path: "/run-sheet",
+      icon: <FileSpreadsheet className="w-4 h-4 text-orange" />,
+    },
+    {
+      label: "Ideas & Moodboard Studio",
+      path: "/ideas",
+      icon: <Sparkles className="w-4 h-4 text-gold" />,
+    },
+    {
+      label: "Onboarding Intake Wizard",
+      path: "/onboarding",
+      icon: <Sparkles className="w-4 h-4 text-navy" />,
+    },
+    {
+      label: "Settings & Collaborators",
+      path: "/settings",
+      icon: <Settings className="w-4 h-4 text-navy" />,
+    },
   ];
 
   const filteredItems = items.filter((item) =>
-    item.label.toLowerCase().includes(query.toLowerCase())
+    item.label.toLowerCase().includes(query.toLowerCase()),
   );
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
 
   const handleSelect = (path: string) => {
     setIsOpen(false);
@@ -78,7 +118,9 @@ export function CommandPalette() {
       setSelectedIndex((prev) => (prev + 1) % Math.max(1, filteredItems.length));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % Math.max(1, filteredItems.length));
+      setSelectedIndex(
+        (prev) => (prev - 1 + filteredItems.length) % Math.max(1, filteredItems.length),
+      );
     } else if (e.key === "Enter" && filteredItems[selectedIndex]) {
       e.preventDefault();
       handleSelect(filteredItems[selectedIndex].path);
@@ -94,7 +136,10 @@ export function CommandPalette() {
             ref={inputRef}
             autoFocus
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setSelectedIndex(0);
+            }}
             onKeyDown={handleInputKeyDown}
             aria-label="Search planning tools and modules"
             role="combobox"
@@ -109,7 +154,10 @@ export function CommandPalette() {
           {query && (
             <button
               type="button"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+                setSelectedIndex(0);
+              }}
               aria-label="Clear search query"
               className="p-1 rounded text-ink/40 hover:text-ink focus:outline-none focus:ring-1 focus:ring-navy"
             >
