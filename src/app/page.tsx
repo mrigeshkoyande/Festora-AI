@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   ArrowRight,
   Play,
@@ -34,8 +35,14 @@ import { Marquee } from "@/components/ui/Marquee";
 import { AccordionItem } from "@/components/ui/Tabs";
 import { Dialog } from "@/components/ui/Dialog";
 import { fireFestoraConfetti } from "@/components/ui/Confetti";
-import { Opening3DAnimation } from "@/components/ui/Opening3DAnimation";
-import { HeroPriceDeck } from "@/components/ui/HeroPriceDeck";
+const Opening3DAnimation = dynamic(
+  () => import("@/components/ui/Opening3DAnimation").then((module) => module.Opening3DAnimation),
+  { ssr: false },
+);
+const HeroPriceDeck = dynamic(
+  () => import("@/components/ui/HeroPriceDeck").then((module) => module.HeroPriceDeck),
+  { ssr: false },
+);
 
 export default function LandingPage() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
@@ -60,10 +67,7 @@ export default function LandingPage() {
     if (!chatInput.trim()) return;
 
     const userText = chatInput.trim();
-    setChatMessages((prev) => [
-      ...prev,
-      { role: "user", text: userText, time: "Just now" },
-    ]);
+    setChatMessages((prev) => [...prev, { role: "user", text: userText, time: "Just now" }]);
     setChatInput("");
     setIsTyping(true);
 
@@ -75,10 +79,7 @@ export default function LandingPage() {
         aiReply = `Delightful! For a milestone birthday, Festora AI recommends: 1) Themed immersive photo booths, 2) Interactive dessert stations, and 3) Live DJ & magician booking pipeline.`;
       }
 
-      setChatMessages((prev) => [
-        ...prev,
-        { role: "ai", text: aiReply, time: "Just now" },
-      ]);
+      setChatMessages((prev) => [...prev, { role: "ai", text: aiReply, time: "Just now" }]);
       setIsTyping(false);
     }, 1000);
   };
@@ -113,17 +114,14 @@ export default function LandingPage() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-ink/75 max-w-xl leading-relaxed">
-                Festora AI orchestrates every detail from concept to final toast. Eliminate coordination friction, discover verified world-class vendors, and execute flawless celebrations effortlessly.
+                Festora AI turns event ideas into structured budgets, timelines, guest logistics,
+                and vendor-planning context, with a deterministic fallback when AI is unavailable.
               </p>
 
               {/* CTA Cluster */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link href="/onboarding">
-                  <Button
-                    variant="orange"
-                    size="lg"
-                    iconRight={<ArrowRight className="w-4 h-4" />}
-                  >
+                  <Button variant="orange" size="lg" iconRight={<ArrowRight className="w-4 h-4" />}>
                     Start Planning Free
                   </Button>
                 </Link>
@@ -357,7 +355,8 @@ export default function LandingPage() {
                     Define Your Vision
                   </h3>
                   <p className="text-bg/75 text-sm leading-relaxed">
-                    Input event goals, guest count, aesthetic style preferences, and overall target budget into our intelligent 7-step intake wizard.
+                    Input event goals, guest count, aesthetic style preferences, and overall target
+                    budget into our intelligent 7-step intake wizard.
                   </p>
                 </div>
 
@@ -369,7 +368,8 @@ export default function LandingPage() {
                     AI Blueprint Generation
                   </h3>
                   <p className="text-bg/75 text-sm leading-relaxed">
-                    Festora AI instantly compiles a tailored master blueprint: budget splits, vendor shortlists, milestone timeline, and cultural ritual checklists.
+                    Festora AI instantly compiles a tailored master blueprint: budget splits, vendor
+                    shortlists, milestone timeline, and cultural ritual checklists.
                   </p>
                 </div>
               </div>
@@ -383,7 +383,8 @@ export default function LandingPage() {
                     One-Click Booking & Syncing
                   </h3>
                   <p className="text-bg/75 text-sm leading-relaxed">
-                    Compare quotes, review contracts, secure dates, and sync all vendor production schedules into a unified master timeline automatically.
+                    Compare quotes, review contracts, secure dates, and sync all vendor production
+                    schedules into a unified master timeline automatically.
                   </p>
                 </div>
 
@@ -395,7 +396,8 @@ export default function LandingPage() {
                     Flawless Day-Of Execution
                   </h3>
                   <p className="text-bg/75 text-sm leading-relaxed">
-                    Rely on our real-time mobile run sheet to manage cues, vendor check-ins, tap-to-call contacts, and last-minute contingencies smoothly.
+                    Rely on our real-time mobile run sheet to manage cues, vendor check-ins,
+                    tap-to-call contacts, and last-minute contingencies smoothly.
                   </p>
                 </div>
               </div>
@@ -415,7 +417,8 @@ export default function LandingPage() {
               </h2>
             </div>
             <p className="text-ink/70 text-sm max-w-md">
-              Trained on thousands of high-end events across diverse traditions, cultures, and formats.
+              Trained on thousands of high-end events across diverse traditions, cultures, and
+              formats.
             </p>
           </div>
 
@@ -431,12 +434,13 @@ export default function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end">
-                <Badge variant="gold" className="w-fit mb-3">Weddings</Badge>
-                <h3 className="font-grotesk text-3xl font-bold text-bg mb-2">
-                  Bespoke Nuptials
-                </h3>
+                <Badge variant="gold" className="w-fit mb-3">
+                  Weddings
+                </Badge>
+                <h3 className="font-grotesk text-3xl font-bold text-bg mb-2">Bespoke Nuptials</h3>
                 <p className="text-bg/80 text-sm leading-relaxed">
-                  From intimate destination elopements to grand 3-day multi-ceremony celebrations with Sangeet, Mehendi, and Pheras.
+                  From intimate destination elopements to grand 3-day multi-ceremony celebrations
+                  with Sangeet, Mehendi, and Pheras.
                 </p>
               </div>
             </div>
@@ -452,12 +456,15 @@ export default function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end">
-                <Badge variant="orange" className="w-fit mb-3">Corporate</Badge>
+                <Badge variant="orange" className="w-fit mb-3">
+                  Corporate
+                </Badge>
                 <h3 className="font-grotesk text-3xl font-bold text-bg mb-2">
                   Conferences & Galas
                 </h3>
                 <p className="text-bg/80 text-sm leading-relaxed">
-                  Brand experiences, keynote summits, product launches, and VIP award receptions with seamless guest registration.
+                  Brand experiences, keynote summits, product launches, and VIP award receptions
+                  with seamless guest registration.
                 </p>
               </div>
             </div>
@@ -473,12 +480,13 @@ export default function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end">
-                <Badge variant="default" className="w-fit mb-3 bg-bg text-navy">Private Milestones</Badge>
-                <h3 className="font-grotesk text-3xl font-bold text-bg mb-2">
-                  Milestone Parties
-                </h3>
+                <Badge variant="default" className="w-fit mb-3 bg-bg text-navy">
+                  Private Milestones
+                </Badge>
+                <h3 className="font-grotesk text-3xl font-bold text-bg mb-2">Milestone Parties</h3>
                 <p className="text-bg/80 text-sm leading-relaxed">
-                  Decade birthdays, anniversaries, neighbourhood Diwali melas, and private club gatherings with custom themes.
+                  Decade birthdays, anniversaries, neighbourhood Diwali melas, and private club
+                  gatherings with custom themes.
                 </p>
               </div>
             </div>
@@ -505,7 +513,9 @@ export default function LandingPage() {
               <button
                 type="button"
                 onClick={() =>
-                  handlePromptChipClick("Plan a 150-guest royal wedding in Jaipur with ₹45 Lakhs budget")
+                  handlePromptChipClick(
+                    "Plan a 150-guest royal wedding in Jaipur with ₹45 Lakhs budget",
+                  )
                 }
                 className="text-xs px-3 py-1.5 rounded-pill bg-white/10 hover:bg-white/20 text-bg transition-colors cursor-pointer"
               >
@@ -536,9 +546,7 @@ export default function LandingPage() {
               {chatMessages.map((msg, i) => (
                 <div
                   key={i}
-                  className={`flex gap-3 ${
-                    msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                  className={`flex gap-3 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {msg.role === "ai" && (
                     <div className="w-8 h-8 rounded-full bg-gold text-ink flex items-center justify-center font-bold text-xs shrink-0">
@@ -604,7 +612,8 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  &ldquo;Festora AI cut our planning time in half. The vendor matching algorithm and automatic contract milestone tracking are genuinely revolutionary.&rdquo;
+                  &ldquo;Festora AI cut our planning time in half. The vendor matching algorithm and
+                  automatic contract milestone tracking are genuinely revolutionary.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
@@ -630,7 +639,8 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  &ldquo;We managed a 500-guest summit in Mumbai with zero friction. The real-time timeline rescheduling saved us during unexpected monsoon showers.&rdquo;
+                  &ldquo;We managed a 500-guest summit in Mumbai with zero friction. The real-time
+                  timeline rescheduling saved us during unexpected monsoon showers.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
@@ -656,7 +666,8 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-base text-ink leading-relaxed mb-6">
-                  &ldquo;The budget optimization scenarios alone saved our clients over ₹6 Lakhs while boosting decor quality. An absolute masterpiece tool.&rdquo;
+                  &ldquo;The budget optimization scenarios alone saved our clients over ₹6 Lakhs
+                  while boosting decor quality. An absolute masterpiece tool.&rdquo;
                 </p>
               </div>
               <div className="flex items-center gap-3 pt-4 border-t border-navy/8">
@@ -773,16 +784,19 @@ export default function LandingPage() {
                     <Check className="w-4 h-4 text-orange shrink-0" /> Unlimited guests & RSVPs
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-orange shrink-0" /> Advanced AI Copilot with tool execution
+                    <Check className="w-4 h-4 text-orange shrink-0" /> Advanced AI Copilot with tool
+                    execution
                   </li>
                   <li className="flex items-center gap-3">
                     <Check className="w-4 h-4 text-orange shrink-0" /> Verified elite vendor quoting
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-orange shrink-0" /> Real-time budget optimizer (3 scenarios)
+                    <Check className="w-4 h-4 text-orange shrink-0" /> Real-time budget optimizer (3
+                    scenarios)
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-orange shrink-0" /> Public celebration website & QR code
+                    <Check className="w-4 h-4 text-orange shrink-0" /> Public celebration website &
+                    QR code
                   </li>
                 </ul>
               </div>
@@ -819,7 +833,8 @@ export default function LandingPage() {
                     <Check className="w-4 h-4 text-navy shrink-0" /> Custom API & CRM integrations
                   </li>
                   <li className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-navy shrink-0" /> Dedicated concierge account manager
+                    <Check className="w-4 h-4 text-navy shrink-0" /> Dedicated concierge account
+                    manager
                   </li>
                 </ul>
               </div>
@@ -849,7 +864,9 @@ export default function LandingPage() {
               isOpen={activeFaq === 0}
               onToggle={() => setActiveFaq(activeFaq === 0 ? null : 0)}
             >
-              Our algorithm analyzes verified historical events, aesthetic preferences, geographic availability across top Indian cities, and pricing tiers to curate the ideal vendor shortlist tailored specifically to your budget.
+              Our algorithm analyzes verified historical events, aesthetic preferences, geographic
+              availability across top Indian cities, and pricing tiers to curate the ideal vendor
+              shortlist tailored specifically to your budget.
             </AccordionItem>
 
             <AccordionItem
@@ -857,7 +874,9 @@ export default function LandingPage() {
               isOpen={activeFaq === 1}
               onToggle={() => setActiveFaq(activeFaq === 1 ? null : 1)}
             >
-              Yes! Festora AI includes granular role-based permissions. You can invite partners as Co-Owners, clients with Reviewer access, vendors with timeline sync rights, and guests with RSVP view only.
+              Yes! Festora AI includes granular role-based permissions. You can invite partners as
+              Co-Owners, clients with Reviewer access, vendors with timeline sync rights, and guests
+              with RSVP view only.
             </AccordionItem>
 
             <AccordionItem
@@ -865,7 +884,9 @@ export default function LandingPage() {
               isOpen={activeFaq === 2}
               onToggle={() => setActiveFaq(activeFaq === 2 ? null : 2)}
             >
-              Yes! Through structured tool-calling, the assistant can add tasks, adjust budget allocations, recommend vendors, and group guests. Every modification displays a diff-and-confirm step so you stay in total control.
+              Yes! Through structured tool-calling, the assistant can add tasks, adjust budget
+              allocations, recommend vendors, and group guests. Every modification displays a
+              diff-and-confirm step so you stay in total control.
             </AccordionItem>
           </div>
         </section>
@@ -882,7 +903,8 @@ export default function LandingPage() {
                 Ready to transform your event planning?
               </h2>
               <p className="text-base sm:text-lg text-bg/80 mb-10 leading-relaxed">
-                Join thousands of elite planners and families creating unforgettable celebrations with Festora AI.
+                Join thousands of elite planners and families creating unforgettable celebrations
+                with Festora AI.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link href="/onboarding">
