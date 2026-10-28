@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, ArrowRight, Zap, Star, Calendar, Users } from "lucide-react";
 import Image from "next/image";
@@ -10,19 +10,31 @@ const AUTO_DISMISS_MS = 2000;
 
 // Floating feature nodes data
 const NODES = [
-  { icon: Sparkles,  label: "AI Blueprinting",     color: "#F1C40F", x: -52, y: -70 },
-  { icon: Calendar,  label: "Smart Timeline",       color: "#E67E22", x: 58,  y: -60 },
-  { icon: Users,     label: "Guest Intelligence",   color: "#F1C40F", x: -60, y: 60  },
-  { icon: Zap,       label: "Budget Precision",     color: "#E67E22", x: 52,  y: 72  },
-  { icon: Star,      label: "Vendor Network",       color: "#F1C40F", x: 0,   y: -88 },
+  { icon: Sparkles, label: "AI Blueprinting", color: "#F1C40F", x: -52, y: -70 },
+  { icon: Calendar, label: "Smart Timeline", color: "#E67E22", x: 58, y: -60 },
+  { icon: Users, label: "Guest Intelligence", color: "#F1C40F", x: -60, y: 60 },
+  { icon: Zap, label: "Budget Precision", color: "#E67E22", x: 52, y: 72 },
+  { icon: Star, label: "Vendor Network", color: "#F1C40F", x: 0, y: -88 },
 ];
 
 export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) {
-  const [mounted, setMounted]   = useState(false);
-  const [phase, setPhase]       = useState<"loading" | "reveal" | "hold" | "exit">("loading");
+  const [mounted, setMounted] = useState(false);
+  const [phase, setPhase] = useState<"loading" | "reveal" | "hold" | "exit">("loading");
   const [isVisible, setIsVisible] = useState(true);
-  const [stars, setStars] = useState<{ left: string; top: string; delay: number; duration: number }[]>([]);
+  const [stars, setStars] = useState<
+    { left: string; top: string; delay: number; duration: number }[]
+  >([]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleDismiss = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    sessionStorage.setItem("festora_intro_seen", "true");
+    setPhase("exit");
+    setTimeout(() => {
+      setIsVisible(false);
+      onComplete?.();
+    }, 350);
+  }, [onComplete]);
 
   useEffect(() => {
     setMounted(true);
@@ -30,10 +42,10 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
     setStars(
       Array.from({ length: 40 }, () => ({
         left: `${Math.random() * 100}%`,
-        top:  `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
         delay: Math.random() * 2,
         duration: 1 + Math.random() * 1.5,
-      }))
+      })),
     );
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -54,19 +66,7 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleDismiss = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    sessionStorage.setItem("festora_intro_seen", "true");
-    setPhase("exit");
-    // Wait for exit animation then unmount
-    setTimeout(() => {
-      setIsVisible(false);
-      onComplete?.();
-    }, 350);
-  };
+  }, [handleDismiss, onComplete]);
 
   if (!mounted || !isVisible) return null;
 
@@ -87,13 +87,19 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.28, 0.18] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full"
-              style={{ background: "radial-gradient(circle, #E67E22 0%, transparent 70%)", filter: "blur(90px)" }}
+              style={{
+                background: "radial-gradient(circle, #E67E22 0%, transparent 70%)",
+                filter: "blur(90px)",
+              }}
             />
             <motion.div
               animate={{ scale: [1.1, 1, 1.1], opacity: [0.14, 0.24, 0.14] }}
               transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1.5 }}
               className="absolute -bottom-40 -right-40 w-[520px] h-[520px] rounded-full"
-              style={{ background: "radial-gradient(circle, #F1C40F 0%, transparent 70%)", filter: "blur(90px)" }}
+              style={{
+                background: "radial-gradient(circle, #F1C40F 0%, transparent 70%)",
+                filter: "blur(90px)",
+              }}
             />
             {/* Subtle star field — generated client-side to avoid hydration mismatch */}
             {stars.map((star, i) => (
@@ -108,9 +114,10 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
           </div>
 
           {/* ── 3D Gyroscopic Ring System ──────────────────────────── */}
-          <div className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center mb-10 shrink-0"
-               style={{ transformStyle: "preserve-3d" }}>
-
+          <div
+            className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center mb-10 shrink-0"
+            style={{ transformStyle: "preserve-3d" }}
+          >
             {/* Ring 1 — Gold, tilted 65° X */}
             <motion.div
               animate={{ rotateZ: 360 }}
@@ -118,7 +125,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               className="absolute inset-0 rounded-full"
               style={{
                 border: "2px solid rgba(241,196,15,0.45)",
-                boxShadow: "0 0 28px 4px rgba(241,196,15,0.18), inset 0 0 18px rgba(241,196,15,0.06)",
+                boxShadow:
+                  "0 0 28px 4px rgba(241,196,15,0.18), inset 0 0 18px rgba(241,196,15,0.06)",
                 transform: "rotateX(65deg) rotateY(20deg)",
                 transformStyle: "preserve-3d",
               }}
@@ -131,7 +139,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               className="absolute inset-6 rounded-full"
               style={{
                 border: "2px solid rgba(230,126,34,0.55)",
-                boxShadow: "0 0 24px 4px rgba(230,126,34,0.18), inset 0 0 12px rgba(230,126,34,0.06)",
+                boxShadow:
+                  "0 0 24px 4px rgba(230,126,34,0.18), inset 0 0 12px rgba(230,126,34,0.06)",
                 transform: "rotateX(25deg) rotateY(65deg)",
                 transformStyle: "preserve-3d",
               }}
@@ -156,9 +165,7 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               className="absolute inset-0 rounded-full"
               style={{ transform: "rotateX(65deg) rotateY(20deg)", transformStyle: "preserve-3d" }}
             >
-              <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F1C40F] shadow-[0_0_12px_4px_rgba(241,196,15,0.5)]"
-              />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#F1C40F] shadow-[0_0_12px_4px_rgba(241,196,15,0.5)]" />
             </motion.div>
 
             {/* Floating Feature Nodes */}
@@ -166,19 +173,31 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               <motion.div
                 key={label}
                 initial={{ opacity: 0, scale: 0.7 }}
-                animate={phase !== "loading"
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      y: [y, y - 8, y],
-                      x: [x, x + (idx % 2 === 0 ? 4 : -4), x],
-                    }
-                  : { opacity: 0 }}
+                animate={
+                  phase !== "loading"
+                    ? {
+                        opacity: 1,
+                        scale: 1,
+                        y: [y, y - 8, y],
+                        x: [x, x + (idx % 2 === 0 ? 4 : -4), x],
+                      }
+                    : { opacity: 0 }
+                }
                 transition={{
                   opacity: { delay: 0.8 + idx * 0.15, duration: 0.5 },
-                  scale:   { delay: 0.8 + idx * 0.15, duration: 0.5 },
-                  y: { repeat: Infinity, duration: 3 + idx * 0.4, ease: "easeInOut", delay: 0.8 + idx * 0.15 },
-                  x: { repeat: Infinity, duration: 3.5 + idx * 0.4, ease: "easeInOut", delay: 0.8 + idx * 0.15 },
+                  scale: { delay: 0.8 + idx * 0.15, duration: 0.5 },
+                  y: {
+                    repeat: Infinity,
+                    duration: 3 + idx * 0.4,
+                    ease: "easeInOut",
+                    delay: 0.8 + idx * 0.15,
+                  },
+                  x: {
+                    repeat: Infinity,
+                    duration: 3.5 + idx * 0.4,
+                    ease: "easeInOut",
+                    delay: 0.8 + idx * 0.15,
+                  },
                 }}
                 className="absolute flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 backdrop-blur-lg text-[10px] font-extrabold whitespace-nowrap shadow-xl"
                 style={{
@@ -200,16 +219,28 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
             <motion.div
               initial={{ scale: 0.3, rotateY: 180, opacity: 0 }}
               animate={phase !== "loading" ? { scale: 1, rotateY: 0, opacity: 1 } : {}}
-              transition={{ delay: 0.2, duration: 1.0, type: "spring", stiffness: 130, damping: 16 }}
+              transition={{
+                delay: 0.2,
+                duration: 1.0,
+                type: "spring",
+                stiffness: 130,
+                damping: 16,
+              }}
               className="relative z-20 w-32 h-32 rounded-[28px] flex items-center justify-center"
               style={{
                 background: "rgba(255,255,255,0.96)",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.55), 0 0 0 2px rgba(255,255,255,0.9), 0 0 60px rgba(241,196,15,0.2)",
+                boxShadow:
+                  "0 24px 60px rgba(0,0,0,0.55), 0 0 0 2px rgba(255,255,255,0.9), 0 0 60px rgba(241,196,15,0.2)",
                 transformStyle: "preserve-3d",
               }}
             >
-              <div className="absolute inset-0 rounded-[28px]"
-                   style={{ background: "linear-gradient(135deg, rgba(241,196,15,0.12) 0%, transparent 50%, rgba(230,126,34,0.12) 100%)" }} />
+              <div
+                className="absolute inset-0 rounded-[28px]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(241,196,15,0.12) 0%, transparent 50%, rgba(230,126,34,0.12) 100%)",
+                }}
+              />
               <Image
                 src="/brand/logo.png"
                 alt="Festora Logo"
@@ -249,8 +280,8 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               transition={{ delay: 1.35, duration: 0.7 }}
               className="text-sm text-white/70 max-w-sm mx-auto leading-relaxed"
             >
-              Autonomous celebration orchestration for luxury weddings,
-              milestone birthdays, and community festivals.
+              Autonomous celebration orchestration for luxury weddings, milestone birthdays, and
+              community festivals.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -288,11 +319,18 @@ export function Opening3DAnimation({ onComplete }: { onComplete?: () => void }) 
               transition={{ delay: 2.0, duration: 0.4 }}
               className="flex items-center justify-center gap-2 pt-1"
             >
-              <div className="h-[2px] w-24 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.12)" }}>
+              <div
+                className="h-[2px] w-24 rounded-full overflow-hidden"
+                style={{ background: "rgba(255,255,255,0.12)" }}
+              >
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={phase !== "loading" ? { width: "100%" } : {}}
-                  transition={{ delay: 2.0, duration: (AUTO_DISMISS_MS - 2000) / 1000, ease: "linear" }}
+                  transition={{
+                    delay: 2.0,
+                    duration: (AUTO_DISMISS_MS - 2000) / 1000,
+                    ease: "linear",
+                  }}
                   className="h-full rounded-full"
                   style={{ background: "rgba(241,196,15,0.7)" }}
                 />

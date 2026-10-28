@@ -26,8 +26,36 @@ import {
   MapPin,
   ExternalLink,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
+
+interface BudgetDeltaWidget {
+  category: string;
+  previousAllocated: string;
+  newAllocated: string;
+  offsetCategory: string;
+  savings: string;
+  reason: string;
+}
+
+interface CatererWidget {
+  name: string;
+  rating: number;
+  price: string;
+  match: number;
+}
+
+interface TaskWidget {
+  title: string;
+  due: string;
+  assignee: string;
+}
+
+interface InvitationWidget {
+  content: string;
+}
+
+type WidgetData = Record<string, string | number> | CatererWidget[];
 
 interface Message {
   id: string;
@@ -35,7 +63,7 @@ interface Message {
   timestamp: string;
   text: string;
   interactiveWidget?: "budget-delta" | "caterer-shortlist" | "task-created" | "invitation-draft";
-  widgetData?: any;
+  widgetData?: WidgetData;
 }
 
 const INITIAL_MESSAGES: Message[] = [
@@ -43,13 +71,13 @@ const INITIAL_MESSAGES: Message[] = [
     id: "m-1",
     sender: "ai",
     timestamp: "10:30 AM",
-    text: "Namaste Priya! I am your Festora AI Planning Copilot. I'm actively analyzing **Ananya & Rohan's Royal Wedding** (47 days remaining). How can I assist your logistics today? I can adjust your budget allocations, resolve vendor scheduling clashes, or draft bilingual invitation wording."
+    text: "Namaste Priya! I am your Festora AI Planning Copilot. I'm actively analyzing **Ananya & Rohan's Royal Wedding** (47 days remaining). How can I assist your logistics today? I can adjust your budget allocations, resolve vendor scheduling clashes, or draft bilingual invitation wording.",
   },
   {
     id: "m-2",
     sender: "user",
     timestamp: "10:32 AM",
-    text: "Can we review our catering budget? We need to add a dedicated Jain pure-vegetarian counter for 40 elders without increasing our total ₹45,00,000 budget."
+    text: "Can we review our catering budget? We need to add a dedicated Jain pure-vegetarian counter for 40 elders without increasing our total ₹45,00,000 budget.",
   },
   {
     id: "m-3",
@@ -63,9 +91,9 @@ const INITIAL_MESSAGES: Message[] = [
       newAllocated: "₹13,50,000",
       offsetCategory: "Stationery & Gift Boxes",
       savings: "₹1,50,000",
-      reason: "Dedicated Jain kitchen counter with separate silver cutlery and clay sigris."
-    }
-  }
+      reason: "Dedicated Jain kitchen counter with separate silver cutlery and clay sigris.",
+    },
+  },
 ];
 
 export default function AIAssistantPage() {
@@ -92,7 +120,7 @@ export default function AIAssistantPage() {
       id: `user-${Date.now()}`,
       sender: "user",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      text: prompt
+      text: prompt,
     };
 
     setMessages((prev) => [...prev, userMsg]);
@@ -111,12 +139,21 @@ export default function AIAssistantPage() {
           text: "Here is the top-rated catering shortlist for Samode Palace in Jaipur, filtered for authentic Rajputana banquet and pure Jain separation:",
           interactiveWidget: "caterer-shortlist",
           widgetData: [
-            { name: "Khyber Royal Rajasthani Gastronomy", price: "₹2,400 / plate", rating: 4.9, match: 96 },
+            {
+              name: "Khyber Royal Rajasthani Gastronomy",
+              price: "₹2,400 / plate",
+              rating: 4.9,
+              match: 96,
+            },
             { name: "Marwar Palace Caterers", price: "₹2,200 / plate", rating: 4.8, match: 92 },
-            { name: "Saffron Spices Jaipur", price: "₹2,800 / plate", rating: 4.7, match: 89 }
-          ]
+            { name: "Saffron Spices Jaipur", price: "₹2,800 / plate", rating: 4.7, match: 89 },
+          ],
         };
-      } else if (prompt.toLowerCase().includes("task") || prompt.toLowerCase().includes("timeline") || prompt.toLowerCase().includes("schedule")) {
+      } else if (
+        prompt.toLowerCase().includes("task") ||
+        prompt.toLowerCase().includes("timeline") ||
+        prompt.toLowerCase().includes("schedule")
+      ) {
         aiResponse = {
           id: `ai-${Date.now()}`,
           sender: "ai",
@@ -127,10 +164,13 @@ export default function AIAssistantPage() {
             title: "Confirm Manganiyar Folk Band Arrival & Sound Check",
             phase: "Phase 2: Vendor Curation",
             due: "In 3 Days (Nov 15)",
-            assignee: "Priya Sharma (Lead Planner)"
-          }
+            assignee: "Priya Sharma (Lead Planner)",
+          },
         };
-      } else if (prompt.toLowerCase().includes("invit") || prompt.toLowerCase().includes("wording")) {
+      } else if (
+        prompt.toLowerCase().includes("invit") ||
+        prompt.toLowerCase().includes("wording")
+      ) {
         aiResponse = {
           id: `ai-${Date.now()}`,
           sender: "ai",
@@ -139,15 +179,16 @@ export default function AIAssistantPage() {
           interactiveWidget: "invitation-draft",
           widgetData: {
             tone: "Royal Heritage",
-            content: "Under the golden Rajasthan skies, Shri & Smt. Rajesh Mehta request the pleasure of your company at the wedding celebrations of their daughter Ananya with Rohan, son of Shri & Smt. Ashok Verma. Samode Palace, Jaipur."
-          }
+            content:
+              "Under the golden Rajasthan skies, Shri & Smt. Rajesh Mehta request the pleasure of your company at the wedding celebrations of their daughter Ananya with Rohan, son of Shri & Smt. Ashok Verma. Samode Palace, Jaipur.",
+          },
         };
       } else {
         aiResponse = {
           id: `ai-${Date.now()}`,
           sender: "ai",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-          text: `I have analyzed your request regarding "${prompt}". I cross-referenced this against your 150-guest parameters and current budget allocations. All constraints remain within safe buffers.`
+          text: `I have analyzed your request regarding "${prompt}". I cross-referenced this against your 150-guest parameters and current budget allocations. All constraints remain within safe buffers.`,
         };
       }
 
@@ -160,7 +201,7 @@ export default function AIAssistantPage() {
     "Catering & Jain counter options",
     "Add sound check task to timeline",
     "Draft formal bilingual wedding invitation",
-    "Check rain contingency at Samode Palace"
+    "Check rain contingency at Samode Palace",
   ];
 
   return (
@@ -169,7 +210,9 @@ export default function AIAssistantPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">AI Intelligence</span>
+            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">
+              AI Intelligence
+            </span>
             <span className="text-xs text-[var(--ink)]/50">•</span>
             <span className="text-xs font-semibold text-[var(--gold)] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" /> Gemini 1.5 Flash Copilot Active
@@ -179,7 +222,8 @@ export default function AIAssistantPage() {
             AI Planning Assistant
           </h1>
           <p className="text-sm text-[var(--ink)]/70 mt-1">
-            Generative context-aware copilot with real-time tool calling: modify budgets, schedule tasks, and curate vendors.
+            Generative context-aware copilot with real-time tool calling: modify budgets, schedule
+            tasks, and curate vendors.
           </p>
         </div>
 
@@ -198,7 +242,9 @@ export default function AIAssistantPage() {
           <div className="px-6 py-3 bg-[var(--bg)] border-b border-[var(--navy)]/10 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[var(--orange)] animate-pulse" />
-              <span className="font-bold text-[var(--navy)]">Ananya &amp; Rohan&apos;s Royal Wedding</span>
+              <span className="font-bold text-[var(--navy)]">
+                Ananya &amp; Rohan&apos;s Royal Wedding
+              </span>
               <span className="text-[var(--ink)]/40">•</span>
               <span className="text-[var(--ink)]/60">Jaipur (47 days remaining)</span>
             </div>
@@ -209,8 +255,13 @@ export default function AIAssistantPage() {
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {messages.map((msg) => {
               const isAI = msg.sender === "ai";
+              const widget = !Array.isArray(msg.widgetData) ? msg.widgetData : undefined;
+              const caterers = Array.isArray(msg.widgetData) ? msg.widgetData : [];
               return (
-                <div key={msg.id} className={`flex gap-3.5 ${isAI ? "items-start" : "items-start flex-row-reverse"}`}>
+                <div
+                  key={msg.id}
+                  className={`flex gap-3.5 ${isAI ? "items-start" : "items-start flex-row-reverse"}`}
+                >
                   {/* Avatar */}
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold shadow-md ${
@@ -225,7 +276,9 @@ export default function AIAssistantPage() {
                   {/* Bubble */}
                   <div className={`max-w-[80%] space-y-2 ${isAI ? "" : "text-right"}`}>
                     <div className="flex items-center gap-2 text-[10px] text-[var(--ink)]/50 px-1">
-                      <span className="font-bold text-[var(--navy)]">{isAI ? "Festora AI Copilot" : "Priya Sharma"}</span>
+                      <span className="font-bold text-[var(--navy)]">
+                        {isAI ? "Festora AI Copilot" : "Priya Sharma"}
+                      </span>
                       <span>•</span>
                       <span>{msg.timestamp}</span>
                     </div>
@@ -247,32 +300,43 @@ export default function AIAssistantPage() {
                               <DollarSign className="w-3.5 h-3.5 text-[var(--orange)]" />
                               Budget Reallocation Proposal
                             </span>
-                            <Badge variant="gold" className="text-[10px]">Pending Approval</Badge>
+                            <Badge variant="gold" className="text-[10px]">
+                              Pending Approval
+                            </Badge>
                           </div>
 
                           <div className="grid grid-cols-2 gap-3 text-xs">
                             <div>
-                              <span className="text-[10px] text-[var(--ink)]/50 block">Increase Allocation</span>
-                              <div className="font-bold text-[var(--navy)]">{msg.widgetData.category}</div>
+                              <span className="text-[10px] text-[var(--ink)]/50 block">
+                                Increase Allocation
+                              </span>
+                              <div className="font-bold text-[var(--navy)]">{widget?.category}</div>
                               <div className="text-[11px] text-[var(--orange)] font-extrabold mt-0.5">
-                                {msg.widgetData.previousAllocated} → {msg.widgetData.newAllocated}
+                                {widget?.previousAllocated} → {widget?.newAllocated}
                               </div>
                             </div>
                             <div>
-                              <span className="text-[10px] text-[var(--ink)]/50 block">Offset Savings</span>
-                              <div className="font-bold text-[var(--navy)]">{msg.widgetData.offsetCategory}</div>
+                              <span className="text-[10px] text-[var(--ink)]/50 block">
+                                Offset Savings
+                              </span>
+                              <div className="font-bold text-[var(--navy)]">
+                                {widget?.offsetCategory}
+                              </div>
                               <div className="text-[11px] font-bold text-[var(--navy)] mt-0.5">
-                                -{msg.widgetData.savings}
+                                -{widget?.savings}
                               </div>
                             </div>
                           </div>
 
-                          <p className="text-[11px] text-[var(--ink)]/70 italic">&ldquo;{msg.widgetData.reason}&rdquo;</p>
+                          <p className="text-[11px] text-[var(--ink)]/70 italic">
+                            &ldquo;{widget?.reason}&rdquo;
+                          </p>
 
                           <div className="pt-2 flex justify-end gap-2">
                             {budgetApplied ? (
                               <span className="text-xs font-bold text-[var(--navy)] flex items-center gap-1">
-                                <Check className="w-4 h-4 text-[var(--navy)]" /> Approved & Synced with Budget
+                                <Check className="w-4 h-4 text-[var(--navy)]" /> Approved & Synced
+                                with Budget
                               </span>
                             ) : (
                               <Button
@@ -291,14 +355,21 @@ export default function AIAssistantPage() {
                       {/* Interactive Widget: Caterer Shortlist */}
                       {msg.interactiveWidget === "caterer-shortlist" && msg.widgetData && (
                         <div className="mt-4 space-y-2">
-                          {msg.widgetData.map((caterer: any, idx: number) => (
-                            <div key={idx} className="p-3 bg-white rounded-xl border border-[var(--navy)]/10 flex items-center justify-between shadow-sm">
+                          {caterers.map((caterer, idx) => (
+                            <div
+                              key={idx}
+                              className="p-3 bg-white rounded-xl border border-[var(--navy)]/10 flex items-center justify-between shadow-sm"
+                            >
                               <div>
-                                <h5 className="font-bold text-xs text-[var(--navy)]">{caterer.name}</h5>
+                                <h5 className="font-bold text-xs text-[var(--navy)]">
+                                  {caterer.name}
+                                </h5>
                                 <div className="text-[11px] text-[var(--ink)]/60 flex items-center gap-2 mt-0.5">
                                   <span>★ {caterer.rating}</span>
                                   <span>•</span>
-                                  <span className="font-semibold text-[var(--navy)]">{caterer.price}</span>
+                                  <span className="font-semibold text-[var(--navy)]">
+                                    {caterer.price}
+                                  </span>
                                 </div>
                               </div>
                               <span className="text-[11px] font-bold text-[var(--orange)]">
@@ -313,9 +384,15 @@ export default function AIAssistantPage() {
                       {msg.interactiveWidget === "task-created" && msg.widgetData && (
                         <div className="mt-4 p-3 bg-white rounded-xl border border-[var(--navy)]/15 shadow-sm flex items-center justify-between">
                           <div className="space-y-0.5">
-                            <span className="text-[10px] uppercase font-bold text-[var(--navy)]">✓ Task Scheduled</span>
-                            <h5 className="text-xs font-bold text-[var(--navy)]">{msg.widgetData.title}</h5>
-                            <p className="text-[11px] text-[var(--ink)]/60">{msg.widgetData.due} • {msg.widgetData.assignee}</p>
+                            <span className="text-[10px] uppercase font-bold text-[var(--navy)]">
+                              ✓ Task Scheduled
+                            </span>
+                            <h5 className="text-xs font-bold text-[var(--navy)]">
+                              {widget?.title}
+                            </h5>
+                            <p className="text-[11px] text-[var(--ink)]/60">
+                              {widget?.due} • {widget?.assignee}
+                            </p>
                           </div>
                           <Badge variant="navy">Phase 2</Badge>
                         </div>
@@ -324,8 +401,12 @@ export default function AIAssistantPage() {
                       {/* Interactive Widget: Invitation Draft */}
                       {msg.interactiveWidget === "invitation-draft" && msg.widgetData && (
                         <div className="mt-4 p-4 bg-white rounded-xl border border-[var(--navy)]/15 shadow-sm space-y-2">
-                          <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Royal Heritage Wording</span>
-                          <p className="text-xs italic text-[var(--ink)] leading-relaxed">&ldquo;{msg.widgetData.content}&rdquo;</p>
+                          <span className="text-[10px] uppercase font-bold text-[var(--gold)]">
+                            Royal Heritage Wording
+                          </span>
+                          <p className="text-xs italic text-[var(--ink)] leading-relaxed">
+                            &ldquo;{widget?.content}&rdquo;
+                          </p>
                           <div className="pt-2 flex justify-end">
                             <Button
                               variant="ghost"
@@ -403,7 +484,9 @@ export default function AIAssistantPage() {
                   type="button"
                   onClick={() => setIsRecording(!isRecording)}
                   className={`p-2 rounded-xl transition-all ${
-                    isRecording ? "bg-[var(--orange)] text-[var(--ink)] animate-pulse" : "text-[var(--ink)]/50 hover:text-[var(--navy)]"
+                    isRecording
+                      ? "bg-[var(--orange)] text-[var(--ink)] animate-pulse"
+                      : "text-[var(--ink)]/50 hover:text-[var(--navy)]"
                   }`}
                 >
                   <Mic className="w-4 h-4" />
@@ -426,7 +509,10 @@ export default function AIAssistantPage() {
         {/* Right: Plan Context Sidebar (4 cols) */}
         <div className="lg:col-span-4 space-y-4">
           {/* Active Event Summary */}
-          <GlassSurface elevation="card" className="p-4 rounded-2xl border border-[var(--navy)]/10 space-y-4">
+          <GlassSurface
+            elevation="card"
+            className="p-4 rounded-2xl border border-[var(--navy)]/10 space-y-4"
+          >
             <div className="relative h-32 rounded-xl overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop"
@@ -437,7 +523,9 @@ export default function AIAssistantPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/80 to-transparent" />
               <div className="absolute bottom-3 left-3 right-3 text-white">
-                <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Royal Heritage</span>
+                <span className="text-[10px] uppercase font-bold text-[var(--gold)]">
+                  Royal Heritage
+                </span>
                 <h3 className="text-sm font-bold leading-tight">Ananya & Rohan</h3>
                 <p className="text-[10px] text-white/80">Nov 18, 2026 • Jaipur</p>
               </div>
@@ -445,11 +533,15 @@ export default function AIAssistantPage() {
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="p-2.5 bg-white rounded-xl border border-[var(--navy)]/10">
-                <span className="text-[10px] text-[var(--ink)]/50 block font-bold">Total Budget</span>
+                <span className="text-[10px] text-[var(--ink)]/50 block font-bold">
+                  Total Budget
+                </span>
                 <span className="font-extrabold text-[var(--navy)]">₹45,00,000</span>
               </div>
               <div className="p-2.5 bg-white rounded-xl border border-[var(--navy)]/10">
-                <span className="text-[10px] text-[var(--ink)]/50 block font-bold">Health Score</span>
+                <span className="text-[10px] text-[var(--ink)]/50 block font-bold">
+                  Health Score
+                </span>
                 <span className="font-extrabold text-[var(--navy)]">92 / 100</span>
               </div>
             </div>
@@ -465,17 +557,23 @@ export default function AIAssistantPage() {
             <div className="space-y-2 text-xs">
               <div className="p-2.5 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10">
                 <div className="font-bold text-[var(--navy)]">Sunset Timing: 17:48 IST</div>
-                <div className="text-[11px] text-[var(--ink)]/60">Varmala outdoor photography scheduled at 16:30 for golden hour.</div>
+                <div className="text-[11px] text-[var(--ink)]/60">
+                  Varmala outdoor photography scheduled at 16:30 for golden hour.
+                </div>
               </div>
 
               <div className="p-2.5 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10">
                 <div className="font-bold text-[var(--orange)]">Jain Dietary Allocation</div>
-                <div className="text-[11px] text-[var(--ink)]/60">40 guests identified with strict pure-vegetarian dietary needs.</div>
+                <div className="text-[11px] text-[var(--ink)]/60">
+                  40 guests identified with strict pure-vegetarian dietary needs.
+                </div>
               </div>
 
               <div className="p-2.5 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10">
                 <div className="font-bold text-[var(--navy)]">Drone Flight Clearance</div>
-                <div className="text-[11px] text-[var(--ink)]/60">Samode heritage district aerial permit approved.</div>
+                <div className="text-[11px] text-[var(--ink)]/60">
+                  Samode heritage district aerial permit approved.
+                </div>
               </div>
             </div>
           </div>

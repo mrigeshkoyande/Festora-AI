@@ -15,10 +15,18 @@ export const PlanGenerationRequestSchema = z.object({
     message: "Invalid target date format",
   }),
   city: z.string().min(2, "City is required").max(100),
-  guestCount: z.number().int().min(1, "At least 1 guest required").max(25000, "Guest count exceeds limit"),
-  totalBudget: z.number().min(1000, "Minimum budget is 1,000").max(1000000000, "Budget exceeds limit"),
+  guestCount: z
+    .number()
+    .int()
+    .min(1, "At least 1 guest required")
+    .max(25000, "Guest count exceeds limit"),
+  totalBudget: z
+    .number()
+    .min(1000, "Minimum budget is 1,000")
+    .max(1000000000, "Budget exceeds limit"),
   currency: z.string().min(3).max(3).default("INR"),
   styleVibe: z.string().max(100).default("Royal Heritage"),
+  priorities: z.array(z.string().max(100)).max(10).optional(),
   specialNeeds: z.string().max(500).optional().default(""),
 });
 
@@ -30,7 +38,13 @@ export type PlanGenerationRequest = z.infer<typeof PlanGenerationRequestSchema>;
 export const GuestRosterSchema = z.object({
   name: z.string().min(2, "Name required").max(100),
   side: z.enum(["Bride's Side", "Groom's Side", "Mutual", "VIP", "Corporate"]),
-  dietary: z.enum(["Jain Pure Veg", "Rajasthani Vegetarian", "Non-Vegetarian", "Vegan", "Continental"]),
+  dietary: z.enum([
+    "Jain Pure Veg",
+    "Rajasthani Vegetarian",
+    "Non-Vegetarian",
+    "Vegan",
+    "Continental",
+  ]),
   email: z.string().email().optional(),
   phone: z.string().optional(),
   rsvpStatus: z.enum(["confirmed", "pending", "declined"]).default("pending"),

@@ -22,13 +22,8 @@ import {
   X,
   Sparkles,
 } from "lucide-react";
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { GlassSurface } from "@/components/ui/GlassSurface";
-
-function cn(...inputs: (string | undefined | null | false)[]) {
-  return twMerge(clsx(inputs));
-}
+import { cn } from "@/lib/utils";
 
 export interface WorkspaceShellProps {
   children: React.ReactNode;
@@ -67,9 +62,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
               className="object-contain"
             />
           </div>
-          <span className="font-grotesk font-extrabold text-xl text-navy">
-            Festora AI
-          </span>
+          <span className="font-grotesk font-extrabold text-xl text-navy">Festora AI</span>
         </Link>
 
         {/* Sidebar Nav Items */}
@@ -86,12 +79,10 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
                   "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all",
                   isActive
                     ? "bg-navy text-bg shadow-sm"
-                    : "text-ink/75 hover:bg-navy/6 hover:text-navy"
+                    : "text-ink/75 hover:bg-navy/6 hover:text-navy",
                 )}
               >
-                <span className={cn(isActive ? "text-bg" : "text-navy/70")}>
-                  {item.icon}
-                </span>
+                <span className={cn(isActive ? "text-bg" : "text-navy/70")}>{item.icon}</span>
                 <span>{item.label}</span>
               </Link>
             );
@@ -106,9 +97,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
             </span>
             <span className="w-2 h-2 rounded-full bg-orange animate-pulse" />
           </div>
-          <p className="text-xs font-bold text-navy truncate">
-            Ananya &amp; Rohan&apos;s Wedding
-          </p>
+          <p className="text-xs font-bold text-navy truncate">Ananya &amp; Rohan&apos;s Wedding</p>
           <p className="text-[11px] text-ink/60 mt-0.5">Jaipur • 47 days to go</p>
         </div>
       </aside>
@@ -124,9 +113,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
             <div className="flex items-center justify-between mb-8">
               <Link href="/" className="flex items-center gap-2">
                 <Image src="/brand/logo.png" alt="Logo" width={28} height={28} />
-                <span className="font-grotesk font-extrabold text-lg text-navy">
-                  Festora AI
-                </span>
+                <span className="font-grotesk font-extrabold text-lg text-navy">Festora AI</span>
               </Link>
               <button onClick={() => setMobileSidebarOpen(false)}>
                 <X className="w-5 h-5 text-ink/60" />
@@ -140,9 +127,7 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
                   onClick={() => setMobileSidebarOpen(false)}
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all",
-                    pathname === item.href
-                      ? "bg-navy text-bg"
-                      : "text-ink/75 hover:bg-navy/8"
+                    pathname === item.href ? "bg-navy text-bg" : "text-ink/75 hover:bg-navy/8",
                   )}
                 >
                   {item.icon}
@@ -179,7 +164,10 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="p-2.5 rounded-full hover:bg-navy/8 text-navy relative" title="Notifications">
+            <button
+              className="p-2.5 rounded-full hover:bg-navy/8 text-navy relative"
+              title="Notifications"
+            >
               <Bell className="w-4 h-4" />
               <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-orange" />
             </button>
@@ -194,7 +182,11 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
         </header>
 
         {/* Page Content */}
-        <main id="main-content" tabIndex={-1} className="flex-1 px-6 md:px-10 py-8 max-w-7xl w-full mx-auto outline-none">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex-1 px-6 md:px-10 py-8 max-w-7xl w-full mx-auto outline-none"
+        >
           {children}
         </main>
       </div>
