@@ -51,4 +51,40 @@ describe("AI Dual-Engine Provider & Deterministic Fallback", () => {
     // Verify risk matrix
     assert.ok(plan.riskMatrix.length > 0);
   });
+
+  it("falls back after a Gemini failure and uses the configured model endpoint", async () => {
+    const previousKey = process.env.GEMINI_API_KEY;
+    const previousModel = process.env.GEMINI_MODEL;
+    const previousFetch = globalThis.fetch;
+    let requestedUrl = "";
+    process.env.GEMINI_API_KEY = "test-key";
+    process.env.GEMINI_MODEL = "gemini-test-model";
+    globalThis.fetch = async (request) => {
+      requestedUrl = String(request);
+      throw new Error("simulated upstream failure");
+    };
+
+    try {
+      const plan = await generateEventPlan({
+        eventType: "Wedding",
+        title: "Fallback Test",
+        targetDate: "2026-12-20",
+        city: "Jaipur",
+        guestCount: 20,
+        totalBudget: 100000,
+        currency: "INR",
+        styleVibe: "Classic",
+        specialNeeds: "None",
+      });
+      assert.match(requestedUrl, /models\/gemini-test-model:generateContent/);
+      assert.equal(plan.title, "Fallback Test");
+      assert.ok(plan.budgetCategories.length > 0);
+    } finally {
+      globalThis.fetch = previousFetch;
+      if (previousKey === undefined) delete process.env.GEMINI_API_KEY;
+      else process.env.GEMINI_API_KEY = previousKey;
+      if (previousModel === undefined) delete process.env.GEMINI_MODEL;
+      else process.env.GEMINI_MODEL = previousModel;
+    }
+  });
 });

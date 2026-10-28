@@ -95,5 +95,35 @@ describe("Runtime Data Validation Schemas (Zod)", () => {
     };
 
     assert.equal(BudgetAdjustmentSchema.safeParse(invalidAdj).success, false);
+    assert.equal(
+      BudgetAdjustmentSchema.safeParse({ categoryName: "", percentage: 0 }).success,
+      false,
+    );
+  });
+
+  it("applies safe defaults and rejects invalid optional fields", () => {
+    const parsed = PlanGenerationRequestSchema.parse({
+      eventType: "Wedding",
+      title: "Defaults",
+      targetDate: "2026-11-20",
+      city: "Jaipur",
+      guestCount: 10,
+      totalBudget: 1000,
+    });
+    assert.equal(parsed.currency, "INR");
+    assert.equal(parsed.styleVibe, "Royal Heritage");
+    assert.deepEqual(parsed.priorities, undefined);
+    assert.equal(
+      PlanGenerationRequestSchema.safeParse({
+        eventType: "Wedding",
+        title: "Invalid priorities",
+        targetDate: "2026-11-20",
+        city: "Jaipur",
+        guestCount: 10,
+        totalBudget: 1000,
+        priorities: Array.from({ length: 11 }, () => "priority"),
+      }).success,
+      false,
+    );
   });
 });

@@ -11,7 +11,13 @@ describe("Seating Logistics & Capacity Verification", () => {
   it("detects over-capacity violations correctly", () => {
     const tables: SeatingTable[] = [
       { id: "t1", name: "Table 1", capacity: 8, shape: "round", assignedGuestIds: ["g1", "g2"] },
-      { id: "t2", name: "Table 2", capacity: 4, shape: "round", assignedGuestIds: ["g3", "g4", "g5", "g6", "g7"] },
+      {
+        id: "t2",
+        name: "Table 2",
+        capacity: 4,
+        shape: "round",
+        assignedGuestIds: ["g3", "g4", "g5", "g6", "g7"],
+      },
     ];
 
     const result = validateTableCapacities(tables);
@@ -34,8 +40,20 @@ describe("Seating Logistics & Capacity Verification", () => {
 
   it("auto-arranges seating clustering VIPs at Table 1 and respecting capacity", () => {
     const guests: GuestItem[] = [
-      { id: "g1", name: "Grandmother", isVIP: true, side: "Bride's Side", dietary: "Jain Pure Veg" },
-      { id: "g2", name: "Grandfather", isVIP: true, side: "Bride's Side", dietary: "Jain Pure Veg" },
+      {
+        id: "g1",
+        name: "Grandmother",
+        isVIP: true,
+        side: "Bride's Side",
+        dietary: "Jain Pure Veg",
+      },
+      {
+        id: "g2",
+        name: "Grandfather",
+        isVIP: true,
+        side: "Bride's Side",
+        dietary: "Jain Pure Veg",
+      },
       { id: "g3", name: "Friend A", isVIP: false, side: "Groom's Side", dietary: "Non-Vegetarian" },
       { id: "g4", name: "Friend B", isVIP: false, side: "Groom's Side", dietary: "Non-Vegetarian" },
     ];
@@ -54,5 +72,38 @@ describe("Seating Logistics & Capacity Verification", () => {
     for (const table of arranged.arrangedTables) {
       assert.ok(table.assignedGuestIds.length <= table.capacity);
     }
+  });
+
+  it("reports empty and over-capacity edge cases without throwing", () => {
+    assert.deepEqual(validateTableCapacities([]), { isValid: true, overfilledTables: [] });
+    const overfilled = validateTableCapacities([
+      { id: "negative", name: "Invalid", capacity: -1, shape: "round", assignedGuestIds: [] },
+    ]);
+    assert.equal(overfilled.isValid, false);
+    const arranged = autoArrangeSeating(
+      [{ id: "guest", name: "Guest", side: "Mutual", dietary: "Vegan" }],
+      [],
+    );
+    assert.equal(arranged.unassignedGuestsCount, 1);
+  });
+
+  it("preserves pre-assigned guests and handles missing occupants", () => {
+    const arranged = autoArrangeSeating(
+      [
+        { id: "assigned", name: "Assigned", side: "Mutual", dietary: "Vegan", tableId: "table-1" },
+        { id: "new", name: "New", side: "Mutual", dietary: "Vegan" },
+      ],
+      [
+        {
+          id: "table-1",
+          name: "Table 1",
+          capacity: 2,
+          shape: "round",
+          assignedGuestIds: ["missing"],
+        },
+      ],
+    );
+    assert.equal(arranged.arrangedTables[0]?.assignedGuestIds.length, 2);
+    assert.equal(arranged.unassignedGuestsCount, 0);
   });
 });

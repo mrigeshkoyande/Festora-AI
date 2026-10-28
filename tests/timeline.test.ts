@@ -1,10 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import {
-  calculateEventCountdown,
-  shiftTaskSchedule,
-  TaskItem,
-} from "../src/lib/utils/timeline";
+import { calculateEventCountdown, shiftTaskSchedule, TaskItem } from "../src/lib/utils/timeline";
 
 describe("Timeline, Countdown & Dependency Propagation", () => {
   it("calculates positive countdown for future dates", () => {
@@ -79,5 +75,20 @@ describe("Timeline, Countdown & Dependency Propagation", () => {
     assert.equal(task3?.dueDate, "2026-11-13T00:00:00.000Z");
     // Independent task-4 should NOT be modified
     assert.equal(task4?.dueDate, "2026-11-05T00:00:00.000Z");
+  });
+
+  it("returns original tasks for missing roots or zero shifts", () => {
+    const tasks: TaskItem[] = [
+      {
+        id: "known",
+        title: "Known",
+        priority: "low",
+        dueDate: "2026-11-01T00:00:00.000Z",
+        status: "todo",
+        daysBeforeEvent: 1,
+      },
+    ];
+    assert.deepEqual(shiftTaskSchedule(tasks, "missing", 4), tasks);
+    assert.equal(shiftTaskSchedule(tasks, "known", 0), tasks);
   });
 });

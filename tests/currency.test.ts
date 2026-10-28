@@ -39,4 +39,12 @@ describe("Currency & Monetary Precision Utilities", () => {
     assert.equal(toRupees(4550), 45.5);
     assert.equal(toRupees(99), 0.99);
   });
+
+  it("supports negative and non-INR amounts safely", () => {
+    assert.match(formatCompactCurrency(-1500), /-₹2k/);
+    assert.match(formatCurrency(1500, "USD"), /\$1,500/);
+    assert.match(formatCompactCurrency(1_500_000, "USD"), /\$1\.5M/);
+    assert.equal(formatCurrency(Number.NaN, "USD"), "$0");
+    assert.equal(formatCompactCurrency(Number.NaN, "USD"), "₹0");
+  });
 });

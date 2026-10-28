@@ -1,9 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import {
-  reconcileBudgetAllocations,
-  calculateBudgetScenarios,
-} from "../src/lib/utils/budget";
+import { reconcileBudgetAllocations, calculateBudgetScenarios } from "../src/lib/utils/budget";
 
 describe("Budget Allocation & Invariant Reconciliation", () => {
   it("enforces exact 100% sum invariant on budget categories", () => {
@@ -59,5 +56,41 @@ describe("Budget Allocation & Invariant Reconciliation", () => {
       const sumAllocated = scenario.categories.reduce((acc, c) => acc + c.allocated, 0);
       assert.equal(sumAllocated, scenario.totalBudget);
     }
+  });
+
+  it("handles zero, negative, and non-finite budgets without invalid allocations", () => {
+    const categories = [{ name: "Venue", percentage: 100 }];
+    for (const value of [0, -500, Number.NaN]) {
+      const result = reconcileBudgetAllocations(value, categories);
+      assert.equal(result[0]?.allocated, 0);
+      assert.equal(result[0]?.percentage, 100);
+    }
+  });
+
+  it("normalizes zero-percentage categories and reconciles item remainders", () => {
+    const result = reconcileBudgetAllocations(101, [
+      { name: "Venue", percentage: 0, items: [{ name: "Hire", estimated: 0, status: "Pending" }] },
+      {
+        name: "Food",
+        percentage: 0,
+        items: [{ name: "Catering", estimated: 0, status: "Pending" }],
+      },
+    ]);
+    assert.equal(
+      result.reduce((sum, category) => sum + category.allocated, 0),
+      101,
+    );
+    assert.equal(
+      result.reduce((sum, category) => sum + category.percentage, 0),
+      100,
+    );
+    assert.equal(result[0]?.items[0]?.status, "Pending");
+  });
+
+  it("returns safe zero scenarios for non-finite budgets", () => {
+    const scenarios = calculateBudgetScenarios(Number.NaN, []);
+    assert.equal(scenarios.conservative.totalBudget, 0);
+    assert.equal(scenarios.balanced.totalBudget, 0);
+    assert.equal(scenarios.luxury.totalBudget, 0);
   });
 });

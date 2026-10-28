@@ -33,7 +33,7 @@ describe("End-to-End System Integration Flow", () => {
     // Verify 3 scenarios
     const scenarios = calculateBudgetScenarios(
       plan.budgetCategories.reduce((s, c) => s + c.allocated, 0),
-      plan.budgetCategories
+      plan.budgetCategories,
     );
     assert.equal(scenarios.conservative.totalBudget, 3825000);
     assert.equal(scenarios.balanced.totalBudget, 4500000);
@@ -50,11 +50,14 @@ describe("End-to-End System Integration Flow", () => {
       totalBudget: 1500000,
       currency: "INR",
       styleVibe: "Retro Gold & Speakeasy Jazz",
+      specialNeeds: "",
     };
 
     const plan = await generateEventPlan(birthdayInput);
     assert.equal(plan.title, birthdayInput.title);
-    assert.ok(plan.budgetCategories.some((c) => c.name.includes("Cake") || c.name.includes("Lounge")));
+    assert.ok(
+      plan.budgetCategories.some((c) => c.name.includes("Cake") || c.name.includes("Lounge")),
+    );
 
     const totalAllocated = plan.budgetCategories.reduce((sum, c) => sum + c.allocated, 0);
     assert.equal(totalAllocated, birthdayInput.totalBudget);
@@ -70,11 +73,14 @@ describe("End-to-End System Integration Flow", () => {
       totalBudget: 2000000,
       currency: "INR",
       styleVibe: "Traditional Diyas & Communal Feast",
+      specialNeeds: "",
     };
 
     const plan = await generateEventPlan(communityInput);
     assert.equal(plan.title, communityInput.title);
-    assert.ok(plan.budgetCategories.some((c) => c.name.includes("Community") || c.name.includes("Banquet")));
+    assert.ok(
+      plan.budgetCategories.some((c) => c.name.includes("Community") || c.name.includes("Banquet")),
+    );
 
     const totalAllocated = plan.budgetCategories.reduce((sum, c) => sum + c.allocated, 0);
     assert.equal(totalAllocated, communityInput.totalBudget);
@@ -82,10 +88,40 @@ describe("End-to-End System Integration Flow", () => {
 
   it("propagates multi-tier task delays across downstream dependencies", () => {
     const tasks: TaskItem[] = [
-      { id: "t1", title: "Select Venue", priority: "high", dueDate: "2026-11-01T00:00:00.000Z", status: "todo", daysBeforeEvent: 30 },
-      { id: "t2", title: "Sign Contract", priority: "high", dueDate: "2026-11-04T00:00:00.000Z", status: "todo", daysBeforeEvent: 27, dependsOnTaskId: "t1" },
-      { id: "t3", title: "Install Stage Rigging", priority: "medium", dueDate: "2026-11-08T00:00:00.000Z", status: "todo", daysBeforeEvent: 23, dependsOnTaskId: "t2" },
-      { id: "t4", title: "Send Invitations", priority: "high", dueDate: "2026-11-05T00:00:00.000Z", status: "todo", daysBeforeEvent: 26 }, // independent
+      {
+        id: "t1",
+        title: "Select Venue",
+        priority: "high",
+        dueDate: "2026-11-01T00:00:00.000Z",
+        status: "todo",
+        daysBeforeEvent: 30,
+      },
+      {
+        id: "t2",
+        title: "Sign Contract",
+        priority: "high",
+        dueDate: "2026-11-04T00:00:00.000Z",
+        status: "todo",
+        daysBeforeEvent: 27,
+        dependsOnTaskId: "t1",
+      },
+      {
+        id: "t3",
+        title: "Install Stage Rigging",
+        priority: "medium",
+        dueDate: "2026-11-08T00:00:00.000Z",
+        status: "todo",
+        daysBeforeEvent: 23,
+        dependsOnTaskId: "t2",
+      },
+      {
+        id: "t4",
+        title: "Send Invitations",
+        priority: "high",
+        dueDate: "2026-11-05T00:00:00.000Z",
+        status: "todo",
+        daysBeforeEvent: 26,
+      }, // independent
     ];
 
     const shifted = shiftTaskSchedule(tasks, "t1", 5);
@@ -102,17 +138,47 @@ describe("End-to-End System Integration Flow", () => {
 
   it("auto-arranges complex guest roster into tables satisfying VIP and dietary constraints", () => {
     const guests: GuestItem[] = [
-      { id: "g1", name: "VIP Grandparent A", isVIP: true, side: "Bride's Side", dietary: "Jain Pure Veg" },
-      { id: "g2", name: "VIP Grandparent B", isVIP: true, side: "Bride's Side", dietary: "Jain Pure Veg" },
-      { id: "g3", name: "Groom Cousin 1", isVIP: false, side: "Groom's Side", dietary: "Non-Vegetarian" },
-      { id: "g4", name: "Groom Cousin 2", isVIP: false, side: "Groom's Side", dietary: "Non-Vegetarian" },
+      {
+        id: "g1",
+        name: "VIP Grandparent A",
+        isVIP: true,
+        side: "Bride's Side",
+        dietary: "Jain Pure Veg",
+      },
+      {
+        id: "g2",
+        name: "VIP Grandparent B",
+        isVIP: true,
+        side: "Bride's Side",
+        dietary: "Jain Pure Veg",
+      },
+      {
+        id: "g3",
+        name: "Groom Cousin 1",
+        isVIP: false,
+        side: "Groom's Side",
+        dietary: "Non-Vegetarian",
+      },
+      {
+        id: "g4",
+        name: "Groom Cousin 2",
+        isVIP: false,
+        side: "Groom's Side",
+        dietary: "Non-Vegetarian",
+      },
       { id: "g5", name: "College Friend 1", isVIP: false, side: "Mutual", dietary: "Vegan" },
       { id: "g6", name: "College Friend 2", isVIP: false, side: "Mutual", dietary: "Vegan" },
     ];
 
     const tables: SeatingTable[] = [
       { id: "tbl-1", name: "VIP Head Table 1", capacity: 2, shape: "round", assignedGuestIds: [] },
-      { id: "tbl-2", name: "Groom Family Table", capacity: 2, shape: "rectangular", assignedGuestIds: [] },
+      {
+        id: "tbl-2",
+        name: "Groom Family Table",
+        capacity: 2,
+        shape: "rectangular",
+        assignedGuestIds: [],
+      },
       { id: "tbl-3", name: "Friends Table", capacity: 2, shape: "round", assignedGuestIds: [] },
     ];
 
@@ -131,7 +197,7 @@ describe("End-to-End System Integration Flow", () => {
     assert.equal(t3.assignedGuestIds.length, 2);
   });
 
-  it("rejects malicious or invalid request payloads and enforces rate limits", () => {
+  it("rejects malicious or invalid request payloads and enforces rate limits", async () => {
     // Malicious XSS injection
     const dirty = "<script>alert('pwn')</script>Royal Banquet &amp; Ball";
     const clean = sanitizeInput(dirty);
@@ -141,9 +207,9 @@ describe("End-to-End System Integration Flow", () => {
     // Rate limit
     const testIp = "10.0.0.123";
     for (let i = 0; i < 5; i++) {
-      checkRateLimit(testIp, 5, 60000);
+      await checkRateLimit(testIp, 5, 60000);
     }
-    const blocked = checkRateLimit(testIp, 5, 60000);
+    const blocked = await checkRateLimit(testIp, 5, 60000);
     assert.equal(blocked.allowed, false);
 
     // Schema rejection on invalid input
