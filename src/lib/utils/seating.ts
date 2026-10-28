@@ -62,7 +62,7 @@ export function validateTableCapacities(tables: SeatingTable[]): {
  */
 export function autoArrangeSeating(
   guests: GuestItem[],
-  tables: SeatingTable[]
+  tables: SeatingTable[],
 ): {
   arrangedTables: SeatingTable[];
   unassignedGuestsCount: number;

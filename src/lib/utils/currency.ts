@@ -21,10 +21,7 @@ const ONE_MILLION = 1_000_000;
  * @returns Formatted currency string with appropriate locale separators (e.g. "₹45,00,000")
  * @complexity O(1) Time | O(1) Space
  */
-export function formatCurrency(
-  amountInRupees: number,
-  currencyCode: string = "INR"
-): string {
+export function formatCurrency(amountInRupees: number, currencyCode: string = "INR"): string {
   if (isNaN(amountInRupees) || !isFinite(amountInRupees)) {
     return currencyCode === "INR" ? "₹0" : "$0";
   }
@@ -57,10 +54,7 @@ export function formatCurrency(
  * @returns Compact readable notation
  * @complexity O(1) Time | O(1) Space
  */
-export function formatCompactCurrency(
-  amount: number,
-  currencyCode: string = "INR"
-): string {
+export function formatCompactCurrency(amount: number, currencyCode: string = "INR"): string {
   if (isNaN(amount) || !isFinite(amount)) return "₹0";
 
   const abs = Math.abs(amount);
@@ -101,7 +95,7 @@ export function formatCompactCurrency(
  * @complexity O(1) Time | O(1) Space
  */
 export function toPaise(rupees: number): number {
-  return Math.round(rupees * 100);
+  return Number.isFinite(rupees) ? Math.round(rupees * 100) : 0;
 }
 
 /**
@@ -112,5 +106,5 @@ export function toPaise(rupees: number): number {
  * @complexity O(1) Time | O(1) Space
  */
 export function toRupees(paise: number): number {
-  return Math.round(paise) / 100;
+  return Number.isFinite(paise) ? Math.round(paise) / 100 : 0;
 }

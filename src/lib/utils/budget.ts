@@ -36,18 +36,19 @@ export interface ReconciledCategory {
  */
 export function reconcileBudgetAllocations(
   totalBudget: number,
-  categories: CategoryAllocationInput[]
+  categories: CategoryAllocationInput[],
 ): ReconciledCategory[] {
   if (!categories || categories.length === 0) {
     return [];
   }
 
-  const safeTotalBudget = Math.max(0, Math.round(totalBudget));
+  const safeTotalBudget = Number.isFinite(totalBudget) ? Math.max(0, Math.round(totalBudget)) : 0;
 
   // 1. Normalize percentages to strictly sum to 100
   const rawSumPercentages = categories.reduce((acc, c) => acc + (c.percentage || 0), 0);
   const normalizedCategories = categories.map((c) => {
-    const rawPct = rawSumPercentages > 0 ? (c.percentage / rawSumPercentages) * 100 : 100 / categories.length;
+    const rawPct =
+      rawSumPercentages > 0 ? (c.percentage / rawSumPercentages) * 100 : 100 / categories.length;
     return {
       ...c,
       normalizedPct: Math.round(rawPct),
@@ -76,7 +77,7 @@ export function reconcileBudgetAllocations(
 
     // Sub-items reconciliation
     const items = (c.items || []).map((it) => {
-      const itPct = it.percentageOfCategory ?? (100 / Math.max(1, c.items?.length || 1));
+      const itPct = it.percentageOfCategory ?? 100 / Math.max(1, c.items?.length || 1);
       return {
         name: it.name,
         estimated: Math.round((amount * itPct) / 100),
@@ -136,9 +137,9 @@ export interface ScenarioResult {
  */
 export function calculateBudgetScenarios(
   baseBudget: number,
-  categories: CategoryAllocationInput[]
+  categories: CategoryAllocationInput[],
 ): Record<BudgetScenario, ScenarioResult> {
-  const safeBase = Math.max(0, Math.round(baseBudget));
+  const safeBase = Number.isFinite(baseBudget) ? Math.max(0, Math.round(baseBudget)) : 0;
 
   // Conservative Cut: -15% total budget with essential priority
   const conservativeTotal = Math.round(safeBase * 0.85);

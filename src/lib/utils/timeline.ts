@@ -23,7 +23,10 @@ const MS_PER_HOUR = 1000 * 60 * 60;
  * @returns Breakdown of remaining days, hours, past status, and localized badge string
  * @complexity O(1) Time | O(1) Space
  */
-export function calculateEventCountdown(targetDate: string | Date, now: Date = new Date()): {
+export function calculateEventCountdown(
+  targetDate: string | Date,
+  now: Date = new Date(),
+): {
   days: number;
   hours: number;
   isPast: boolean;
@@ -64,7 +67,7 @@ export function calculateEventCountdown(targetDate: string | Date, now: Date = n
 export function shiftTaskSchedule(
   tasks: TaskItem[],
   shiftedTaskId: string,
-  deltaDays: number
+  deltaDays: number,
 ): TaskItem[] {
   if (deltaDays === 0 || !tasks || tasks.length === 0) return tasks;
 
