@@ -115,7 +115,12 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
                 <Image src="/brand/logo.png" alt="Logo" width={28} height={28} />
                 <span className="font-grotesk font-extrabold text-lg text-navy">Festora AI</span>
               </Link>
-              <button onClick={() => setMobileSidebarOpen(false)}>
+              <button
+                type="button"
+                aria-label="Close workspace navigation"
+                onClick={() => setMobileSidebarOpen(false)}
+                className="min-h-11 min-w-11"
+              >
                 <X className="w-5 h-5 text-ink/60" />
               </button>
             </div>
@@ -145,8 +150,11 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
         <header className="sticky top-0 z-30 h-18 bg-white/80 backdrop-blur-md border-b border-navy/10 px-6 md:px-10 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
+              type="button"
+              aria-label="Open workspace navigation"
+              aria-expanded={mobileSidebarOpen}
               onClick={() => setMobileSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-full hover:bg-navy/8 text-navy"
+              className="lg:hidden min-h-11 min-w-11 p-2 rounded-full hover:bg-navy/8 text-navy"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -165,6 +173,8 @@ export function WorkspaceShell({ children, activeTab }: WorkspaceShellProps) {
 
           <div className="flex items-center gap-4">
             <button
+              type="button"
+              aria-label="Open notifications"
               className="p-2.5 rounded-full hover:bg-navy/8 text-navy relative"
               title="Notifications"
             >

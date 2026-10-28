@@ -12,16 +12,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full flex flex-col gap-1.5">
         {label && (
-          <label className="text-xs font-semibold text-ink/80 tracking-wide">
-            {label}
-          </label>
+          <label className="text-xs font-semibold text-ink/80 tracking-wide">{label}</label>
         )}
         <div className="relative flex items-center">
-          {icon && (
-            <span className="absolute left-4 text-ink/50 pointer-events-none">
-              {icon}
-            </span>
-          )}
+          {icon && <span className="absolute left-4 text-ink/50 pointer-events-none">{icon}</span>}
           <input
             ref={ref}
             className={cn(
@@ -30,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               "focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent transition-all",
               Boolean(icon) && "pl-11",
               Boolean(error) && "border-orange ring-1 ring-orange",
-              className
+              className,
             )}
             {...props}
           />
@@ -38,7 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && <span className="text-xs font-bold text-orange">{error}</span>}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";
@@ -54,9 +48,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="w-full flex flex-col gap-1.5">
         {label && (
-          <label className="text-xs font-semibold text-ink/80 tracking-wide">
-            {label}
-          </label>
+          <label className="text-xs font-semibold text-ink/80 tracking-wide">{label}</label>
         )}
         <select
           ref={ref}
@@ -65,7 +57,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             "border border-navy/18 shadow-sm cursor-pointer",
             "focus:outline-none focus:ring-2 focus:ring-navy focus:border-transparent transition-all",
             Boolean(error) && "border-orange ring-1 ring-orange",
-            className
+            className,
           )}
           {...props}
         >
@@ -74,7 +66,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {error && <span className="text-xs font-bold text-orange">{error}</span>}
       </div>
     );
-  }
+  },
 );
 
 Select.displayName = "Select";
@@ -104,7 +96,7 @@ export function Slider({
       onChange={onChange}
       className={cn(
         "w-full h-2.5 bg-navy/15 rounded-pill appearance-none cursor-pointer accent-navy",
-        className
+        className,
       )}
     />
   );

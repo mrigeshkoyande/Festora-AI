@@ -25,7 +25,11 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-ink flex flex-col justify-center items-center py-8 px-4 sm:px-6">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="min-h-screen bg-bg text-ink flex flex-col justify-center items-center py-8 px-4 sm:px-6 outline-none"
+    >
       <div className="w-full max-w-md bg-white rounded-card-lg border border-navy/12 shadow-2xl overflow-hidden relative my-auto">
         {/* Top Visual Luxury Banner */}
         <div className="relative w-full h-28 sm:h-32 bg-navy overflow-hidden">
@@ -228,6 +232,6 @@ export default function AuthPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

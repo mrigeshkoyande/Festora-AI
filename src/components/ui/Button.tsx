@@ -22,9 +22,9 @@ export function Button({
   ...props
 }: ButtonProps) {
   const sizeClasses = {
-    sm: "px-4 py-2 text-xs font-semibold gap-1.5",
-    md: "px-6 py-3 text-sm font-semibold gap-2",
-    lg: "px-8 py-4 text-base font-semibold gap-2.5",
+    sm: "min-h-11 min-w-11 px-4 py-2 text-xs font-semibold gap-1.5",
+    md: "min-h-11 min-w-11 px-6 py-3 text-sm font-semibold gap-2",
+    lg: "min-h-11 min-w-11 px-8 py-4 text-base font-semibold gap-2.5",
   };
 
   const variantClasses = {
@@ -54,7 +54,7 @@ export function Button({
         "inline-flex items-center justify-center rounded-pill transition-colors cursor-pointer select-none",
         sizeClasses[size],
         variantClasses[variant],
-        className
+        className,
       )}
       {...props}
     >

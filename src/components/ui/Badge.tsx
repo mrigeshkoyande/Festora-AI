@@ -9,12 +9,7 @@ export interface BadgeProps {
   children: React.ReactNode;
 }
 
-export function Badge({
-  variant = "default",
-  size = "sm",
-  className,
-  children,
-}: BadgeProps) {
+export function Badge({ variant = "default", size = "sm", className, children }: BadgeProps) {
   const sizeClasses = {
     sm: "px-2.5 py-1 text-[11px] font-semibold gap-1",
     md: "px-3.5 py-1.5 text-xs font-semibold gap-1.5",
@@ -38,7 +33,7 @@ export function Badge({
         "inline-flex items-center rounded-pill tracking-wide select-none",
         sizeClasses[size],
         variantClasses[variant],
-        className
+        className,
       )}
     >
       {variant === "success" && <Check className="w-3 h-3 stroke-[3]" />}
@@ -69,7 +64,7 @@ export function Chip({
         active
           ? "bg-navy text-bg border-navy shadow-sm scale-[1.02]"
           : "bg-white text-ink border-navy/15 hover:bg-bg hover:border-navy/30",
-        className
+        className,
       )}
     >
       {children}

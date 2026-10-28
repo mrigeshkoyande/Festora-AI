@@ -8,7 +8,11 @@ import { Sparkles, ArrowLeft, Home, Compass } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-[var(--ink)] flex flex-col items-center justify-center p-6 text-center">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="min-h-screen bg-[#F8F9FA] text-[var(--ink)] flex flex-col items-center justify-center p-6 text-center outline-none"
+    >
       {/* Decorative Floating Card */}
       <GlassSurface
         elevation="card"
@@ -19,12 +23,15 @@ export default function NotFound() {
         </div>
 
         <div className="space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-[var(--orange)]">Error 404</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-[var(--orange)]">
+            Error 404
+          </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[var(--navy)] tracking-tight">
             This party moved venues!
           </h1>
           <p className="text-xs sm:text-sm text-[var(--ink)]/70 max-w-sm mx-auto leading-relaxed">
-            The page or celebration link you are looking for has relocated, completed its final toast, or does not exist.
+            The page or celebration link you are looking for has relocated, completed its final
+            toast, or does not exist.
           </p>
         </div>
 
@@ -36,7 +43,11 @@ export default function NotFound() {
           </Link>
 
           <Link href="/dashboard">
-            <Button variant="orange" size="md" className="w-full sm:w-auto font-bold text-[var(--ink)]">
+            <Button
+              variant="orange"
+              size="md"
+              className="w-full sm:w-auto font-bold text-[var(--ink)]"
+            >
               <Compass className="w-4 h-4 mr-1.5" /> Open Workspace
             </Button>
           </Link>
@@ -46,6 +57,6 @@ export default function NotFound() {
       <p className="text-xs text-[var(--ink)]/40 mt-8">
         Festora AI Celebration Platform • Navigating you back to the magic
       </p>
-    </div>
+    </main>
   );
 }

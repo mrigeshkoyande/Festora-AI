@@ -61,8 +61,18 @@ export default function BudgetPage() {
       percent: 35.5,
       status: "On Track",
       items: [
-        { name: "Palace Courtyard & Lawn Rental Deposit", estimated: 1200000, actual: 1200000, status: "Paid" },
-        { name: "Guest Suites Block (30 Rooms)", estimated: 400000, actual: 250000, status: "Committed" },
+        {
+          name: "Palace Courtyard & Lawn Rental Deposit",
+          estimated: 1200000,
+          actual: 1200000,
+          status: "Paid",
+        },
+        {
+          name: "Guest Suites Block (30 Rooms)",
+          estimated: 400000,
+          actual: 250000,
+          status: "Committed",
+        },
       ],
     },
     {
@@ -73,8 +83,18 @@ export default function BudgetPage() {
       percent: 26.6,
       status: "On Track",
       items: [
-        { name: "Sangeet & Reception Banquets (45 items)", estimated: 950000, actual: 800000, status: "Paid" },
-        { name: "Dedicated Jain & Marwari Counters", estimated: 250000, actual: 0, status: "Pending" },
+        {
+          name: "Sangeet & Reception Banquets (45 items)",
+          estimated: 950000,
+          actual: 800000,
+          status: "Paid",
+        },
+        {
+          name: "Dedicated Jain & Marwari Counters",
+          estimated: 250000,
+          actual: 0,
+          status: "Pending",
+        },
       ],
     },
     {
@@ -85,8 +105,18 @@ export default function BudgetPage() {
       percent: 17.8,
       status: "Review",
       items: [
-        { name: "Lotus Mandap Rigging & Drapery", estimated: 500000, actual: 400000, status: "Paid" },
-        { name: "Fairy Lights & Entrance Walkway", estimated: 300000, actual: 0, status: "Pending" },
+        {
+          name: "Lotus Mandap Rigging & Drapery",
+          estimated: 500000,
+          actual: 400000,
+          status: "Paid",
+        },
+        {
+          name: "Fairy Lights & Entrance Walkway",
+          estimated: 300000,
+          actual: 0,
+          status: "Pending",
+        },
       ],
     },
     {
@@ -97,7 +127,12 @@ export default function BudgetPage() {
       percent: 11.1,
       status: "On Track",
       items: [
-        { name: "3-Day Wedding Docufilm & Aerial Drone", estimated: 500000, actual: 200000, status: "Committed" },
+        {
+          name: "3-Day Wedding Docufilm & Aerial Drone",
+          estimated: 500000,
+          actual: 200000,
+          status: "Committed",
+        },
       ],
     },
   ];
@@ -114,9 +149,7 @@ export default function BudgetPage() {
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <Badge variant="gold">Financial Overview</Badge>
-              <span className="text-xs text-ink/60 font-medium">
-                • 47 days to go
-              </span>
+              <span className="text-xs text-ink/60 font-medium">• 47 days to go</span>
             </div>
             <h1 className="font-grotesk text-3xl sm:text-4xl font-extrabold text-navy">
               Budget & Expense Intelligence
@@ -177,7 +210,9 @@ export default function BudgetPage() {
         {/* Top 4 Stat Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div className="bg-white p-6 rounded-card-lg border border-navy/12 shadow-sm">
-            <span className="text-xs font-semibold text-ink/60 block mb-1">Total Target Budget</span>
+            <span className="text-xs font-semibold text-ink/60 block mb-1">
+              Total Target Budget
+            </span>
             <div className="font-grotesk text-3xl font-extrabold text-navy mb-1">
               {formatINR(totalBudget)}
             </div>
@@ -185,15 +220,17 @@ export default function BudgetPage() {
           </div>
 
           <div className="bg-white p-6 rounded-card-lg border border-navy/12 shadow-sm">
-            <span className="text-xs font-semibold text-ink/60 block mb-1">Committed / Allocated</span>
-            <div className="font-grotesk text-3xl font-extrabold text-navy mb-1">
-              ₹ 41,00,000
-            </div>
+            <span className="text-xs font-semibold text-ink/60 block mb-1">
+              Committed / Allocated
+            </span>
+            <div className="font-grotesk text-3xl font-extrabold text-navy mb-1">₹ 41,00,000</div>
             <span className="text-xs font-bold text-navy">91.1% of total cap</span>
           </div>
 
           <div className="bg-white p-6 rounded-card-lg border border-navy/12 shadow-sm">
-            <span className="text-xs font-semibold text-ink/60 block mb-1">Actual Paid & Spent</span>
+            <span className="text-xs font-semibold text-ink/60 block mb-1">
+              Actual Paid & Spent
+            </span>
             <div className="font-grotesk text-3xl font-extrabold text-orange mb-1">
               {formatINR(spent)}
             </div>
@@ -201,7 +238,9 @@ export default function BudgetPage() {
           </div>
 
           <div className="bg-white p-6 rounded-card-lg border border-navy/12 shadow-sm">
-            <span className="text-xs font-semibold text-ink/60 block mb-1">Remaining Safe Buffer</span>
+            <span className="text-xs font-semibold text-ink/60 block mb-1">
+              Remaining Safe Buffer
+            </span>
             <div className="font-grotesk text-3xl font-extrabold text-navy mb-1">
               {formatINR(totalBudget - spent)}
             </div>
@@ -215,9 +254,7 @@ export default function BudgetPage() {
           <div className="lg:col-span-5 bg-white p-6 rounded-card-lg border border-navy/12 shadow-sm flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-grotesk text-lg font-bold text-navy">
-                  Allocation by Category
-                </h3>
+                <h3 className="font-grotesk text-lg font-bold text-navy">Allocation by Category</h3>
                 <p className="text-xs text-ink/60">Distribution across major sectors</p>
               </div>
               <PieIcon className="w-5 h-5 text-navy/50" />
@@ -238,9 +275,7 @@ export default function BudgetPage() {
                   <span className="text-[10px] uppercase font-bold text-ink/50 tracking-wider block">
                     Total Cap
                   </span>
-                  <span className="font-grotesk text-2xl font-extrabold text-navy">
-                    ₹45.0L
-                  </span>
+                  <span className="font-grotesk text-2xl font-extrabold text-navy">₹45.0L</span>
                 </div>
               </div>
             </div>
@@ -288,12 +323,21 @@ export default function BudgetPage() {
                 { month: "Jan", paidH: "60%", commH: "30%", amount: "₹18L" },
                 { month: "Feb (Gala)", paidH: "95%", commH: "5%", amount: "₹45L", highlight: true },
               ].map((bar, i) => (
-                <div key={i} className="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <div
+                  key={i}
+                  className="flex-1 flex flex-col items-center gap-2 h-full justify-end group"
+                >
                   <div className="w-full max-w-[42px] bg-bg rounded-t-xl flex flex-col justify-end overflow-hidden h-full border border-navy/8">
-                    <div className="bg-orange w-full" style={{ height: bar.commH }} title="Committed" />
+                    <div
+                      className="bg-orange w-full"
+                      style={{ height: bar.commH }}
+                      title="Committed"
+                    />
                     <div className="bg-navy w-full" style={{ height: bar.paidH }} title="Paid" />
                   </div>
-                  <span className={`text-[11px] font-semibold ${bar.highlight ? "text-orange" : "text-ink/60"}`}>
+                  <span
+                    className={`text-[11px] font-semibold ${bar.highlight ? "text-orange" : "text-ink/60"}`}
+                  >
                     {bar.month}
                   </span>
                 </div>
@@ -386,8 +430,8 @@ export default function BudgetPage() {
                                   item.status === "Paid"
                                     ? "success"
                                     : item.status === "Committed"
-                                    ? "orange"
-                                    : "gold"
+                                      ? "orange"
+                                      : "gold"
                                 }
                               >
                                 {item.status}
@@ -414,7 +458,8 @@ export default function BudgetPage() {
       >
         <div className="space-y-6">
           <p className="text-xs text-ink/70 leading-relaxed">
-            Our optimization engine analyzed 400+ high-end Rajasthan palace celebrations. Select a scenario to apply calibrated budget changes instantly.
+            Our optimization engine analyzed 400+ high-end Rajasthan palace celebrations. Select a
+            scenario to apply calibrated budget changes instantly.
           </p>
 
           {/* Scenario 1 */}
@@ -425,14 +470,13 @@ export default function BudgetPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <TrendingDown className="w-5 h-5 text-orange" />
-                <h4 className="font-grotesk font-bold text-base text-navy">
-                  Save 15% Budget Cut
-                </h4>
+                <h4 className="font-grotesk font-bold text-base text-navy">Save 15% Budget Cut</h4>
               </div>
               <Badge variant="orange">Save ₹6.75 Lakhs</Badge>
             </div>
             <p className="text-xs text-ink/75 leading-relaxed">
-              Consolidates multi-day floral rigging into modular transportable arches and switches off-peak photography crew hours.
+              Consolidates multi-day floral rigging into modular transportable arches and switches
+              off-peak photography crew hours.
             </p>
             <Button variant="orange" size="sm" className="w-full">
               Apply This Scenario
@@ -454,7 +498,8 @@ export default function BudgetPage() {
               <Badge variant="gold">+20% Guest Impact</Badge>
             </div>
             <p className="text-xs text-ink/75 leading-relaxed">
-              Reallocates unspent transport buffer into Manganiyar folk musicians, molecular cocktail stations, and luxury welcome hampers.
+              Reallocates unspent transport buffer into Manganiyar folk musicians, molecular
+              cocktail stations, and luxury welcome hampers.
             </p>
             <Button variant="gold" size="sm" className="w-full">
               Apply This Scenario
@@ -476,7 +521,8 @@ export default function BudgetPage() {
               <Badge variant="default">Safe Mode</Badge>
             </div>
             <p className="text-xs text-ink/75 leading-relaxed">
-              Freezes all uncontracted discretionary spends and protects a mandatory 20% emergency reserve fund.
+              Freezes all uncontracted discretionary spends and protects a mandatory 20% emergency
+              reserve fund.
             </p>
             <Button variant="secondary" size="sm" className="w-full">
               Apply This Scenario
@@ -513,9 +559,7 @@ export default function BudgetPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs font-semibold text-ink/80 block mb-1">
-                Category
-              </label>
+              <label className="text-xs font-semibold text-ink/80 block mb-1">Category</label>
               <select className="w-full bg-bg border border-navy/18 rounded-pill px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-navy cursor-pointer">
                 <option>Venue & Palace</option>
                 <option>Catering & Bar</option>
@@ -525,9 +569,7 @@ export default function BudgetPage() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-semibold text-ink/80 block mb-1">
-                Amount (₹)
-              </label>
+              <label className="text-xs font-semibold text-ink/80 block mb-1">Amount (₹)</label>
               <input
                 type="number"
                 required
@@ -582,7 +624,9 @@ export default function BudgetPage() {
               <FileSpreadsheet className="w-5 h-5 text-navy" />
               <div>
                 <p className="text-xs font-bold text-navy">Download CSV Spreadsheet</p>
-                <p className="text-[11px] text-ink/60">Category-wise line items with payment status</p>
+                <p className="text-[11px] text-ink/60">
+                  Category-wise line items with payment status
+                </p>
               </div>
             </div>
             <span className="text-xs text-navy font-bold">CSV →</span>
@@ -600,7 +644,9 @@ export default function BudgetPage() {
               <FileText className="w-5 h-5 text-orange" />
               <div>
                 <p className="text-xs font-bold text-navy">Export Executive PDF Briefing</p>
-                <p className="text-[11px] text-ink/60">Formatted report with donut & cash flow graphics</p>
+                <p className="text-[11px] text-ink/60">
+                  Formatted report with donut & cash flow graphics
+                </p>
               </div>
             </div>
             <span className="text-xs text-orange font-bold">PDF →</span>

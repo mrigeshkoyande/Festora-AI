@@ -103,6 +103,7 @@ export default function AIAssistantPage() {
   const [isRecording, setIsRecording] = useState(false);
   const [budgetApplied, setBudgetApplied] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const messageSequenceRef = useRef(0);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -115,9 +116,10 @@ export default function AIAssistantPage() {
   const handleSendMessage = (textToSend?: string) => {
     const prompt = textToSend || inputPrompt;
     if (!prompt.trim()) return;
+    messageSequenceRef.current += 1;
 
     const userMsg: Message = {
-      id: `user-${Date.now()}`,
+      id: `user-${messageSequenceRef.current}`,
       sender: "user",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       text: prompt,
@@ -132,8 +134,9 @@ export default function AIAssistantPage() {
       let aiResponse: Message;
 
       if (prompt.toLowerCase().includes("cater") || prompt.toLowerCase().includes("food")) {
+        messageSequenceRef.current += 1;
         aiResponse = {
-          id: `ai-${Date.now()}`,
+          id: `ai-${messageSequenceRef.current}`,
           sender: "ai",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
           text: "Here is the top-rated catering shortlist for Samode Palace in Jaipur, filtered for authentic Rajputana banquet and pure Jain separation:",
@@ -154,8 +157,9 @@ export default function AIAssistantPage() {
         prompt.toLowerCase().includes("timeline") ||
         prompt.toLowerCase().includes("schedule")
       ) {
+        messageSequenceRef.current += 1;
         aiResponse = {
-          id: `ai-${Date.now()}`,
+          id: `ai-${messageSequenceRef.current}`,
           sender: "ai",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
           text: "I have added a new high-priority production task to Phase 2 with automatic due dates and assignee alerts.",
@@ -171,8 +175,9 @@ export default function AIAssistantPage() {
         prompt.toLowerCase().includes("invit") ||
         prompt.toLowerCase().includes("wording")
       ) {
+        messageSequenceRef.current += 1;
         aiResponse = {
-          id: `ai-${Date.now()}`,
+          id: `ai-${messageSequenceRef.current}`,
           sender: "ai",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
           text: "Here is an editorial bilingual royal invitation wording tailored for Samode Palace:",
@@ -184,8 +189,9 @@ export default function AIAssistantPage() {
           },
         };
       } else {
+        messageSequenceRef.current += 1;
         aiResponse = {
-          id: `ai-${Date.now()}`,
+          id: `ai-${messageSequenceRef.current}`,
           sender: "ai",
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
           text: `I have analyzed your request regarding "${prompt}". I cross-referenced this against your 150-guest parameters and current budget allocations. All constraints remain within safe buffers.`,
@@ -430,10 +436,18 @@ export default function AIAssistantPage() {
                         <button className="hover:text-[var(--navy)] flex items-center gap-1 transition-colors">
                           <RotateCcw className="w-3 h-3" /> Refine
                         </button>
-                        <button className="hover:text-[var(--navy)] transition-colors">
+                        <button
+                          type="button"
+                          aria-label="Mark response helpful"
+                          className="min-h-11 min-w-11 hover:text-[var(--navy)] transition-colors"
+                        >
                           <ThumbsUp className="w-3 h-3" />
                         </button>
-                        <button className="hover:text-[var(--navy)] transition-colors">
+                        <button
+                          type="button"
+                          aria-label="Mark response unhelpful"
+                          className="min-h-11 min-w-11 hover:text-[var(--navy)] transition-colors"
+                        >
                           <ThumbsDown className="w-3 h-3" />
                         </button>
                       </div>
@@ -444,7 +458,11 @@ export default function AIAssistantPage() {
             })}
 
             {isTyping && (
-              <div className="flex gap-3 items-center text-xs text-[var(--ink)]/60">
+              <div
+                role="status"
+                aria-live="polite"
+                className="flex gap-3 items-center text-xs text-[var(--ink)]/60"
+              >
                 <div className="w-8 h-8 rounded-full bg-[var(--navy)] text-[var(--gold)] flex items-center justify-center">
                   <Sparkles className="w-4 h-4 animate-spin" />
                 </div>
@@ -482,8 +500,10 @@ export default function AIAssistantPage() {
               <div className="absolute right-2 flex items-center gap-1">
                 <button
                   type="button"
+                  aria-label={isRecording ? "Stop voice input" : "Start voice input"}
+                  aria-pressed={isRecording}
                   onClick={() => setIsRecording(!isRecording)}
-                  className={`p-2 rounded-xl transition-all ${
+                  className={`min-h-11 min-w-11 p-2 rounded-xl transition-all ${
                     isRecording
                       ? "bg-[var(--orange)] text-[var(--ink)] animate-pulse"
                       : "text-[var(--ink)]/50 hover:text-[var(--navy)]"
@@ -495,6 +515,7 @@ export default function AIAssistantPage() {
                 <Button
                   variant="orange"
                   size="sm"
+                  aria-label="Send message"
                   onClick={() => handleSendMessage()}
                   disabled={!inputPrompt.trim()}
                   className="h-9 px-4 rounded-xl font-bold text-[var(--ink)] shadow"

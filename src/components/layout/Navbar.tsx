@@ -20,11 +20,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Features",    href: "/features" },
-    { label: "How It Works",href: "/#how-it-works" },
+    { label: "Features", href: "/features" },
+    { label: "How It Works", href: "/#how-it-works" },
     { label: "Event Types", href: "/#event-types" },
-    { label: "Pricing",     href: "/pricing" },
-    { label: "Stories",     href: "/blog" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Stories", href: "/blog" },
   ];
 
   return (
@@ -33,7 +33,7 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-          scrolled ? "py-2" : "py-3"
+          scrolled ? "py-2" : "py-3",
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +44,7 @@ export function Navbar() {
             transparent
             className={cn(
               "flex flex-row flex-nowrap items-center justify-between gap-3 px-4 sm:px-5 py-2.5 rounded-full border border-white/60",
-              scrolled ? "shadow-xl" : "shadow-lg"
+              scrolled ? "shadow-xl" : "shadow-lg",
             )}
           >
             {/* ── Brand (left) ───────────────────────────────────────── */}
@@ -76,7 +76,7 @@ export function Navbar() {
                       "px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap",
                       active
                         ? "bg-[#2C3E50] text-[#F8F9FA] shadow-sm"
-                        : "text-[#1E272E]/70 hover:text-[#2C3E50] hover:bg-white/60"
+                        : "text-[#1E272E]/70 hover:text-[#2C3E50] hover:bg-white/60",
                     )}
                   >
                     {link.label}
@@ -89,6 +89,8 @@ export function Navbar() {
             <div className="hidden md:flex items-center flex-nowrap gap-1.5 shrink-0">
               {/* 3-D intro replay — only on xl+ */}
               <button
+                type="button"
+                aria-label="Replay 3D introduction"
                 onClick={() => {
                   sessionStorage.removeItem("festora_intro_seen");
                   window.location.reload();
@@ -125,8 +127,11 @@ export function Navbar() {
 
             {/* ── Mobile hamburger ──────────────────────────────────── */}
             <button
+              type="button"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileOpen}
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden ml-auto p-1.5 rounded-full hover:bg-[#2C3E50]/10 text-[#2C3E50] transition-colors"
+              className="md:hidden ml-auto min-h-11 min-w-11 p-1.5 rounded-full hover:bg-[#2C3E50]/10 text-[#2C3E50] transition-colors"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -155,6 +160,8 @@ export function Navbar() {
 
               <div className="border-t border-[#2C3E50]/10 pt-3 flex flex-col gap-2">
                 <button
+                  type="button"
+                  aria-label="Replay 3D introduction"
                   onClick={() => {
                     sessionStorage.removeItem("festora_intro_seen");
                     window.location.reload();

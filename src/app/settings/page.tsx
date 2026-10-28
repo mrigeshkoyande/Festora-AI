@@ -479,7 +479,11 @@ export default function SettingsPage() {
 
       {/* TOAST MESSAGE */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold">
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold"
+        >
           <Check className="w-4 h-4 text-[var(--gold)]" />
           {toastMessage}
         </div>

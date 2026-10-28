@@ -6,12 +6,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-export function Card({
-  variant = "solid",
-  className,
-  children,
-  ...props
-}: CardProps) {
+export function Card({ variant = "solid", className, children, ...props }: CardProps) {
   const variantClasses = {
     // Solid white surface for legibility
     solid: "bg-white border border-navy/10 shadow-sm rounded-card",
@@ -49,7 +44,7 @@ export function BentoCard({
       className={cn(
         "relative overflow-hidden rounded-card-lg p-8 transition-all duration-300 group",
         "bg-white border border-navy/12 hover:border-navy/30 shadow-sm hover:shadow-md",
-        className
+        className,
       )}
     >
       {bgImage && (
@@ -71,12 +66,8 @@ export function BentoCard({
             )}
             {badge && <div>{badge}</div>}
           </div>
-          <h3 className="font-grotesk text-2xl font-bold text-navy tracking-tight mb-2">
-            {title}
-          </h3>
-          {subtitle && (
-            <p className="text-ink/75 text-sm leading-relaxed">{subtitle}</p>
-          )}
+          <h3 className="font-grotesk text-2xl font-bold text-navy tracking-tight mb-2">{title}</h3>
+          {subtitle && <p className="text-ink/75 text-sm leading-relaxed">{subtitle}</p>}
         </div>
         {children && <div className="mt-6">{children}</div>}
       </div>

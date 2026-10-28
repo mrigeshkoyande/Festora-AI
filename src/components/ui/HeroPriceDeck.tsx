@@ -171,18 +171,14 @@ export function HeroPriceDeck({
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <p className="text-xs font-bold text-navy">
-                        AI Price Intelligence
-                      </p>
+                      <p className="text-xs font-bold text-navy">AI Price Intelligence</p>
                       <Badge variant="orange" className="text-[10px] py-0.5 px-2">
                         {items.length} Price Cards
                       </Badge>
                     </div>
                     <p className="text-sm font-extrabold text-navy mt-0.5">
                       ₹45.0 Lakhs{" "}
-                      <span className="text-[11px] font-medium text-ink/70">
-                        • ₹4.2L AI saved
-                      </span>
+                      <span className="text-[11px] font-medium text-ink/70">• ₹4.2L AI saved</span>
                     </p>
                   </div>
                 </div>
@@ -237,7 +233,7 @@ export function HeroPriceDeck({
                       "px-3 py-1 rounded-pill text-[11px] font-bold tracking-wide transition-all",
                       mode === "budget"
                         ? "bg-navy text-bg shadow-sm"
-                        : "text-ink/70 hover:text-ink"
+                        : "text-ink/70 hover:text-ink",
                     )}
                   >
                     Event Prices
@@ -247,9 +243,7 @@ export function HeroPriceDeck({
                     onClick={() => setMode("plans")}
                     className={cn(
                       "px-3 py-1 rounded-pill text-[11px] font-bold tracking-wide transition-all",
-                      mode === "plans"
-                        ? "bg-navy text-bg shadow-sm"
-                        : "text-ink/70 hover:text-ink"
+                      mode === "plans" ? "bg-navy text-bg shadow-sm" : "text-ink/70 hover:text-ink",
                     )}
                   >
                     Platform Plans
@@ -289,7 +283,7 @@ export function HeroPriceDeck({
                         "p-2.5 sm:p-3 rounded-card-sm border transition-all cursor-pointer flex items-center justify-between gap-2.5 shadow-sm",
                         isSelected
                           ? "bg-white border-orange shadow-md scale-[1.01]"
-                          : "bg-white/70 hover:bg-white border-navy/10 hover:border-navy/25"
+                          : "bg-white/70 hover:bg-white border-navy/10 hover:border-navy/25",
                       )}
                     >
                       {/* Left: Icon & Category */}
@@ -299,7 +293,7 @@ export function HeroPriceDeck({
                             "w-8 h-8 rounded-full flex items-center justify-center shrink-0 border",
                             isSelected
                               ? "bg-orange/20 border-orange/40 text-ink"
-                              : "bg-navy/10 border-navy/15 text-navy"
+                              : "bg-navy/10 border-navy/15 text-navy",
                           )}
                         >
                           <Icon className="w-4 h-4" />
@@ -316,9 +310,7 @@ export function HeroPriceDeck({
                               {item.badge}
                             </Badge>
                           </div>
-                          <p className="text-xs font-bold text-navy truncate">
-                            {item.title}
-                          </p>
+                          <p className="text-xs font-bold text-navy truncate">{item.title}</p>
                           <p className="text-[10px] text-ink/65 truncate hidden sm:block">
                             {item.detail}
                           </p>
@@ -330,14 +322,12 @@ export function HeroPriceDeck({
                         <span
                           className={cn(
                             "font-grotesk text-sm sm:text-base font-extrabold tracking-tight block",
-                            isNegative ? "text-orange" : "text-navy"
+                            isNegative ? "text-orange" : "text-navy",
                           )}
                         >
                           {item.amount}
                         </span>
-                        <span className="text-[10px] font-bold text-ink/60">
-                          {item.share}
-                        </span>
+                        <span className="text-[10px] font-bold text-ink/60">{item.share}</span>
                       </div>
                     </motion.div>
                   );

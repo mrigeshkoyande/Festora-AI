@@ -36,26 +36,29 @@ export function GlassSurface({
   // Resolve variant: explicit variant wins, then elevation, then "card"
   const resolvedVariant: GlassVariant = variant ?? elevation ?? "card";
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!interactive || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!interactive || !containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-    rafId.current = requestAnimationFrame(() => {
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--mx", `${x}px`);
-        containerRef.current.style.setProperty("--my", `${y}px`);
-      }
-    });
-  }, [interactive]);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        if (containerRef.current) {
+          containerRef.current.style.setProperty("--mx", `${x}px`);
+          containerRef.current.style.setProperty("--my", `${y}px`);
+        }
+      });
+    },
+    [interactive],
+  );
 
   const variantClasses: Record<GlassVariant, string> = {
-    card:     "glass rounded-card",
-    strong:   "glass-strong rounded-card",
-    dark:     "glass-dark rounded-card text-bg",
-    pill:     "glass-strong rounded-pill px-6 py-2.5",
+    card: "glass rounded-card",
+    strong: "glass-strong rounded-card",
+    dark: "glass-dark rounded-card text-bg",
+    pill: "glass-strong rounded-pill px-6 py-2.5",
     floating: "glass-strong rounded-card shadow-2xl",
   };
 
@@ -68,18 +71,14 @@ export function GlassSurface({
         variantClasses[resolvedVariant],
         interactive && "glass-interactive",
         liquidRefraction && "liquid-refraction",
-        className
+        className,
       )}
       {...props}
     >
       {/* children render inline — they participate in the parent flex/grid
           The glass ::before/::after sheen effects are on the motion.div (pointer-events:none, z-index:1/2 in CSS),
           so content just needs to be on top. We use a wrapper only when not transparent. */}
-      {transparent ? (
-        children
-      ) : (
-        <div style={{ position: "relative", zIndex: 10 }}>{children}</div>
-      )}
+      {transparent ? children : <div style={{ position: "relative", zIndex: 10 }}>{children}</div>}
     </motion.div>
   );
 }

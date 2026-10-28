@@ -103,7 +103,7 @@ export default function TimelinePage() {
     },
   ]);
 
-  const handleTaskClick = (task: typeof tasks[0]) => {
+  const handleTaskClick = (task: (typeof tasks)[0]) => {
     setSelectedTask({
       title: task.title,
       description: task.description,
@@ -127,9 +127,7 @@ export default function TimelinePage() {
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <Badge variant="orange">Production Roadmap</Badge>
-              <span className="text-xs text-ink/60 font-medium">
-                • 47 days to go
-              </span>
+              <span className="text-xs text-ink/60 font-medium">• 47 days to go</span>
             </div>
             <h1 className="font-grotesk text-3xl sm:text-4xl font-extrabold text-navy">
               Master Timeline & Tasks
@@ -252,25 +250,27 @@ export default function TimelinePage() {
                   </div>
                   <Badge variant="success">Completed</Badge>
                 </div>
-                {tasks.filter((t) => t.phase.includes("Phase 1")).map((task) => (
-                  <div
-                    key={task.id}
-                    onClick={() => handleTaskClick(task)}
-                    className="grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border border-navy/6"
-                  >
-                    <div className="col-span-4 flex items-center gap-3">
-                      <span className="text-xs font-semibold text-navy truncate">
-                        {task.title}
-                      </span>
-                    </div>
-                    <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
-                      <div className="w-[45%] h-5 bg-navy text-bg rounded-pill flex items-center justify-between px-3 text-[10px] font-bold">
-                        <span>Done</span>
-                        <CheckCircle2 className="w-3 h-3" />
+                {tasks
+                  .filter((t) => t.phase.includes("Phase 1"))
+                  .map((task) => (
+                    <div
+                      key={task.id}
+                      onClick={() => handleTaskClick(task)}
+                      className="grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border border-navy/6"
+                    >
+                      <div className="col-span-4 flex items-center gap-3">
+                        <span className="text-xs font-semibold text-navy truncate">
+                          {task.title}
+                        </span>
+                      </div>
+                      <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
+                        <div className="w-[45%] h-5 bg-navy text-bg rounded-pill flex items-center justify-between px-3 text-[10px] font-bold">
+                          <span>Done</span>
+                          <CheckCircle2 className="w-3 h-3" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
 
               {/* Phase 2 */}
@@ -284,33 +284,35 @@ export default function TimelinePage() {
                   </div>
                   <Badge variant="orange">In Progress (Days 31-90)</Badge>
                 </div>
-                {tasks.filter((t) => t.phase.includes("Phase 2")).map((task) => (
-                  <div
-                    key={task.id}
-                    onClick={() => handleTaskClick(task)}
-                    className={`grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border ${
-                      task.urgent ? "border-orange bg-orange/5" : "border-navy/6"
-                    }`}
-                  >
-                    <div className="col-span-4 flex items-center gap-3">
-                      <span className="text-xs font-semibold text-navy truncate">
-                        {task.title}
-                      </span>
-                      {task.urgent && <Badge variant="orange">Urgent</Badge>}
-                    </div>
-                    <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
-                      <div
-                        className={`h-5 rounded-pill flex items-center justify-between px-3 text-[10px] font-bold ${
-                          task.urgent ? "bg-orange text-ink w-[60%]" : "bg-gold text-ink w-[50%]"
-                        }`}
-                        style={{ marginLeft: "25%" }}
-                      >
-                        <span>{task.due}</span>
-                        <Clock className="w-3 h-3" />
+                {tasks
+                  .filter((t) => t.phase.includes("Phase 2"))
+                  .map((task) => (
+                    <div
+                      key={task.id}
+                      onClick={() => handleTaskClick(task)}
+                      className={`grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border ${
+                        task.urgent ? "border-orange bg-orange/5" : "border-navy/6"
+                      }`}
+                    >
+                      <div className="col-span-4 flex items-center gap-3">
+                        <span className="text-xs font-semibold text-navy truncate">
+                          {task.title}
+                        </span>
+                        {task.urgent && <Badge variant="orange">Urgent</Badge>}
+                      </div>
+                      <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
+                        <div
+                          className={`h-5 rounded-pill flex items-center justify-between px-3 text-[10px] font-bold ${
+                            task.urgent ? "bg-orange text-ink w-[60%]" : "bg-gold text-ink w-[50%]"
+                          }`}
+                          style={{ marginLeft: "25%" }}
+                        >
+                          <span>{task.due}</span>
+                          <Clock className="w-3 h-3" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
 
               {/* Phase 3 */}
@@ -324,27 +326,29 @@ export default function TimelinePage() {
                   </div>
                   <Badge variant="default">Upcoming</Badge>
                 </div>
-                {tasks.filter((t) => t.phase.includes("Phase 3")).map((task) => (
-                  <div
-                    key={task.id}
-                    onClick={() => handleTaskClick(task)}
-                    className="grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border border-navy/6"
-                  >
-                    <div className="col-span-4 flex items-center gap-3">
-                      <span className="text-xs font-semibold text-navy truncate">
-                        {task.title}
-                      </span>
-                    </div>
-                    <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
-                      <div
-                        className="w-[35%] h-5 bg-navy/20 text-navy rounded-pill flex items-center justify-between px-3 text-[10px] font-bold"
-                        style={{ marginLeft: "60%" }}
-                      >
-                        <span>{task.due}</span>
+                {tasks
+                  .filter((t) => t.phase.includes("Phase 3"))
+                  .map((task) => (
+                    <div
+                      key={task.id}
+                      onClick={() => handleTaskClick(task)}
+                      className="grid grid-cols-12 gap-2 items-center p-3 rounded-2xl hover:bg-bg transition-colors cursor-pointer border border-navy/6"
+                    >
+                      <div className="col-span-4 flex items-center gap-3">
+                        <span className="text-xs font-semibold text-navy truncate">
+                          {task.title}
+                        </span>
+                      </div>
+                      <div className="col-span-8 relative h-7 bg-bg rounded-pill flex items-center px-2">
+                        <div
+                          className="w-[35%] h-5 bg-navy/20 text-navy rounded-pill flex items-center justify-between px-3 text-[10px] font-bold"
+                          style={{ marginLeft: "60%" }}
+                        >
+                          <span>{task.due}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
@@ -370,7 +374,10 @@ export default function TimelinePage() {
             {/* Calendar 7-day grid */}
             <div className="grid grid-cols-7 gap-3 text-center">
               {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-                <div key={day} className="text-xs font-bold uppercase tracking-wider text-ink/60 py-2">
+                <div
+                  key={day}
+                  className="text-xs font-bold uppercase tracking-wider text-ink/60 py-2"
+                >
                   {day}
                 </div>
               ))}
@@ -387,8 +394,8 @@ export default function TimelinePage() {
                       isGalaDay
                         ? "bg-orange text-ink border-orange font-bold shadow-md"
                         : hasTask
-                        ? "bg-white border-navy/20 shadow-sm"
-                        : "bg-white/60 border-navy/8 text-ink/60"
+                          ? "bg-white border-navy/20 shadow-sm"
+                          : "bg-white/60 border-navy/8 text-ink/60"
                     }`}
                   >
                     <span className="text-xs font-bold">{dayNum}</span>
@@ -428,22 +435,24 @@ export default function TimelinePage() {
                 <span className="font-grotesk font-bold text-sm text-navy">To Do (Upcoming)</span>
                 <Badge variant="default">2</Badge>
               </div>
-              {tasks.filter((t) => t.status === "todo").map((t) => (
-                <div
-                  key={t.id}
-                  onClick={() => handleTaskClick(t)}
-                  className="p-4 rounded-2xl bg-bg border border-navy/10 hover:border-navy/30 cursor-pointer space-y-2 transition-all shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <Badge variant={t.priority === "high" ? "orange" : "default"}>
-                      {t.priority}
-                    </Badge>
-                    <span className="text-[11px] text-ink/60">{t.due}</span>
+              {tasks
+                .filter((t) => t.status === "todo")
+                .map((t) => (
+                  <div
+                    key={t.id}
+                    onClick={() => handleTaskClick(t)}
+                    className="p-4 rounded-2xl bg-bg border border-navy/10 hover:border-navy/30 cursor-pointer space-y-2 transition-all shadow-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Badge variant={t.priority === "high" ? "orange" : "default"}>
+                        {t.priority}
+                      </Badge>
+                      <span className="text-[11px] text-ink/60">{t.due}</span>
+                    </div>
+                    <h4 className="text-xs font-bold text-navy">{t.title}</h4>
+                    <p className="text-[11px] text-ink/70 line-clamp-2">{t.description}</p>
                   </div>
-                  <h4 className="text-xs font-bold text-navy">{t.title}</h4>
-                  <p className="text-[11px] text-ink/70 line-clamp-2">{t.description}</p>
-                </div>
-              ))}
+                ))}
             </div>
 
             {/* In Progress */}
@@ -452,20 +461,22 @@ export default function TimelinePage() {
                 <span className="font-grotesk font-bold text-sm text-orange">In Progress</span>
                 <Badge variant="orange">2</Badge>
               </div>
-              {tasks.filter((t) => t.status === "in_progress").map((t) => (
-                <div
-                  key={t.id}
-                  onClick={() => handleTaskClick(t)}
-                  className="p-4 rounded-2xl bg-bg border border-orange/40 hover:border-orange cursor-pointer space-y-2 transition-all shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <Badge variant="orange">Active</Badge>
-                    <span className="text-[11px] font-bold text-orange">{t.due}</span>
+              {tasks
+                .filter((t) => t.status === "in_progress")
+                .map((t) => (
+                  <div
+                    key={t.id}
+                    onClick={() => handleTaskClick(t)}
+                    className="p-4 rounded-2xl bg-bg border border-orange/40 hover:border-orange cursor-pointer space-y-2 transition-all shadow-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Badge variant="orange">Active</Badge>
+                      <span className="text-[11px] font-bold text-orange">{t.due}</span>
+                    </div>
+                    <h4 className="text-xs font-bold text-navy">{t.title}</h4>
+                    <p className="text-[11px] text-ink/70 line-clamp-2">{t.description}</p>
                   </div>
-                  <h4 className="text-xs font-bold text-navy">{t.title}</h4>
-                  <p className="text-[11px] text-ink/70 line-clamp-2">{t.description}</p>
-                </div>
-              ))}
+                ))}
             </div>
 
             {/* Done */}
@@ -474,19 +485,21 @@ export default function TimelinePage() {
                 <span className="font-grotesk font-bold text-sm text-navy">Done</span>
                 <Badge variant="success">2</Badge>
               </div>
-              {tasks.filter((t) => t.status === "done").map((t) => (
-                <div
-                  key={t.id}
-                  onClick={() => handleTaskClick(t)}
-                  className="p-4 rounded-2xl bg-bg border border-navy/10 opacity-75 hover:opacity-100 cursor-pointer space-y-2 transition-all shadow-sm"
-                >
-                  <div className="flex items-center justify-between">
-                    <Badge variant="success">Completed</Badge>
+              {tasks
+                .filter((t) => t.status === "done")
+                .map((t) => (
+                  <div
+                    key={t.id}
+                    onClick={() => handleTaskClick(t)}
+                    className="p-4 rounded-2xl bg-bg border border-navy/10 opacity-75 hover:opacity-100 cursor-pointer space-y-2 transition-all shadow-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Badge variant="success">Completed</Badge>
+                    </div>
+                    <h4 className="text-xs font-semibold text-ink line-through">{t.title}</h4>
+                    <p className="text-[11px] text-ink/50 line-clamp-1">{t.description}</p>
                   </div>
-                  <h4 className="text-xs font-semibold text-ink line-through">{t.title}</h4>
-                  <p className="text-[11px] text-ink/50 line-clamp-1">{t.description}</p>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}

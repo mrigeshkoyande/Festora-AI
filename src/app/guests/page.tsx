@@ -28,13 +28,14 @@ import {
   Utensils,
   Share2,
   Trash2,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
 
 interface Guest {
   id: string;
   name: string;
-  group: "Immediate Family" | "College Friends" | "VIP Dignitaries" | "Bride's Side" | "Groom's Side";
+  group:
+    "Immediate Family" | "College Friends" | "VIP Dignitaries" | "Bride's Side" | "Groom's Side";
   email: string;
   phone: string;
   rsvpStatus: "Confirmed" | "Pending" | "Declined";
@@ -53,7 +54,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Confirmed",
     mealPreference: "Rajasthani Thali",
     plusOne: "Sunita Singhania",
-    table: "Royal Pavilion Table 1"
+    table: "Royal Pavilion Table 1",
   },
   {
     id: "g-2",
@@ -64,7 +65,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Confirmed",
     mealPreference: "Jain Pure Veg",
     plusOne: "Meena Mehta",
-    table: "Royal Pavilion Table 1"
+    table: "Royal Pavilion Table 1",
   },
   {
     id: "g-3",
@@ -75,7 +76,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Pending",
     mealPreference: "Continental",
     plusOne: "Rhea Sen",
-    table: "Courtyard Terrace Table 2"
+    table: "Courtyard Terrace Table 2",
   },
   {
     id: "g-4",
@@ -86,7 +87,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Confirmed",
     mealPreference: "Vegan",
     plusOne: null,
-    table: "Courtyard Terrace Table 2"
+    table: "Courtyard Terrace Table 2",
   },
   {
     id: "g-5",
@@ -97,7 +98,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Declined",
     mealPreference: "Rajasthani Thali",
     plusOne: null,
-    table: "Unassigned"
+    table: "Unassigned",
   },
   {
     id: "g-6",
@@ -108,7 +109,7 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Confirmed",
     mealPreference: "Rajasthani Thali",
     plusOne: "Dr. Aarti Rathore",
-    table: "Royal Pavilion Table 1"
+    table: "Royal Pavilion Table 1",
   },
   {
     id: "g-7",
@@ -119,8 +120,8 @@ const INITIAL_GUESTS: Guest[] = [
     rsvpStatus: "Pending",
     mealPreference: "Vegan",
     plusOne: null,
-    table: "Courtyard Terrace Table 2"
-  }
+    table: "Courtyard Terrace Table 2",
+  },
 ];
 
 export default function GuestsPage() {
@@ -154,7 +155,7 @@ export default function GuestsPage() {
       rsvpStatus: "Pending",
       mealPreference: newMeal,
       plusOne: newPlusOne || null,
-      table: "Unassigned"
+      table: "Unassigned",
     };
     setGuests([...guests, newGuestItem]);
     setIsAddGuestModalOpen(false);
@@ -172,9 +173,10 @@ export default function GuestsPage() {
 
   // Filter guests
   const filteredGuests = guests.filter((g) => {
-    const matchesSearch = g.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          g.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          g.phone.includes(searchQuery);
+    const matchesSearch =
+      g.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      g.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      g.phone.includes(searchQuery);
     const matchesGroup = selectedGroup === "All" || g.group === selectedGroup;
     const matchesRsvp = selectedRsvp === "All" || g.rsvpStatus === selectedRsvp;
     return matchesSearch && matchesGroup && matchesRsvp;
@@ -191,7 +193,9 @@ export default function GuestsPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">Guest Operations</span>
+            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">
+              Guest Operations
+            </span>
             <span className="text-xs text-[var(--ink)]/50">•</span>
             <span className="text-xs font-semibold text-[var(--orange)] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" /> AI Dietary & RSVP Sync
@@ -201,7 +205,8 @@ export default function GuestsPage() {
             Guests & RSVP Intelligence
           </h1>
           <p className="text-sm text-[var(--ink)]/70 mt-1 max-w-xl">
-            Real-time RSVP synchronization, digital WhatsApp dispatch, dietary constraint tracking, and automated follow-ups.
+            Real-time RSVP synchronization, digital WhatsApp dispatch, dietary constraint tracking,
+            and automated follow-ups.
           </p>
         </div>
 
@@ -232,7 +237,9 @@ export default function GuestsPage() {
       {/* RSVP Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <GlassSurface elevation="card" className="p-4 rounded-2xl border border-[var(--navy)]/10">
-          <span className="text-xs font-bold uppercase tracking-wider text-[var(--ink)]/60">Total Invited</span>
+          <span className="text-xs font-bold uppercase tracking-wider text-[var(--ink)]/60">
+            Total Invited
+          </span>
           <div className="text-3xl font-extrabold text-[var(--navy)] mt-1">{totalInvited}</div>
           <div className="text-[11px] text-[var(--ink)]/50 mt-1">150 Target Capacity</div>
         </GlassSurface>
@@ -242,7 +249,9 @@ export default function GuestsPage() {
             <Check className="w-3.5 h-3.5" /> Confirmed
           </span>
           <div className="text-3xl font-extrabold text-[var(--navy)] mt-1">{confirmedCount}</div>
-          <div className="text-[11px] text-[var(--ink)]/60 mt-1">{Math.round((confirmedCount / totalInvited) * 100)}% of total</div>
+          <div className="text-[11px] text-[var(--ink)]/60 mt-1">
+            {Math.round((confirmedCount / totalInvited) * 100)}% of total
+          </div>
         </GlassSurface>
 
         <GlassSurface elevation="card" className="p-4 rounded-2xl border border-[var(--navy)]/10">
@@ -250,7 +259,9 @@ export default function GuestsPage() {
             <Clock className="w-3.5 h-3.5" /> Awaiting Reply
           </span>
           <div className="text-3xl font-extrabold text-[var(--navy)] mt-1">{pendingCount}</div>
-          <div className="text-[11px] text-[var(--ink)]/60 mt-1">{Math.round((pendingCount / totalInvited) * 100)}% pending</div>
+          <div className="text-[11px] text-[var(--ink)]/60 mt-1">
+            {Math.round((pendingCount / totalInvited) * 100)}% pending
+          </div>
         </GlassSurface>
 
         <GlassSurface elevation="card" className="p-4 rounded-2xl border border-[var(--navy)]/10">
@@ -364,9 +375,13 @@ export default function GuestsPage() {
                         </td>
 
                         <td className="py-3.5 px-4">
-                          <span className="font-semibold text-[var(--ink)]">{guest.mealPreference}</span>
+                          <span className="font-semibold text-[var(--ink)]">
+                            {guest.mealPreference}
+                          </span>
                           {guest.plusOne && (
-                            <span className="block text-[10px] text-[var(--ink)]/50">+1: {guest.plusOne}</span>
+                            <span className="block text-[10px] text-[var(--ink)]/50">
+                              +1: {guest.plusOne}
+                            </span>
                           )}
                         </td>
 
@@ -397,8 +412,12 @@ export default function GuestsPage() {
         {/* Right: Live RSVP Mobile Preview Frame (4 cols) */}
         <div className="lg:col-span-4 sticky top-6">
           <div className="text-center mb-3">
-            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">Live Preview</span>
-            <h3 className="text-sm font-bold text-[var(--ink)] mt-0.5">Guest-Facing Mobile RSVP Page</h3>
+            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">
+              Live Preview
+            </span>
+            <h3 className="text-sm font-bold text-[var(--ink)] mt-0.5">
+              Guest-Facing Mobile RSVP Page
+            </h3>
           </div>
 
           {/* iPhone Frame Simulator */}
@@ -421,7 +440,9 @@ export default function GuestsPage() {
                   className="object-cover opacity-40"
                 />
                 <div className="relative z-10">
-                  <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Royal Jaipur Celebration</span>
+                  <span className="text-[10px] uppercase font-bold text-[var(--gold)]">
+                    Royal Jaipur Celebration
+                  </span>
                   <h4 className="text-sm font-extrabold leading-tight">Ananya & Rohan</h4>
                   <p className="text-[10px] text-white/80">Nov 18, 2026 • Samode Palace</p>
                 </div>
@@ -429,7 +450,9 @@ export default function GuestsPage() {
 
               {/* Personalized Greeting */}
               <div className="p-3 bg-white rounded-xl border border-[var(--navy)]/10 shadow-sm">
-                <span className="text-[10px] text-[var(--ink)]/50 uppercase font-bold">Personalized Invitation</span>
+                <span className="text-[10px] text-[var(--ink)]/50 uppercase font-bold">
+                  Personalized Invitation
+                </span>
                 <div className="font-extrabold text-sm text-[var(--navy)] mt-0.5">
                   Namaste, {selectedGuestForRsvp.name}!
                 </div>
@@ -440,7 +463,9 @@ export default function GuestsPage() {
 
               {/* RSVP Interactive Selection Mock */}
               <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[var(--navy)] block">Will you attend?</label>
+                <label className="text-[11px] font-bold text-[var(--navy)] block">
+                  Will you attend?
+                </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
@@ -465,7 +490,9 @@ export default function GuestsPage() {
 
               {/* Meal Preference Selection */}
               <div className="space-y-1">
-                <label className="text-[11px] font-bold text-[var(--navy)] block">Dietary Selection</label>
+                <label className="text-[11px] font-bold text-[var(--navy)] block">
+                  Dietary Selection
+                </label>
                 <div className="p-2.5 bg-white rounded-xl border border-[var(--navy)]/10 text-xs font-semibold text-[var(--navy)] flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
                     <Utensils className="w-3.5 h-3.5 text-[var(--orange)]" />
@@ -476,7 +503,11 @@ export default function GuestsPage() {
               </div>
 
               {/* Submit Button on Phone */}
-              <Button variant="orange" size="sm" className="w-full text-xs font-bold text-[var(--ink)] shadow-md">
+              <Button
+                variant="orange"
+                size="sm"
+                className="w-full text-xs font-bold text-[var(--ink)] shadow-md"
+              >
                 Confirm RSVP
               </Button>
             </div>
@@ -505,7 +536,9 @@ export default function GuestsPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-bold text-[var(--navy)] block mb-1">Email Address</label>
+              <label className="text-xs font-bold text-[var(--navy)] block mb-1">
+                Email Address
+              </label>
               <Input
                 type="email"
                 placeholder="guest@festora.ai"
@@ -515,7 +548,9 @@ export default function GuestsPage() {
               />
             </div>
             <div>
-              <label className="text-xs font-bold text-[var(--navy)] block mb-1">WhatsApp / Phone</label>
+              <label className="text-xs font-bold text-[var(--navy)] block mb-1">
+                WhatsApp / Phone
+              </label>
               <Input
                 placeholder="+91 98000 00000"
                 value={newPhone}
@@ -541,7 +576,9 @@ export default function GuestsPage() {
               </Select>
             </div>
             <div>
-              <label className="text-xs font-bold text-[var(--navy)] block mb-1">Dietary Constraint</label>
+              <label className="text-xs font-bold text-[var(--navy)] block mb-1">
+                Dietary Constraint
+              </label>
               <Select
                 value={newMeal}
                 onChange={(e) => setNewMeal(e.target.value as Guest["mealPreference"])}
@@ -556,7 +593,9 @@ export default function GuestsPage() {
           </div>
 
           <div>
-            <label className="text-xs font-bold text-[var(--navy)] block mb-1">Plus-One Companion (Optional)</label>
+            <label className="text-xs font-bold text-[var(--navy)] block mb-1">
+              Plus-One Companion (Optional)
+            </label>
             <Input
               placeholder="e.g. Spouse / Partner Name"
               value={newPlusOne}
@@ -566,10 +605,20 @@ export default function GuestsPage() {
           </div>
 
           <div className="flex justify-end gap-2 pt-3 border-t border-[var(--navy)]/10">
-            <Button variant="ghost" size="sm" type="button" onClick={() => setIsAddGuestModalOpen(false)}>
+            <Button
+              variant="ghost"
+              size="sm"
+              type="button"
+              onClick={() => setIsAddGuestModalOpen(false)}
+            >
               Cancel
             </Button>
-            <Button variant="orange" size="sm" type="submit" className="font-bold text-[var(--ink)]">
+            <Button
+              variant="orange"
+              size="sm"
+              type="submit"
+              className="font-bold text-[var(--ink)]"
+            >
               Add to Guest List
             </Button>
           </div>
@@ -601,7 +650,9 @@ export default function GuestsPage() {
                 <Smartphone className="w-5 h-5 text-[var(--gold)]" />
                 <div>
                   <div className="font-bold text-xs">WhatsApp API</div>
-                  <div className={`text-[10px] ${channelType === "whatsapp" ? "text-white/70" : "text-[var(--ink)]/50"}`}>
+                  <div
+                    className={`text-[10px] ${channelType === "whatsapp" ? "text-white/70" : "text-[var(--ink)]/50"}`}
+                  >
                     98.4% open rate in 5 mins
                   </div>
                 </div>
@@ -619,7 +670,9 @@ export default function GuestsPage() {
                 <Mail className="w-5 h-5 text-[var(--gold)]" />
                 <div>
                   <div className="font-bold text-xs">Custom Email</div>
-                  <div className={`text-[10px] ${channelType === "email" ? "text-white/70" : "text-[var(--ink)]/50"}`}>
+                  <div
+                    className={`text-[10px] ${channelType === "email" ? "text-white/70" : "text-[var(--ink)]/50"}`}
+                  >
                     Includes calendar .ics attachment
                   </div>
                 </div>
@@ -646,10 +699,12 @@ export default function GuestsPage() {
             <div className="p-4 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/15 text-xs text-[var(--ink)] space-y-2 font-mono">
               <p>Namaste {"{{guest_name}}"}:</p>
               <p>
-                Ananya & Rohan warmly invite you to their Royal Wedding at Samode Palace, Jaipur on Nov 18, 2026.
+                Ananya & Rohan warmly invite you to their Royal Wedding at Samode Palace, Jaipur on
+                Nov 18, 2026.
               </p>
               <p>
-                Kindly tap the link below to confirm your RSVP, dietary preferences, and travel arrangements:
+                Kindly tap the link below to confirm your RSVP, dietary preferences, and travel
+                arrangements:
               </p>
               <p className="text-[var(--orange)] font-bold">
                 https://festora.ai/celebration/ananya-rohan?guest_id={"{{guest_id}}"}
@@ -681,11 +736,17 @@ export default function GuestsPage() {
 
       {/* INVITATION SENT TOAST */}
       {inviteSentToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4">
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4"
+        >
           <Check className="w-5 h-5 text-[var(--gold)]" />
           <div>
             <div className="font-bold text-xs">Invitations Dispatched!</div>
-            <div className="text-[11px] text-white/70">WhatsApp tracking links delivered to {pendingCount} recipients.</div>
+            <div className="text-[11px] text-white/70">
+              WhatsApp tracking links delivered to {pendingCount} recipients.
+            </div>
           </div>
         </div>
       )}

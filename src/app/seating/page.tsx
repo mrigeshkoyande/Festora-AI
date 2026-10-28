@@ -17,7 +17,7 @@ import {
   Move,
   Maximize2,
   Trash2,
-  Utensils
+  Utensils,
 } from "lucide-react";
 
 interface Table {
@@ -39,13 +39,28 @@ const INITIAL_TABLES: Table[] = [
     x: 80,
     y: 60,
     guests: [
-      { id: "g-1", name: "Vikramaditya Singhania", group: "VIP Dignitaries", meal: "Rajasthani Thali" },
+      {
+        id: "g-1",
+        name: "Vikramaditya Singhania",
+        group: "VIP Dignitaries",
+        meal: "Rajasthani Thali",
+      },
       { id: "g-1-2", name: "Sunita Singhania", group: "VIP Dignitaries", meal: "Rajasthani Thali" },
       { id: "g-2", name: "Rajesh Mehta", group: "Immediate Family", meal: "Jain Pure Veg" },
       { id: "g-2-2", name: "Meena Mehta", group: "Immediate Family", meal: "Jain Pure Veg" },
-      { id: "g-6", name: "Col. Sanjeev Rathore", group: "VIP Dignitaries", meal: "Rajasthani Thali" },
-      { id: "g-6-2", name: "Dr. Aarti Rathore", group: "VIP Dignitaries", meal: "Rajasthani Thali" }
-    ]
+      {
+        id: "g-6",
+        name: "Col. Sanjeev Rathore",
+        group: "VIP Dignitaries",
+        meal: "Rajasthani Thali",
+      },
+      {
+        id: "g-6-2",
+        name: "Dr. Aarti Rathore",
+        group: "VIP Dignitaries",
+        meal: "Rajasthani Thali",
+      },
+    ],
   },
   {
     id: "t-2",
@@ -58,8 +73,8 @@ const INITIAL_TABLES: Table[] = [
       { id: "g-3", name: "Kabir Malhotra", group: "College Friends", meal: "Continental" },
       { id: "g-3-2", name: "Rhea Sen", group: "College Friends", meal: "Continental" },
       { id: "g-4", name: "Zoya Akhtar", group: "College Friends", meal: "Vegan" },
-      { id: "g-7", name: "Tara Deshmukh", group: "Bride's Side", meal: "Vegan" }
-    ]
+      { id: "g-7", name: "Tara Deshmukh", group: "Bride's Side", meal: "Vegan" },
+    ],
   },
   {
     id: "t-3",
@@ -68,7 +83,7 @@ const INITIAL_TABLES: Table[] = [
     capacity: 8,
     x: 80,
     y: 320,
-    guests: []
+    guests: [],
   },
   {
     id: "t-4",
@@ -77,15 +92,15 @@ const INITIAL_TABLES: Table[] = [
     capacity: 10,
     x: 420,
     y: 320,
-    guests: []
-  }
+    guests: [],
+  },
 ];
 
 const UNASSIGNED_GUESTS = [
   { id: "u-1", name: "Aman Singhal", group: "College Friends", meal: "Vegetarian" },
   { id: "u-2", name: "Neha Singhal", group: "College Friends", meal: "Vegetarian" },
   { id: "u-3", name: "Devendra Verma", group: "Immediate Family", meal: "Jain Pure Veg" },
-  { id: "u-4", name: "Sarita Verma", group: "Immediate Family", meal: "Jain Pure Veg" }
+  { id: "u-4", name: "Sarita Verma", group: "Immediate Family", meal: "Jain Pure Veg" },
 ];
 
 export default function SeatingPage() {
@@ -108,12 +123,12 @@ export default function SeatingPage() {
       // Assign Aman and Neha to Table 2 (friends)
       updatedTables[1].guests.push(
         { id: "u-1", name: "Aman Singhal", group: "College Friends", meal: "Vegetarian" },
-        { id: "u-2", name: "Neha Singhal", group: "College Friends", meal: "Vegetarian" }
+        { id: "u-2", name: "Neha Singhal", group: "College Friends", meal: "Vegetarian" },
       );
       // Assign Devendra and Sarita to Table 3 (family)
       updatedTables[2].guests.push(
         { id: "u-3", name: "Devendra Verma", group: "Immediate Family", meal: "Jain Pure Veg" },
-        { id: "u-4", name: "Sarita Verma", group: "Immediate Family", meal: "Jain Pure Veg" }
+        { id: "u-4", name: "Sarita Verma", group: "Immediate Family", meal: "Jain Pure Veg" },
       );
 
       setTables(updatedTables);
@@ -132,7 +147,7 @@ export default function SeatingPage() {
       capacity: shape === "round" ? 8 : 10,
       x: 250,
       y: 200,
-      guests: []
+      guests: [],
     };
     setTables([...tables, newTable]);
     setSelectedTable(newTable);
@@ -145,7 +160,9 @@ export default function SeatingPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">Floor Logistics</span>
+            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">
+              Floor Logistics
+            </span>
             <span className="text-xs text-[var(--ink)]/50">•</span>
             <span className="text-xs font-semibold text-[var(--gold)] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" /> AI Harmony Engine
@@ -155,7 +172,8 @@ export default function SeatingPage() {
             Seating Planner & Floor Layout
           </h1>
           <p className="text-sm text-[var(--ink)]/70 mt-1">
-            Design reception floor plans, assign guests to VIP and banquet tables, and resolve social seating constraints.
+            Design reception floor plans, assign guests to VIP and banquet tables, and resolve
+            social seating constraints.
           </p>
         </div>
 
@@ -210,7 +228,8 @@ export default function SeatingPage() {
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--navy)]" /> Occupied
               </span>
               <span className="flex items-center gap-1.5 text-[var(--ink)]/60 font-bold ml-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[var(--bg)] border border-[var(--navy)]/30" /> Available
+                <span className="w-2.5 h-2.5 rounded-full bg-[var(--bg)] border border-[var(--navy)]/30" />{" "}
+                Available
               </span>
             </div>
           </div>
@@ -230,10 +249,17 @@ export default function SeatingPage() {
                 <div
                   key={table.id}
                   onClick={() => setSelectedTable(table)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setSelectedTable(table);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${table.name}, ${table.guests.length} of ${table.capacity} seats occupied${isFull ? ", full" : ""}`}
                   className={`relative p-5 cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
-                    table.shape === "round"
-                      ? "w-52 h-52 rounded-full"
-                      : "w-64 h-40 rounded-2xl"
+                    table.shape === "round" ? "w-52 h-52 rounded-full" : "w-64 h-40 rounded-2xl"
                   } ${
                     isSelected
                       ? "border-2 border-[var(--orange)] shadow-xl bg-[var(--bg)]"
@@ -242,7 +268,9 @@ export default function SeatingPage() {
                 >
                   {/* Table Label */}
                   <div className="text-center">
-                    <h4 className="text-xs font-bold text-[var(--navy)] line-clamp-1">{table.name}</h4>
+                    <h4 className="text-xs font-bold text-[var(--navy)] line-clamp-1">
+                      {table.name}
+                    </h4>
                     <div className="text-[11px] font-bold text-[var(--orange)] mt-0.5">
                       {table.guests.length} / {table.capacity} Seated
                     </div>
@@ -277,7 +305,10 @@ export default function SeatingPage() {
 
           {/* Canvas Footer */}
           <div className="pt-4 border-t border-[var(--navy)]/10 flex justify-between items-center text-xs text-[var(--ink)]/60">
-            <span>Click any table to view seated guests and dietary requirements.</span>
+            <span>
+              Select any table with click, Enter, or Space to view seated guests and dietary
+              requirements.
+            </span>
             <Button
               variant="ghost"
               size="sm"
@@ -293,16 +324,26 @@ export default function SeatingPage() {
         <div className="lg:col-span-4 space-y-6">
           {/* Selected Table Details */}
           {selectedTable ? (
-            <GlassSurface elevation="card" className="p-5 rounded-2xl border border-[var(--navy)]/10 space-y-4">
+            <GlassSurface
+              elevation="card"
+              className="p-5 rounded-2xl border border-[var(--navy)]/10 space-y-4"
+            >
               <div className="flex justify-between items-start pb-3 border-b border-[var(--navy)]/10">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-[var(--gold)]">Selected Table</span>
-                  <h3 className="text-base font-extrabold text-[var(--navy)] leading-tight">{selectedTable.name}</h3>
+                  <span className="text-[10px] uppercase font-bold text-[var(--gold)]">
+                    Selected Table
+                  </span>
+                  <h3 className="text-base font-extrabold text-[var(--navy)] leading-tight">
+                    {selectedTable.name}
+                  </h3>
                   <p className="text-xs text-[var(--ink)]/60 mt-0.5">
-                    {selectedTable.shape === "round" ? "8-Seater Round" : "10-Seater Banquet"} • {selectedTable.guests.length} Seated
+                    {selectedTable.shape === "round" ? "8-Seater Round" : "10-Seater Banquet"} •{" "}
+                    {selectedTable.guests.length} Seated
                   </p>
                 </div>
-                <Badge variant={selectedTable.guests.length >= selectedTable.capacity ? "navy" : "gold"}>
+                <Badge
+                  variant={selectedTable.guests.length >= selectedTable.capacity ? "navy" : "gold"}
+                >
                   {selectedTable.capacity - selectedTable.guests.length} seats free
                 </Badge>
               </div>
@@ -334,14 +375,17 @@ export default function SeatingPage() {
                           tables.map((t) =>
                             t.id === selectedTable.id
                               ? { ...t, guests: t.guests.filter((item) => item.id !== g.id) }
-                              : t
-                          )
+                              : t,
+                          ),
                         );
                         setSelectedTable({
                           ...selectedTable,
-                          guests: selectedTable.guests.filter((item) => item.id !== g.id)
+                          guests: selectedTable.guests.filter((item) => item.id !== g.id),
                         });
-                        setUnassigned([...unassigned, { id: g.id, name: g.name, group: g.group, meal: g.meal }]);
+                        setUnassigned([
+                          ...unassigned,
+                          { id: g.id, name: g.name, group: g.group, meal: g.meal },
+                        ]);
                       }}
                       className="text-[var(--ink)]/40 hover:text-[var(--orange)] p-1 text-[11px] font-bold"
                     >
@@ -376,7 +420,9 @@ export default function SeatingPage() {
                 >
                   <div>
                     <div className="font-bold text-[var(--navy)]">{u.name}</div>
-                    <div className="text-[10px] text-[var(--ink)]/50 mt-0.5">{u.group} • {u.meal}</div>
+                    <div className="text-[10px] text-[var(--ink)]/50 mt-0.5">
+                      {u.group} • {u.meal}
+                    </div>
                   </div>
 
                   {selectedTable && selectedTable.guests.length < selectedTable.capacity && (
@@ -386,7 +432,9 @@ export default function SeatingPage() {
                       onClick={() => {
                         const updatedGuests = [...selectedTable.guests, u];
                         setTables(
-                          tables.map((t) => (t.id === selectedTable.id ? { ...t, guests: updatedGuests } : t))
+                          tables.map((t) =>
+                            t.id === selectedTable.id ? { ...t, guests: updatedGuests } : t,
+                          ),
                         );
                         setSelectedTable({ ...selectedTable, guests: updatedGuests });
                         setUnassigned(unassigned.filter((item) => item.id !== u.id));
@@ -411,7 +459,11 @@ export default function SeatingPage() {
 
       {/* TOAST MESSAGE */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold">
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold"
+        >
           <Check className="w-4 h-4 text-[var(--gold)]" />
           {toastMessage}
         </div>

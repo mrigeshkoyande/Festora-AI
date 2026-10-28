@@ -19,7 +19,7 @@ import {
   Layers,
   Utensils,
   Gift,
-  FileText
+  FileText,
 } from "lucide-react";
 
 interface MoodItem {
@@ -36,34 +36,40 @@ const MOOD_ITEMS: MoodItem[] = [
     id: "m-1",
     title: "Hand-Carved Stone Mandap with Marigold Cascades",
     category: "Decor",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&auto=format&fit=crop",
-    description: "Symmetric temple mandap architecture draped in scented Indian jasmine and golden marigolds suspended over reflection pool.",
-    tags: ["Royal Heritage", "Floral Rigging", "Sunset Ceremony"]
+    image:
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&auto=format&fit=crop",
+    description:
+      "Symmetric temple mandap architecture draped in scented Indian jasmine and golden marigolds suspended over reflection pool.",
+    tags: ["Royal Heritage", "Floral Rigging", "Sunset Ceremony"],
   },
   {
     id: "m-2",
     title: "Candlelit Mughal Courtyard Dining",
     category: "Lighting",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop",
-    description: "500 handcrafted brass lanterns casting intricate shadow geometry across stone archways and velvet banquettes.",
-    tags: ["Ambient Glow", "Brass Lanterns", "Dinner Banquet"]
+    image:
+      "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop",
+    description:
+      "500 handcrafted brass lanterns casting intricate shadow geometry across stone archways and velvet banquettes.",
+    tags: ["Ambient Glow", "Brass Lanterns", "Dinner Banquet"],
   },
   {
     id: "m-3",
     title: "Live Sigri & Clay Tandoor Chaat Stalls",
     category: "Gastronomy",
     image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop",
-    description: "Authentic copper and terracotta live cooking stations with specialized pure-vegetarian and Jain options.",
-    tags: ["Live Counters", "Pure Jain", "Rajasthani Chaat"]
+    description:
+      "Authentic copper and terracotta live cooking stations with specialized pure-vegetarian and Jain options.",
+    tags: ["Live Counters", "Pure Jain", "Rajasthani Chaat"],
   },
   {
     id: "m-4",
     title: "Gold-Leaf Foil Pressed Invitation Boxes",
     category: "Stationery",
     image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&auto=format&fit=crop",
-    description: "Handmade cotton deckled paper, Pichwai painted envelope inserts, and personalized brass seal monograms.",
-    tags: ["24k Gold Foil", "Deckled Edge", "Pichwai Art"]
-  }
+    description:
+      "Handmade cotton deckled paper, Pichwai painted envelope inserts, and personalized brass seal monograms.",
+    tags: ["24k Gold Foil", "Deckled Edge", "Pichwai Art"],
+  },
 ];
 
 export default function IdeasPage() {
@@ -82,7 +88,7 @@ export default function IdeasPage() {
     { name: "Marigold Ochre", hex: "#E67E22", role: "Urgent & Active Moments" },
     { name: "Imperial Gold", hex: "#F1C40F", role: "Celebration Accents" },
     { name: "Marble Canvas", hex: "#F8F9FA", role: "Light Neutral Surface" },
-    { name: "Charcoal Ink", hex: "#1E272E", role: "Typography & Fills" }
+    { name: "Charcoal Ink", hex: "#1E272E", role: "Typography & Fills" },
   ];
 
   const copyHexCode = (hex: string) => {
@@ -97,10 +103,12 @@ export default function IdeasPage() {
     modern:
       "Together with their families, Ananya Mehta and Rohan Verma invite you to join them in celebrating love, laughter, and their new beginning at Samode Palace, Jaipur on November 18, 2026.",
     poetic:
-      "As dusk melts into starry night across the Thar desert, two souls unite in timeless love. We warmly welcome your blessings as Ananya and Rohan begin their journey as husband and wife."
+      "As dusk melts into starry night across the Thar desert, two souls unite in timeless love. We warmly welcome your blessings as Ananya and Rohan begin their journey as husband and wife.",
   };
 
-  const filteredItems = MOOD_ITEMS.filter((item) => activeCategory === "All" || item.category === activeCategory);
+  const filteredItems = MOOD_ITEMS.filter(
+    (item) => activeCategory === "All" || item.category === activeCategory,
+  );
 
   return (
     <WorkspaceShell activeTab="ideas">
@@ -108,7 +116,9 @@ export default function IdeasPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">Aesthetic Architecture</span>
+            <span className="text-xs uppercase tracking-widest font-bold text-[var(--navy)]">
+              Aesthetic Architecture
+            </span>
             <span className="text-xs text-[var(--ink)]/50">•</span>
             <span className="text-xs font-semibold text-[var(--gold)] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" /> Curated Moodboards & Palette
@@ -118,7 +128,8 @@ export default function IdeasPage() {
             Themes, Moodboards & Wording
           </h1>
           <p className="text-sm text-[var(--ink)]/70 mt-1">
-            Visual inspiration, color swatches, culinary concept menus, and AI-generated invitation copy.
+            Visual inspiration, color swatches, culinary concept menus, and AI-generated invitation
+            copy.
           </p>
         </div>
 
@@ -134,7 +145,10 @@ export default function IdeasPage() {
       </div>
 
       {/* Mandatory Color Palette Swatch Card */}
-      <GlassSurface elevation="card" className="p-6 rounded-3xl border border-[var(--navy)]/10 mb-8 space-y-4">
+      <GlassSurface
+        elevation="card"
+        className="p-6 rounded-3xl border border-[var(--navy)]/10 mb-8 space-y-4"
+      >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Palette className="w-4 h-4 text-[var(--orange)]" />
@@ -219,10 +233,15 @@ export default function IdeasPage() {
                   </div>
 
                   <div className="p-4 space-y-3">
-                    <p className="text-xs text-[var(--ink)]/70 leading-relaxed">{item.description}</p>
+                    <p className="text-xs text-[var(--ink)]/70 leading-relaxed">
+                      {item.description}
+                    </p>
                     <div className="flex flex-wrap gap-1.5">
                       {item.tags.map((tag, i) => (
-                        <span key={i} className="text-[10px] font-bold bg-[var(--bg)] text-[var(--navy)] px-2 py-0.5 rounded-md border border-[var(--navy)]/10">
+                        <span
+                          key={i}
+                          className="text-[10px] font-bold bg-[var(--bg)] text-[var(--navy)] px-2 py-0.5 rounded-md border border-[var(--navy)]/10"
+                        >
                           #{tag}
                         </span>
                       ))}
@@ -253,7 +272,10 @@ export default function IdeasPage() {
 
         {/* Right: AI Invitation Copywriter (4 cols) */}
         <div className="lg:col-span-4 space-y-6">
-          <GlassSurface elevation="card" className="p-5 rounded-2xl border border-[var(--navy)]/10 space-y-4">
+          <GlassSurface
+            elevation="card"
+            className="p-5 rounded-2xl border border-[var(--navy)]/10 space-y-4"
+          >
             <div className="flex items-center justify-between pb-3 border-b border-[var(--navy)]/10">
               <div className="flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[var(--orange)]" />
@@ -261,7 +283,9 @@ export default function IdeasPage() {
                   AI Invitation Copywriter
                 </h3>
               </div>
-              <Badge variant="gold" className="text-[10px]">Instant Draft</Badge>
+              <Badge variant="gold" className="text-[10px]">
+                Instant Draft
+              </Badge>
             </div>
 
             {/* Tone Selector */}
@@ -312,11 +336,17 @@ export default function IdeasPage() {
             <div className="space-y-2 text-xs">
               <div className="p-2.5 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10">
                 <div className="font-bold text-[var(--navy)]">Handmade Pichwai Silver Coins</div>
-                <div className="text-[11px] text-[var(--ink)]/60">Custom 20g 999-silver Lakshmi-Ganesh coin in velvet gift box.</div>
+                <div className="text-[11px] text-[var(--ink)]/60">
+                  Custom 20g 999-silver Lakshmi-Ganesh coin in velvet gift box.
+                </div>
               </div>
               <div className="p-2.5 bg-[var(--bg)] rounded-xl border border-[var(--navy)]/10">
-                <div className="font-bold text-[var(--navy)]">Kashmiri Saffron & Organic Wild Honey</div>
-                <div className="text-[11px] text-[var(--ink)]/60">Artisanal brass pot pairing with raw honeycomb from the Himalayas.</div>
+                <div className="font-bold text-[var(--navy)]">
+                  Kashmiri Saffron & Organic Wild Honey
+                </div>
+                <div className="text-[11px] text-[var(--ink)]/60">
+                  Artisanal brass pot pairing with raw honeycomb from the Himalayas.
+                </div>
               </div>
             </div>
           </div>
@@ -325,7 +355,11 @@ export default function IdeasPage() {
 
       {/* TOAST MESSAGE */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold">
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-6 right-6 z-50 bg-[var(--navy)] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-bottom-4 text-xs font-bold"
+        >
           <Check className="w-4 h-4 text-[var(--gold)]" />
           {toastMessage}
         </div>

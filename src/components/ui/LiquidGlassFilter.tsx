@@ -39,12 +39,7 @@ export function LiquidGlassFilter() {
             <feDistantLight azimuth="235" elevation="55" />
           </feSpecularLighting>
           {/* Composite specular light on blurred refraction */}
-          <feComposite
-            in="specular"
-            in2="blurred"
-            operator="in"
-            result="specularReflected"
-          />
+          <feComposite in="specular" in2="blurred" operator="in" result="specularReflected" />
           <feBlend mode="screen" in="blurred" in2="specularReflected" />
         </filter>
       </defs>
