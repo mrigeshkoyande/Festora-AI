@@ -27,7 +27,8 @@ export function Footer() {
               </span>
             </div>
             <p className="text-bg/70 text-sm max-w-sm leading-relaxed">
-              Autonomous, GenAI-powered celebration & event planning web application. Orchestrating high-end weddings, milestone birthdays, and corporate galas with mathematical precision.
+              A planning prototype for weddings, milestone birthdays, community celebrations, and
+              corporate galas with deterministic budget and timeline utilities.
             </p>
             <div className="text-xs text-gold font-semibold uppercase tracking-wider">
               Plan the day. Keep the magic.
@@ -42,7 +43,10 @@ export function Footer() {
             <Link href="/features" className="text-sm text-bg/80 hover:text-bg transition-colors">
               Features
             </Link>
-            <Link href="/#how-it-works" className="text-sm text-bg/80 hover:text-bg transition-colors">
+            <Link
+              href="/#how-it-works"
+              className="text-sm text-bg/80 hover:text-bg transition-colors"
+            >
               How It Works
             </Link>
             <Link href="/pricing" className="text-sm text-bg/80 hover:text-bg transition-colors">
@@ -107,7 +111,10 @@ export function Footer() {
 
         {/* Bottom copyright line with static Quick Navigation */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-bg/60">
-          <p>© {new Date().getFullYear()} Festora AI. All rights reserved. Crafted with liquid glass & intelligence.</p>
+          <p>
+            © {new Date().getFullYear()} Festora AI. All rights reserved. Crafted with liquid glass
+            & intelligence.
+          </p>
           <div className="flex items-center gap-6">
             <button
               type="button"

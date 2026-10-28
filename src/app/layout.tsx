@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://festora.ai"),
   title: "Festora AI — Autonomous Celebration & Event Planner",
   description:
-    "Next-Gen GenAI-powered celebration and event planning web application for weddings, milestone birthdays, and community galas.",
+    "A planning prototype for turning wedding, milestone, and community event details into structured budgets, timelines, guest plans, and run sheets.",
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Festora AI — Plan the Day. Keep the Magic.",
     description:
-      "Autonomous event orchestration from concept to final toast. Eliminate coordination friction and curate verified world-class vendors effortlessly.",
+      "Event planning workflows from intake to budgets, timelines, guest logistics, and run sheets, with deterministic fallback planning when AI is unavailable.",
     url: "https://festora.ai",
     siteName: "Festora AI",
     images: [
@@ -63,11 +63,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${grotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <body

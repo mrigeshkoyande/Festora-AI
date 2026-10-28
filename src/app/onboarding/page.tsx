@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Heart,
-  Briefcase,
   PartyPopper,
   ArrowRight,
   ArrowLeft,
@@ -38,7 +37,7 @@ export default function OnboardingWizardPage() {
   const [budget, setBudget] = useState(4500000); // ₹45 Lakhs
   const [styleVibe, setStyleVibe] = useState("Royal Heritage");
   const [specialNeeds, setSpecialNeeds] = useState(
-    "Marwari welcome ritual with dholaks, separate Jain catering counter, drone permit required."
+    "Marwari welcome ritual with dholaks, separate Jain catering counter, drone permit required.",
   );
   const [valetRequired, setValetRequired] = useState(true);
   const [kidsArea, setKidsArea] = useState(false);
@@ -124,6 +123,18 @@ export default function OnboardingWizardPage() {
 
   const progressPercent = (currentStep / totalSteps) * 100;
 
+  const loadDemoPlan = () => {
+    setEventType("Wedding");
+    setTitle("Demo Jaipur Heritage Wedding");
+    setTargetDate("2027-02-18");
+    setCity("Jaipur, Rajasthan");
+    setGuestCount(150);
+    setBudget(4500000);
+    setStyleVibe("Royal Heritage");
+    setSpecialNeeds("Demo data: Marwari welcome ritual and separate Jain catering counter.");
+    setCurrentStep(2);
+  };
+
   return (
     <div className="min-h-screen bg-bg text-ink flex flex-col">
       {/* Top Thin Progress Bar */}
@@ -146,15 +157,20 @@ export default function OnboardingWizardPage() {
               className="object-contain"
             />
           </div>
-          <span className="font-grotesk font-extrabold text-lg text-navy">
-            Festora AI
-          </span>
+          <span className="font-grotesk font-extrabold text-lg text-navy">Festora AI</span>
         </Link>
 
         <div className="flex items-center gap-4 text-xs font-semibold text-ink/70">
           <span>
             Step {currentStep} of {totalSteps}
           </span>
+          <button
+            type="button"
+            onClick={loadDemoPlan}
+            className="min-h-11 rounded-pill border border-navy/20 px-3 text-navy hover:bg-navy/5 focus:outline-none focus:ring-2 focus:ring-navy"
+          >
+            Load demo plan
+          </button>
           <Link href="/dashboard" className="text-navy hover:underline">
             Exit to Dashboard
           </Link>
@@ -183,6 +199,14 @@ export default function OnboardingWizardPage() {
                 {/* Option 1: Wedding */}
                 <div
                   onClick={() => setEventType("Wedding")}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setEventType("Wedding");
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
                   className={`group cursor-pointer rounded-card-lg p-6 relative overflow-hidden flex flex-col justify-between h-72 border-2 transition-all ${
                     eventType === "Wedding"
                       ? "border-orange bg-white shadow-xl scale-[1.02]"
@@ -207,20 +231,26 @@ export default function OnboardingWizardPage() {
                     </div>
                   </div>
                   <div className="relative z-10">
-                    <h3 className="font-grotesk text-xl font-bold text-navy">
-                      Grand Wedding
-                    </h3>
+                    <h3 className="font-grotesk text-xl font-bold text-navy">Grand Wedding</h3>
                     <p className="text-xs text-ink/70 mt-1 leading-relaxed">
                       Multi-day nuptials, sangeet, mehendi, pheras, and lavish banquets.
                     </p>
                   </div>
                 </div>
 
-                {/* Option 2: Corporate Gala */}
+                {/* Option 2: Milestone Birthday */}
                 <div
-                  onClick={() => setEventType("Corporate")}
+                  onClick={() => setEventType("Birthday")}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setEventType("Birthday");
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
                   className={`group cursor-pointer rounded-card-lg p-6 relative overflow-hidden flex flex-col justify-between h-72 border-2 transition-all ${
-                    eventType === "Corporate"
+                    eventType === "Birthday"
                       ? "border-orange bg-white shadow-xl scale-[1.02]"
                       : "border-navy/12 bg-white hover:border-navy/30"
                   }`}
@@ -233,30 +263,36 @@ export default function OnboardingWizardPage() {
                     }}
                   />
                   <div className="relative z-10 flex justify-between items-start">
-                    <Briefcase className="w-8 h-8 text-navy" />
+                    <PartyPopper className="w-8 h-8 text-navy" />
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                        eventType === "Corporate" ? "border-orange bg-orange" : "border-navy/30"
+                        eventType === "Birthday" ? "border-orange bg-orange" : "border-navy/30"
                       }`}
                     >
-                      {eventType === "Corporate" && <CheckCircle className="w-4 h-4 text-ink" />}
+                      {eventType === "Birthday" && <CheckCircle className="w-4 h-4 text-ink" />}
                     </div>
                   </div>
                   <div className="relative z-10">
-                    <h3 className="font-grotesk text-xl font-bold text-navy">
-                      Corporate Gala
-                    </h3>
+                    <h3 className="font-grotesk text-xl font-bold text-navy">Milestone Birthday</h3>
                     <p className="text-xs text-ink/70 mt-1 leading-relaxed">
-                      Annual summits, award ceremonies, product launches, and VIP retreats.
+                      Decade birthdays, anniversaries, family dinners, and themed parties.
                     </p>
                   </div>
                 </div>
 
                 {/* Option 3: Private Milestone */}
                 <div
-                  onClick={() => setEventType("Social")}
+                  onClick={() => setEventType("Community")}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setEventType("Community");
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
                   className={`group cursor-pointer rounded-card-lg p-6 relative overflow-hidden flex flex-col justify-between h-72 border-2 transition-all ${
-                    eventType === "Social"
+                    eventType === "Community"
                       ? "border-orange bg-white shadow-xl scale-[1.02]"
                       : "border-navy/12 bg-white hover:border-navy/30"
                   }`}
@@ -272,15 +308,15 @@ export default function OnboardingWizardPage() {
                     <PartyPopper className="w-8 h-8 text-gold" />
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                        eventType === "Social" ? "border-orange bg-orange" : "border-navy/30"
+                        eventType === "Community" ? "border-orange bg-orange" : "border-navy/30"
                       }`}
                     >
-                      {eventType === "Social" && <CheckCircle className="w-4 h-4 text-ink" />}
+                      {eventType === "Community" && <CheckCircle className="w-4 h-4 text-ink" />}
                     </div>
                   </div>
                   <div className="relative z-10">
                     <h3 className="font-grotesk text-xl font-bold text-navy">
-                      Private Milestone
+                      Community Celebration
                     </h3>
                     <p className="text-xs text-ink/70 mt-1 leading-relaxed">
                       Birthdays, anniversaries, community festivals, and themed soirées.
@@ -397,8 +433,8 @@ export default function OnboardingWizardPage() {
                     {budget >= 10000000
                       ? "Imperial Ultra-Luxury Tier"
                       : budget >= 3500000
-                      ? "Premium Bespoke Experience"
-                      : "Curated Elegance Tier"}
+                        ? "Premium Bespoke Experience"
+                        : "Curated Elegance Tier"}
                   </p>
                 </div>
 
@@ -456,11 +492,7 @@ export default function OnboardingWizardPage() {
 
               <div className="flex flex-wrap gap-3 justify-center">
                 {styleChips.map((chip) => (
-                  <Chip
-                    key={chip}
-                    active={styleVibe === chip}
-                    onClick={() => setStyleVibe(chip)}
-                  >
+                  <Chip key={chip} active={styleVibe === chip} onClick={() => setStyleVibe(chip)}>
                     {chip}
                   </Chip>
                 ))}
@@ -471,13 +503,14 @@ export default function OnboardingWizardPage() {
                   <h4 className="font-grotesk font-bold text-base text-navy">
                     Curated Signature Palette
                   </h4>
-                  <p className="text-xs text-ink/70">
-                    Mandatory 5-color harmony system
-                  </p>
+                  <p className="text-xs text-ink/70">Mandatory 5-color harmony system</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-navy border border-white" title="Navy" />
-                  <span className="w-6 h-6 rounded-full bg-orange border border-white" title="Orange" />
+                  <span
+                    className="w-6 h-6 rounded-full bg-orange border border-white"
+                    title="Orange"
+                  />
                   <span className="w-6 h-6 rounded-full bg-gold border border-white" title="Gold" />
                 </div>
               </div>
@@ -503,28 +536,36 @@ export default function OnboardingWizardPage() {
                 <div className="flex items-center justify-between p-4 rounded-card bg-white border border-navy/12 shadow-sm">
                   <div className="flex items-center gap-3">
                     <span className="font-grotesk font-extrabold text-base text-orange">01</span>
-                    <span className="text-sm font-semibold text-ink">Culinary Experience & Gastronomy</span>
+                    <span className="text-sm font-semibold text-ink">
+                      Culinary Experience & Gastronomy
+                    </span>
                   </div>
                   <GripVertical className="w-4 h-4 text-ink/40" />
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-card bg-white border border-navy/12 shadow-sm">
                   <div className="flex items-center gap-3">
                     <span className="font-grotesk font-extrabold text-base text-gold">02</span>
-                    <span className="text-sm font-semibold text-ink">Immersive Decor, Mandap & Lighting</span>
+                    <span className="text-sm font-semibold text-ink">
+                      Immersive Decor, Mandap & Lighting
+                    </span>
                   </div>
                   <GripVertical className="w-4 h-4 text-ink/40" />
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-card bg-white border border-navy/12 shadow-sm">
                   <div className="flex items-center gap-3">
                     <span className="font-grotesk font-extrabold text-base text-navy">03</span>
-                    <span className="text-sm font-semibold text-ink">Live Music, Band & Cultural Entertainment</span>
+                    <span className="text-sm font-semibold text-ink">
+                      Live Music, Band & Cultural Entertainment
+                    </span>
                   </div>
                   <GripVertical className="w-4 h-4 text-ink/40" />
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-card bg-white border border-navy/12 shadow-sm">
                   <div className="flex items-center gap-3">
                     <span className="font-grotesk font-extrabold text-base text-navy/70">04</span>
-                    <span className="text-sm font-semibold text-ink">Guest Hospitality & Valet Coordination</span>
+                    <span className="text-sm font-semibold text-ink">
+                      Guest Hospitality & Valet Coordination
+                    </span>
                   </div>
                   <GripVertical className="w-4 h-4 text-ink/40" />
                 </div>
@@ -598,19 +639,24 @@ export default function OnboardingWizardPage() {
                   Festora AI is crafting your plan...
                 </h1>
                 <p className="text-xs text-ink/70">
-                  Synthesizing vendors, drafting intelligent milestones, and calculating exact budget splits.
+                  Synthesizing vendors, drafting intelligent milestones, and calculating exact
+                  budget splits.
                 </p>
               </div>
 
               <div className="bg-white p-6 rounded-card-lg border border-navy/12 text-left space-y-3.5 shadow-sm">
                 <div className="flex items-center gap-3 text-xs font-medium">
-                  <CheckCircle className={`w-4 h-4 ${generationPhase >= 1 ? "text-navy" : "text-navy/30"}`} />
+                  <CheckCircle
+                    className={`w-4 h-4 ${generationPhase >= 1 ? "text-navy" : "text-navy/30"}`}
+                  />
                   <span className={generationPhase >= 1 ? "text-ink" : "text-ink/40"}>
                     Allocated budget across 5 categories ({formatINR(budget)})
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-xs font-medium">
-                  <CheckCircle className={`w-4 h-4 ${generationPhase >= 2 ? "text-navy" : "text-navy/30"}`} />
+                  <CheckCircle
+                    className={`w-4 h-4 ${generationPhase >= 2 ? "text-navy" : "text-navy/30"}`}
+                  />
                   <span className={generationPhase >= 2 ? "text-ink" : "text-ink/40"}>
                     Shortlisted verified vendors in {city}
                   </span>
