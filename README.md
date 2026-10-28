@@ -48,7 +48,7 @@ npm run check-contrast
 npm audit
 ```
 
-The repository currently has 55 automated tests in 12 suites. `test:coverage` enforces thresholds for the utility layer and prints the measured Node coverage report; coverage is not a claim that every UI route is end-to-end tested.
+The repository currently has 58 automated tests in 14 suites. `test:coverage` enforces thresholds for the utility layer and prints the measured Node coverage report; coverage is not a claim that every UI route is end-to-end tested.
 
 ## Configuration
 
