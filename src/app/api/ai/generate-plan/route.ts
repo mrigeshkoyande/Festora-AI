@@ -7,8 +7,9 @@ import { checkRateLimit, sanitizeInput } from "@/lib/utils/security";
 export async function POST(req: Request) {
   try {
     // 1. Rate limiting check (15 requests per 60 seconds per IP/client)
-    const clientIp = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "anonymous-client";
-    const rateCheck = checkRateLimit(`ai-generate:${clientIp}`, 15, 60);
+    const clientIp =
+      req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "anonymous-client";
+    const rateCheck = await checkRateLimit(`ai-generate:${clientIp}`, 15, 60_000);
 
     if (!rateCheck.allowed) {
       return NextResponse.json(
@@ -20,19 +21,31 @@ export async function POST(req: Request) {
         {
           status: 429,
           headers: { "Retry-After": String(rateCheck.resetSeconds) },
-        }
+        },
       );
     }
 
     // 2. Body Parsing & Runtime Zod Schema Validation
+    const contentLength = Number(req.headers.get("content-length") || 0);
+    if (contentLength > 50_000) {
+      return NextResponse.json(
+        { success: false, error: "Request body is too large" },
+        { status: 413 },
+      );
+    }
+
     let rawBody: unknown;
     try {
-      rawBody = await req.json();
+      const bodyText = await req.text();
+      if (new TextEncoder().encode(bodyText).byteLength > 50_000) {
+        return NextResponse.json(
+          { success: false, error: "Request body is too large" },
+          { status: 413 },
+        );
+      }
+      rawBody = JSON.parse(bodyText);
     } catch {
-      return NextResponse.json(
-        { success: false, error: "Invalid JSON payload" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: "Invalid JSON payload" }, { status: 400 });
     }
 
     const validationResult = PlanGenerationRequestSchema.safeParse(rawBody);
@@ -43,7 +56,7 @@ export async function POST(req: Request) {
           error: "Validation failed",
           details: validationResult.error.flatten().fieldErrors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -52,6 +65,9 @@ export async function POST(req: Request) {
     // 3. Input Sanitization
     const sanitizedInput = {
       ...validatedInput,
+      eventType: sanitizeInput(validatedInput.eventType, 50),
+      currency: sanitizeInput(validatedInput.currency, 3).toUpperCase(),
+      priorities: validatedInput.priorities?.map((priority) => sanitizeInput(priority, 100)),
       title: sanitizeInput(validatedInput.title, 100),
       city: sanitizeInput(validatedInput.city, 100),
       styleVibe: sanitizeInput(validatedInput.styleVibe, 100),
@@ -171,7 +187,7 @@ export async function POST(req: Request) {
         },
       });
     } catch (dbErr) {
-      console.warn("Serverless DB persistence bypassed cleanly:", dbErr);
+      console.warn("Serverless DB persistence bypassed cleanly");
     }
 
     return NextResponse.json({
@@ -180,10 +196,10 @@ export async function POST(req: Request) {
       plan,
     });
   } catch (error) {
-    console.error("Error in AI generation API:", error);
+    console.error("Error in AI generation API");
     return NextResponse.json(
       { success: false, error: "Failed to generate event plan" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

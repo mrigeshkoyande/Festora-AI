@@ -1,41 +1,124 @@
 /**
- * Festora AI — Security & Input Protection Utilities
- * Protects endpoints against denial of service, prompt injection, and XSS attacks.
+ * Festora AI — Security and input-protection utilities.
+ *
+ * The default store is process-local for zero-configuration development. Configure
+ * UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in production when requests
+ * can reach multiple serverless instances or containers; process-local memory does
+ * not coordinate limits across those instances.
  */
 
-interface RateLimitRecord {
+import { getServerEnv } from "@/lib/env";
+
+export interface RateLimitRecord {
   count: number;
   resetTime: number;
 }
 
-const rateLimitStore = new Map<string, RateLimitRecord>();
+/** Pluggable storage contract for rate-limit state. */
+export interface RateLimitStore {
+  get(key: string): Promise<RateLimitRecord | undefined> | RateLimitRecord | undefined;
+  set(key: string, value: RateLimitRecord, ttlMs: number): Promise<void> | void;
+  delete?(key: string): Promise<void> | void;
+}
 
-/**
- * Sliding-window in-memory IP rate limiter.
- *
- * @param identifier - Unique client identifier (e.g., client IP or session ID)
- * @param limit - Maximum allowed requests in the time window (default: 15)
- * @param windowMs - Time window in milliseconds (default: 60,000ms = 1 minute)
- * @returns Object with allowed boolean, remaining quota, and reset seconds
- * @complexity O(1) Time | O(U) Space where U is unique active client IPs
- */
-export function checkRateLimit(
-  identifier: string,
-  limit: number = 15,
-  windowMs: number = 60_000
-): { allowed: boolean; remaining: number; resetSeconds: number } {
-  const now = Date.now();
-  const record = rateLimitStore.get(identifier);
+/** Process-local fallback for local development and single-instance deployments. */
+export class InMemoryRateLimitStore implements RateLimitStore {
+  private readonly records = new Map<string, RateLimitRecord>();
 
-  // Clean expired or initialize
-  if (!record || now > record.resetTime) {
-    rateLimitStore.set(identifier, {
-      count: 1,
-      resetTime: now + windowMs,
+  get(key: string): RateLimitRecord | undefined {
+    return this.records.get(key);
+  }
+
+  set(key: string, value: RateLimitRecord): void {
+    this.records.set(key, value);
+  }
+
+  delete(key: string): void {
+    this.records.delete(key);
+  }
+}
+
+/** Optional Upstash-compatible REST adapter selected by environment variables. */
+export class UpstashRateLimitStore implements RateLimitStore {
+  constructor(
+    private readonly url: string,
+    private readonly token: string,
+  ) {}
+
+  private async command<T>(command: string[]): Promise<T | undefined> {
+    const response = await fetch(this.url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(command),
     });
+
+    if (!response.ok) return undefined;
+    const body = (await response.json()) as { result?: T };
+    return body.result;
+  }
+
+  async get(key: string): Promise<RateLimitRecord | undefined> {
+    const serialized = await this.command<string>(["GET", key]);
+    if (!serialized) return undefined;
+    try {
+      return JSON.parse(serialized) as RateLimitRecord;
+    } catch {
+      return undefined;
+    }
+  }
+
+  async set(key: string, value: RateLimitRecord, ttlMs: number): Promise<void> {
+    await this.command([
+      "SETEX",
+      key,
+      String(Math.max(1, Math.ceil(ttlMs / 1000))),
+      JSON.stringify(value),
+    ]);
+  }
+
+  async delete(key: string): Promise<void> {
+    await this.command(["DEL", key]);
+  }
+}
+
+/** Select shared Upstash storage when configured, otherwise use memory. */
+export function createConfiguredRateLimitStore(): RateLimitStore {
+  const env = getServerEnv();
+  if (env.UPSTASH_REDIS_REST_URL && env.UPSTASH_REDIS_REST_TOKEN) {
+    return new UpstashRateLimitStore(env.UPSTASH_REDIS_REST_URL, env.UPSTASH_REDIS_REST_TOKEN);
+  }
+  return new InMemoryRateLimitStore();
+}
+
+let rateLimitStore: RateLimitStore = createConfiguredRateLimitStore();
+
+/** Replace the default store with a shared adapter at application startup or in tests. */
+export function configureRateLimitStore(store: RateLimitStore): void {
+  rateLimitStore = store;
+}
+
+/** Restore process-local storage for isolated tests and local development. */
+export function resetRateLimitStore(): void {
+  rateLimitStore = new InMemoryRateLimitStore();
+}
+
+/** Check one fixed-window rate-limit request. */
+export async function checkRateLimit(
+  identifier: string,
+  limit = 15,
+  windowMs = 60_000,
+): Promise<{ allowed: boolean; remaining: number; resetSeconds: number }> {
+  const now = Date.now();
+  const record = await rateLimitStore.get(identifier);
+
+  if (!record || now >= record.resetTime) {
+    await rateLimitStore.set(identifier, { count: 1, resetTime: now + windowMs }, windowMs);
     return {
       allowed: true,
-      remaining: limit - 1,
+      remaining: Math.max(0, limit - 1),
       resetSeconds: Math.ceil(windowMs / 1000),
     };
   }
@@ -44,59 +127,42 @@ export function checkRateLimit(
     return {
       allowed: false,
       remaining: 0,
-      resetSeconds: Math.ceil((record.resetTime - now) / 1000),
+      resetSeconds: Math.max(1, Math.ceil((record.resetTime - now) / 1000)),
     };
   }
 
-  record.count += 1;
+  const next = { ...record, count: record.count + 1 };
+  await rateLimitStore.set(identifier, next, record.resetTime - now);
   return {
     allowed: true,
-    remaining: limit - record.count,
-    resetSeconds: Math.ceil((record.resetTime - now) / 1000),
+    remaining: Math.max(0, limit - next.count),
+    resetSeconds: Math.max(1, Math.ceil((record.resetTime - now) / 1000)),
   };
 }
 
-/**
- * Sanitizes untrusted user text input:
- * - Trims whitespace
- * - Strips `<script>`, `<iframe>`, `javascript:`, HTML tags to prevent XSS
- * - Caps maximum string length to prevent memory exhaustion
- *
- * @param input - Untrusted user input value
- * @param maxLength - Maximum permitted character length (default: 500)
- * @returns Sanitized safe text string
- * @complexity O(L) Time | O(L) Space where L is input length
- */
-export function sanitizeInput(input: unknown, maxLength: number = 500): string {
+/** Sanitize untrusted text by trimming, removing markup/protocol payloads, and bounding length. */
+export function sanitizeInput(input: unknown, maxLength = 500): string {
   if (typeof input !== "string") return "";
-
-  const trimmed = input.trim().slice(0, maxLength);
-
-  // Remove potential script and dangerous HTML tags
-  return trimmed
+  return input
+    .trim()
+    .slice(0, maxLength)
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
     .replace(/<[^>]+>/g, "")
     .replace(/javascript:/gi, "");
 }
 
-/**
- * Validates server configuration and ensures private credentials are never leaked.
- *
- * @returns Safe server diagnostic object omitting secret keys
- * @complexity O(1) Time | O(1) Space
- */
+/** Return only non-secret server diagnostics. */
 export function getSafeServerConfig(): {
   hasGeminiKey: boolean;
   appUrl: string;
   isProduction: boolean;
+  usesSharedRateLimitStore: boolean;
 } {
-  const key = process.env.GEMINI_API_KEY;
-  const isProduction = process.env.NODE_ENV === "production";
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-
+  const env = getServerEnv();
   return {
-    hasGeminiKey: Boolean(key && key.trim().length > 0),
-    appUrl,
-    isProduction,
+    hasGeminiKey: Boolean(env.GEMINI_API_KEY),
+    appUrl: env.NEXT_PUBLIC_APP_URL,
+    isProduction: env.NODE_ENV === "production",
+    usesSharedRateLimitStore: Boolean(env.UPSTASH_REDIS_REST_URL && env.UPSTASH_REDIS_REST_TOKEN),
   };
 }
